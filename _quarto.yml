@@ -1,0 +1,42 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: Introduction to R
+  author: Institute of Finance and Statistics
+  date: last-modified
+  date-format: "[Last Updated on] MMMM DD, YYYY"
+  sidebar:
+    logo: images/KU_Logo_2.png
+    number-depth: 2
+  search: true
+  chapters:
+    - index.qmd
+    - 01-Getting-Started.qmd
+    - 02-Datasets.qmd
+    - 03-Programming.qmd
+    - 04-Functions.qmd
+    - 05-Plotting.qmd
+    - 06-Monte-Carlo-Simulations.qmd
+    - 07-Regression.qmd
+    - 08-Notes-on-useful-packages.qmd
+
+bibliography: book.bib
+
+format:
+  html:
+    theme:
+      light: [flatly, theme.scss]
+      dark: [flatly, darkly, theme.scss]
+    html-math-method:
+      method: mathjax
+      url: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML"
+    number-sections: true
+    code-link: true
+    reference-links: true
+    reference-location: margin
+    knitr:
+      opts_chunk:
+        fig.align: center
+        fig-align: center
