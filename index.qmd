@@ -1,9 +1,15 @@
 # Preface {.unnumbered}
 
 
-The purpose of this tutorial is to introduce the software package R that is used during the lectures, in problem sets, and in the tutorials. The pdf version of these lecture notes is on the [class website](https://ecampus.uni-bonn.de/). The html version is better formatted and can be found [here](https://bookdown.org/joachimfreyberger/r_tutorial_phd_econometrics/_book/). 
+The purpose of this tutorial is to introduce the programming languages R and Python that are used during the lectures, in problem sets, and in the tutorials. The tutorial consists of two parallel parts:
 
-Some additional references and tutorials you might find helpful are:
+-   **Part I: Introduction to R** 
+-   **Part II: Introduction to Python** 
+
+Both parts have the same structure: each chapter of the R part has a counterpart in the Python part that covers the same topics with the same examples and exercises. So you can work through the part of your preferred language, or compare how the same task is done in both languages.
+ The pdf version of these lecture notes is on the [class website](https://ecampus.uni-bonn.de/). The html version is better formatted and can be found [here](https://bookdown.org/joachimfreyberger/r_tutorial_phd_econometrics/_book/). 
+
+Some additional references and tutorials for R you might find helpful are:
 
 -   The online textbook [Introduction to Econometrics with R](https://www.econometrics-with-r.org/) 
 -   [Reference card for R commands](https://cran.r-project.org/doc/contrib/refcard.pdf)  
@@ -15,21 +21,32 @@ Some additional references and tutorials you might find helpful are:
 -   Another excellent book: [R for Data Science](https://r4ds.had.co.nz/)    
 -   [An introduction to statistical learning with R](https://www.statlearning.com/)   
 
+Some additional references and tutorials for Python you might find helpful are:
+
+-   [The official Python tutorial](https://docs.python.org/3/tutorial/)  
+-   The online lectures [Python Programming for Economics and Finance](https://python-programming.quantecon.org/) by QuantEcon  
+-   [Python for Data Analysis](https://wesmckinney.com/book/) by Wes McKinney, the creator of pandas  
+-   [NumPy for MATLAB users](https://numpy.org/doc/stable/user/numpy-for-matlab-users.html)  
+-   [Comparison of pandas with R](https://pandas.pydata.org/docs/getting_started/comparison/comparison_with_r.html)  
+-   [An introduction to statistical learning with Python](https://www.statlearning.com/)   
+
 Here are also links to more advanced tutorials:
 
 -  [Introduction to data science](https://idc9.github.io/stor390/) 
 -  [Creating dynamic graphics](https://gganimate.com/)  
 -  [ChatGPT](https://openai.com/chatgpt/)
 
-Why do we use R?
+Why do we use R and Python?
 
 -    R is free of charge and can be downloaded from [https://cran.r-project.org/](https://cran.r-project.org/) 
--    The IDE Positron for R is also free of charge and can be downloaded from  
+-    Python is free of charge and can be downloaded from [https://www.python.org/downloads/](https://www.python.org/downloads/) 
+-    The IDE Positron for R and Python is also free of charge and can be downloaded from  
      [https://positron.posit.co/download.html](https://positron.posit.co/download.html) 
 -    R is equipped with one of the most flexible and powerful graphic routines available anywhere. For instance, check out one of the following repositories:
       - [Clean Graphs](http://shinyapps.org/apps/RGraphCompendium/index.php) 
       - [Publication ready plots](https://rpkgs.datanovia.com/ggpubr/index.html) 
 -  Today, R is the de-facto standard for statistical science.
+-  Python is one of the most popular programming languages overall and the de-facto standard for machine learning and data science.
 
 
 

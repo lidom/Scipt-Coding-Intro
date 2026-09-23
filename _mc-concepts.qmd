@@ -1,0 +1,41 @@
+## Some important concepts 
+
+We will spend a lot of time learning about statistical properties of estimators. To be precise, let $\hat{\theta}_n$ be an estimator of a parameter $\theta$. The estimator is a functions of the sample, say $\{X_1, X_2, \ldots, X_n\}$. The sample consists of random variables and any function of the sample, including $\hat{\theta}_n$, is a random variable as well. That is, for different realizations of the data, we get different realizations of the estimator. 
+
+These arguments can be confusing because in practice we typically only have one data set and therefore only one realization of the estimator. But we could also think of all the other realizations of the data we could have obtained. For example, consider your starting salary after graduation. Let $\theta$ be the expected starting salary, which is a fixed number that we do not know. After everyone started working and we see your actual starting salaries, we can calculate the sample average as an estimate of the expected value, but this estimate is just one potential realization. If things had turned out slightly different, your starting salaries might have been different and we would have seen a different realization of the estimator. 
+
+Since an estimator is a  random variable, it has a distribution and (typically) a mean and a variance. We call an estimator unbiased if
+$$E\left(\hat{\theta}_n\right) = \theta$$
+That is, the average value of the estimator over all the hypothetical data sets we could have obtained is equal to $\theta$. Unbiasedness can hold for any sample size $n$ and is therefore called a small-sample property. Unbiasedness does not imply that $\hat{\theta}_n$ is necessarily close to $\theta$. 
+
+We will define what it means for an estimator to be consistent:
+$$\hat{\theta}_n \rightarrow_P  \theta$$
+and asymptotically normally distributed:
+$$\sqrt{n}\left(\hat{\theta}_n  - \theta \right) \rightarrow_D N(0,V_{\theta}^2) $$
+These properties only hold in the limit and are called large-sample properties. Knowing the large-sample distribution is particularly useful because it allows us to test hypotheses and obtain confidence intervals. For example, let $\hat{V}_{\theta}$ be a consistent estimator of $V_{\theta}$. Then 
+$$P\left( \theta \in \left[ \hat{\theta}_n - 1.96\frac{\hat{V}_{\theta}}{\sqrt{n}} , \, \hat{\theta}_n + 1.96\frac{\hat{V}_{\theta}}{\sqrt{n}} \right] \right) \rightarrow 0.95$$
+and the interval 
+$$\left[ \hat{\theta}_n - 1.96\frac{\hat{V}_{\theta}}{\sqrt{n}} , \, \hat{\theta}_n + 1.96\frac{\hat{V}_{\theta}}{\sqrt{n}} \right]$$
+is a $95\%$ confidence interval for $\theta$. That is, looking at all hypothetical data sets, $\theta$ is in $95\%$ of the confidence intervals. Notice that in different data sets, we get different intervals, but the parameter $\theta$ does not change.
+
+The $95\%$ coverage probability only holds in the limit, but for any fixed sample size 
+$$P\left( \theta \in \left[ \hat{\theta}_n - 1.96\frac{\hat{V}_{\theta}}{\sqrt{n}} , \, \hat{\theta}_n + 1.96\frac{\hat{V}_{\theta}}{\sqrt{n}} \right] \right) $$
+could be much smaller than $95\%$. This actual coverage probability is unknown in applications. 
+
+The goal of Monte Carlo simulations is typically to investigate small sample properties of estimators, such as the actual coverage probability of confidence intervals for fixed $n$. To do so, we can simulate many random samples from an underlying distribution and obtain the realization of the estimator for each sample. We can then use the realizations to approximate the actual small sample distribution of the estimator and check properties, such as coverage probabilities of confidence intervals. Of course, the properties of the estimator depend on which underlying distribution we sample from. 
+
+
+## Simple simulation example
+
+
+As a simple example, let $\{X_1, X_2, \ldots, X_n\}$ be a random sample from some distribution $F_X$. Define $\theta = E(X)$ and let
+$$\hat{\theta}_n = \bar{X}_n = \frac1n \sum_{i=1}^n X_i$$
+and
+$$s_n = \sqrt{\frac{1}{n-1} \sum_{i=1}^n \left(X_i - \bar{X}_n\right)^2} $$
+Applications of a Law of Large Numbers and a Central Limit Theorem for iid data imply that
+$$\hat{\theta}_n  \rightarrow_P \theta,$$
+$$s_n  \rightarrow_P sd(X),$$
+and
+$$\sqrt{n}\left(\hat{\theta}_n  - \theta \right) \rightarrow_D N(0,Var(X)) $$
+The previously discussed confidence interval for $E(X)$ is 
+$$\left[ \bar{X}_n - 1.96\frac{s_n}{\sqrt{n}} , \, \bar{X}_n + 1.96\frac{s_n}{\sqrt{n}} \right]$$

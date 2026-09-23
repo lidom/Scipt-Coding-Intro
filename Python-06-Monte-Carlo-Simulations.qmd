@@ -1,0 +1,186 @@
+---
+jupyter: python3
+---
+
+# Monte Carlo simulations
+
+{{< include _mc-concepts.qmd >}}
+
+## Consistency
+
+The estimator $\hat{\theta}_n$ is weakly consistent if for any $\varepsilon > 0$
+$$P\left( \left|\hat{\theta}_n - \theta \right| > \varepsilon  \right) \rightarrow 0$$
+or
+$$P\left( \left|\hat{\theta}_n - \theta \right| \leq \varepsilon  \right) \rightarrow 1$$
+That is, as long as $n$ is large enough, $\hat{\theta}_n$ is in an arbitrarily small neighborhood around $\theta$ with arbitrarily large probability.
+
+To illustrate this property, let's return to the example with sample averages and expectations. Let $\{X_1, X_2, \ldots, X_n\}$ be a random sample from the Bernoulli distribution with $p = P(X_i = 1) = 0.7$. Let $\theta = E(X) = p$ and let $\hat{\theta}_n$ be the sample average. We start with a sample size of 20 and set the parameters:
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import norm
+
+n = 20
+p = 0.7
+theta = p
+```
+We now want to take $S$ random samples and obtain $S$ corresponding sample averages, where $S$ is ideally a large number. The larger $S$, the more precise our results will be. It is also useful to set a seed. We store the $S$ samples as the columns of an $n \times S$ matrix and compute the column means with `mean(axis = 0)`.
+```{python}
+rng = np.random.default_rng(seed = 4519)
+S = 10000
+X = rng.binomial(n = 1, p = p, size = (n, S))
+theta_hat = X.mean(axis = 0)
+```
+Now for some $\varepsilon > 0$, we can check $P\left( \left|\hat{\theta}_n - \theta \right| \leq \varepsilon  \right)$:
+```{python}
+eps = 0.1
+np.mean(np.abs(theta_hat - p) <= eps)
+```
+We can also calculate this probability for different values of $\varepsilon > 0$. I use a loop here for readability, but you can try using matrices on your own. Since I want to repeat the following steps for different sample sizes, it is useful to first define a functions that performs all operations:
+```{python}
+def calc_probs_consistency(n, S, p, all_eps):
+    n_eps = len(all_eps)
+    X = rng.binomial(n = 1, p = p, size = (n, S))
+    theta_hat = X.mean(axis = 0)
+    probs = np.zeros(n_eps)
+    for i in range(n_eps):
+        probs[i] = np.mean(np.abs(theta_hat - p) <= all_eps[i])
+    return probs
+```
+We can now call the function for any $n$, $S$, $p$, and a vector containing different values for $\varepsilon$. For each of these values, the function then returns a probability.
+```{python}
+all_eps = np.arange(0.01, 0.505, 0.01)
+probs = calc_probs_consistency(n = 20, S = 1000, p = 0.7, all_eps = all_eps)
+```
+Next, we can plot all probabilities:
+```{python}
+plt.scatter(all_eps, probs, color = "blue", facecolors = "none")
+plt.ylim(0, 1)
+plt.xlabel("epsilon")
+plt.ylabel("Probability")
+plt.show()
+```
+
+We can see from the plot that $P\left( \left|\hat{\theta}_n - \theta \right| \leq \varepsilon  \right)$ is quite small for small values of $\varepsilon$. Consistency means that for any $\varepsilon > 0$, the probability approaches $1$ as $n \rightarrow \infty$. We can now easily change the sample size and see how the results change. For example, take $n=200$:
+```{python}
+probs = calc_probs_consistency(n = 200, S = 10000, p = 0.7, all_eps = all_eps)
+plt.scatter(all_eps, probs, color = "blue", facecolors = "none")
+plt.ylim(0, 1)
+plt.xlabel("epsilon")
+plt.ylabel("Probability")
+plt.show()
+```
+
+## Asymptotic normality
+
+We know from the Central Limit Theorem that
+$$\frac{\sqrt{n}(\bar{X}_n - E(X))}{s_n} \rightarrow_D N(0,1)$$
+where $s_n$ is the sample standard deviation. Convergence in distribution means that the distribution of the normalized sample average converges to the distribution function of a standard normal random variable.
+
+Again, we can use the previous simulation setup to illustrate this property. To do so, we calculate
+$$P\left(\frac{\sqrt{n}(\bar{X}_n - E(X))}{s_n} \leq z\right)$$
+and compare it to the standard normal cdf evaluated at $z$. We then plot the results as a function of $z$. Just as before, we define a function that calculates the probabilities:
+```{python}
+def calc_probs_asymp_normal(n, S, p, z):
+    n_z = len(z)
+    X = rng.binomial(n = 1, p = p, size = (n, S))
+    theta_hat = X.mean(axis = 0)
+    stds = X.std(axis = 0, ddof = 1)
+    probs = np.zeros(n_z)
+    for i in range(n_z):
+        probs[i] = np.mean(np.sqrt(n)*(theta_hat - p)/stds <= z[i])
+    return probs
+```
+We can now plot the results for different sample sizes such as
+```{python}
+#| warning: false
+z = np.arange(-3, 3.005, 0.01)
+probs = calc_probs_asymp_normal(n = 20, S = 10000, p = 0.7, z = z)
+plt.scatter(z, probs, color = "blue", facecolors = "none")
+plt.plot(z, norm.cdf(z, 0, 1), color = "red", linewidth = 2)
+plt.ylim(0, 1)
+plt.xlabel("z")
+plt.ylabel("Probability")
+plt.show()
+```
+
+or
+```{python}
+probs = calc_probs_asymp_normal(n = 2000, S = 10000, p = 0.7, z = z)
+plt.scatter(z, probs, color = "blue", facecolors = "none")
+plt.plot(z, norm.cdf(z, 0, 1), color = "red", linewidth = 2)
+plt.ylim(0, 1)
+plt.xlabel("z")
+plt.ylabel("Probability")
+plt.show()
+```
+
+
+## Testing
+
+Let $\{X_1, X_2, \dots, X_n\}$ be a random sample and define $\mu = E(X)$. Suppose we want to test $H_0: \mu = \mu_0$ where $\mu_0$ is a fixed number. To do so, define
+$$t = \frac{\sqrt{n}(\bar{X}_n - \mu_0)}{s_n} $$
+An immediate consequence of the Central Limit Theorem is that if $H_0$ is true then
+$$t = \frac{\sqrt{n}(\bar{X}_n - \mu_0)}{s_n} = \frac{\sqrt{n}(\bar{X}_n - \mu)}{s_n} \rightarrow_D N(0,1) $$
+and therefore
+$$P\left(|t| > 1.96 \mid \mu = \mu_0\right) \rightarrow 0.05$$
+Hence, if we reject when $|t|>1.96$, we only reject a true null hypothesis with probability approaching 5%.
+
+If the null hypothesis is false, we can write
+$$t = \frac{\sqrt{n}(\bar{X}_n - \mu_0)}{s_n} = \frac{\sqrt{n}(\bar{X}_n - \mu)}{s_n} + \frac{\sqrt{n}(\mu - \mu_0)}{s_n} \rightarrow_D N(0,1) $$
+Since in this case $\sqrt{n}|\mu - \mu_0| \rightarrow \infty$, it follows that
+$$P\left(|t| > 1.96  \mid \mu \neq \mu_0\right) \rightarrow 1$$
+That is, we reject a false null hypothesis with probability approaching $1$. However, for a small sample size, the rejection probability is typically much smaller when $\mu_0$ is close to $\mu$.
+
+We now want to calculate the small sample rejection probabilities using Monte Carlo simulations. We could either vary $\mu_0$ (the value we test) or $\mu$ (the true mean). We take the latter because we can then plot the power functions you have seen in the theoretical part of the class to illustrate the results.
+
+We work with the Bernoulli distribution again and define a function that calculates certain rejection probabilities.
+```{python}
+def calc_rej_probs(n, S, mus, mu0, alpha):
+    n_mus = len(mus)
+    probs = np.zeros(n_mus)
+    for i in range(n_mus):
+        X = rng.binomial(n = 1, p = mus[i], size = (n, S))
+        theta_hat = X.mean(axis = 0)
+        stds = X.std(axis = 0, ddof = 1)
+        probs[i] = np.mean(np.abs(np.sqrt(n)*(theta_hat - mu0)/stds) > norm.ppf(1-alpha/2))
+    return probs
+```
+We can now call the function for different values of $\mu$ and plot the rejection probabilities
+```{python}
+#| warning: false
+mus = np.arange(0.5, 0.905, 0.01)
+probs = calc_rej_probs(n = 200, S = 10000, mus = mus, mu0 = 0.7, alpha = 0.05)
+plt.scatter(mus, probs, color = "blue", facecolors = "none")
+plt.axhline(0.05, color = "red", linewidth = 2)
+plt.ylim(0, 1)
+plt.xlabel("True mean")
+plt.ylabel("Rejection Probability")
+plt.show()
+```
+
+Think about how the figure changes as the sample size increases.
+
+
+## Exercises VI
+
+
+**Exercise 1:**
+
+Suppose $X \sim U[0,2]$ where $U[0,2]$ denotes the uniform distribution on the interval $[0,2]$. It is easy to show (make sure to verify this!) that $E(X) = 1$. Now repeat the following two steps at least $1,000$ times:
+
+1. Take a random sample from the distribution of $X$ with sample size $n = 20$.
+2. Calculate the sample average and a $95\%$ confidence interval for $E(X)$ using the sample from (1).
+
+You should now have $1,000$ sample averages and $1,000$ confidence intervals, which you can use to answer the following questions:
+
+a. What is average of your $1,000$ sample averages?
+
+b. What is the standard deviation of your $1,000$ sample averages?
+
+c. How many times is $E(X)$ in the $95\%$ confidence interval?
+
+
+**Exercise 2:**
+
+In this exercise, we use the Monte-Carlo method to approximate the number pi. To do so, randomly choose n points from a square and count how many of those draws lie inside the square's incircle. Based on this results and the formula for the area of a circle, calculate an approximation of pi.

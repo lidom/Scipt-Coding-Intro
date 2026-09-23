@@ -1,0 +1,11 @@
+## Basic linear model
+
+You have probably all learnt about the linear regression model in a previous econometrics class where
+$$Y =  \beta_1 X_1 + \beta_2 X_2 + \ldots + \beta_{k} X_{k} + \beta_{k+1} + e $$
+and 
+$$E(e \mid X_1, X_2, \ldots, X_{k}) = 0.$$ 
+That is, the conditional mean of the outcome variable $Y$ is a linear function of the regressors $X_1, X_2, \ldots, X_{k}$. 
+
+When we have a random sample of size $n$, we can also write
+$$Y_i = \beta_1 X_{i1} + \beta_2 X_{i2} + \ldots + \beta_k X_{ik} + \beta_{k+1} +  e_i, \qquad i = 1, 2, \ldots, n.$$
+Our goal is to estimate the coefficients $\beta_1, \ldots, \beta_{k+1}$ using the data $\{Y_i, X_{i1},X_{i2},\ldots, X_{ik}\}^n_{i=1}$.

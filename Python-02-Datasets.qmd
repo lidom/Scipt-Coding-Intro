@@ -1,0 +1,94 @@
+---
+jupyter: python3
+---
+
+# Create and load data sets
+
+We will use Python to analyze both simulate and real data. Simulated data will be crucial to study small sample properties of estimators.
+
+## Simulated data
+
+We start by considering data that is simulated by the user. In NumPy, random numbers are drawn from a *random number generator*, which we create with `np.random.default_rng()`. We can then create data sets by using its methods like `normal()`, `exponential()` or `uniform()`. After the data is created we can work with it as shown in the following example:
+```{python}
+import numpy as np
+
+rng = np.random.default_rng()  # random number generator
+
+n = 100  # number of observations
+
+Z = rng.normal(loc = 5, scale = 3, size = n)      # draw from normal distribution
+print(np.mean(Z))
+print(np.std(Z, ddof = 1))
+
+E = rng.exponential(scale = 1/3, size = n)        # draw data from exponential distribution
+print(np.mean(E))
+print(np.std(E, ddof = 1))
+
+
+U = rng.uniform(low = 3, high = 5, size = n)      # draw data from uniform distribution
+print(np.mean(U))
+print(np.std(U, ddof = 1))
+```
+Note that NumPy parametrizes the exponential distribution by its scale, i.e., by $1/\text{rate}$.
+
+Analogous functions exist for many other distributions, and you can find them in the [NumPy documentation](https://numpy.org/doc/stable/reference/random/generator.html). Densities, distribution functions, and quantile functions are provided by the module `scipy.stats`.
+
+
+
+## Load datasets
+
+It is also possible to work with observed data, which will be loaded into Python. Here, we will use some real data, namely a movie database from IMDB that you can download [here](https://www.kaggle.com/tmdb/tmdb-movie-metadata#). The data set contains, among others, the budget, the revenue, and the average rating of movies.
+
+Once the data is saved in your working directory, you can load it with the pandas function `pd.read_csv()`
+```{python}
+import pandas as pd
+
+data_set = pd.read_csv("tmdb_5000_movies.csv")
+```
+which stores the data in a data frame. You can use `data_set.head()` or the *Session* pane in Positron (click on the table symbol next to `data_set`) to look at the data.
+
+After the file is loaded, we can work with the data using `data_set["column_name"]` (or `data_set.column_name`) to access certain parts of the data set such as
+```{python}
+print(data_set["original_title"][0:5])
+print(data_set["budget"][0:5])
+print(data_set["budget"][0:5].mean())
+```
+
+We will return to this data set when we talk about regression analysis later.
+
+Apart from `pd.read_csv` there exist also `pd.read_stata`, `pd.read_excel` and many more to load suitable data sets.
+
+Another important function is `pd.read_pickle` that is used to read in a data set that was saved using the method `to_pickle`. These functions can be useful in case properties of your Python object are not preserved when saved in other formats, such as a csv file.
+
+## Save datasets
+
+There are also  multiple ways to save your own data.
+While `pd.read_csv` can be used to read in data from a csv file, its counterpart, the data frame method `to_csv`, can be used to save a data frame as a csv file. The most important arguments of this method are `path_or_buf`, which provides the path where to save the file, and `index`, which specifies whether the row names should be saved as well.
+
+```
+data_set.to_csv(<my_path>, index = False)
+```
+
+Similarly, the method `to_pickle` allows you to save a data frame to storage. (For arbitrary Python objects you can use the module `pickle`.) One advantage compared to `to_csv` is that it preserves properties of your object that might be lost when saved as a csv file. For example, the data types of columns (e.g., dates or categorical variables) might get lost when saving a data frame as a csv file.
+
+The methods `to_excel` and `pd.read_excel` (which require the package `openpyxl`) can be used to write to and read in excel files, respectively. This format is usually not be the best option to store your data.
+
+## Exercises II
+
+**Exercise 1:**
+
+Simulate a vector containing 10000 independent normally distributed random variables with means of 1 and variances of 2. How many of them are negative? What is the expected fraction of negative values?
+
+
+**Exercise 2:**
+
+Simulate `u` and `v` as independent log-normally distributed random vectors of size 200 each. Pick means and variances you like. Then let `w` be equal to `u+v`. Now calculate the following:
+
+* the sample means of `u`, `v`, and `w`
+* the sample variances of `u`, `v`, and `w`
+* all pairwise covariances
+
+**Exercise 3:**
+
+Take the objects you created in the previous exercises from this chapter and save them to storage in your preferred format.
+Then close your session, clean your workspace and read them in again. This might be tedious at first, but integrating the export of data into your workflow might save you from time costly mistakes in the future.

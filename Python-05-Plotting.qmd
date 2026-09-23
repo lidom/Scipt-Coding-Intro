@@ -1,0 +1,170 @@
+---
+jupyter: python3
+---
+
+# Plotting in Python
+
+It is often useful to visualize data by using plots. Python offers many different possibilities to create plots, ranging from simple scatterplots to animated plots, that you can export as gifs or even interactive webapps.
+The standard plotting package in Python is **matplotlib**, which offers many tools to quickly generate plots. Packages like **seaborn**, which is built on top of matplotlib, offer a more convenient interface for statistical plots based on data frames.
+
+We load matplotlib's plotting module under its usual short name `plt`:
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+rng = np.random.default_rng()
+```
+
+## The plot-function
+In its simplest form, the `plt.scatter()` function delivers a scatterplot.
+```{python}
+x = np.arange(0, 5.1, 0.1)
+y = rng.normal(size = len(x))
+plt.scatter(x, y)
+plt.show()
+```
+
+If we instead want a simple line plot or a combination of both, we can use the `plt.plot()` function, where the third argument (the *format string*) specifies this behavior (`"-"` for lines, `"o"` for points, and `"o-"` for both).
+```{python}
+z = 2*x + rng.normal(size = 51)
+plt.plot(x, z, "-")
+plt.show()
+```
+```{python}
+plt.plot(x, z, "o-")
+plt.show()
+```
+
+Other arguments to the plot function can be used to specify color, linestyle (dashed etc.), linewidth, title, subtitle and many more. The help file `help(plt.plot)` and the [matplotlib documentation](https://matplotlib.org/stable/) can be very helpful when trying to achieve a specific look for your plot.
+
+An example could look a little like this:
+```{python}
+plt.plot(x, y, linestyle = "-.", linewidth = 2, color = "green")
+plt.title("Testplot")
+plt.show()
+```
+
+If we want to show multiple things in one diagram it can be useful to plot multiple objects in one coordinate grid.
+In matplotlib, all plotting commands before `plt.show()` are drawn into the same figure. The function `plt.axline()` can be used to add straight lines.
+```{python}
+plt.scatter(x, y, color = "green")
+plt.plot(x, z, linewidth = 2, linestyle = "-.", color = "red")
+plt.axline((0, 0), slope = 0.5, color = "blue")
+plt.show()
+```
+
+In contrast to R, matplotlib adjusts the range of the axes automatically to all plotted objects. But we can also manually adjust the range of our axes if we choose to do so. This is done using the functions `plt.xlim()` and `plt.ylim()`.
+```{python}
+plt.scatter(x, y, color = "green")
+plt.plot(x, z, linewidth = 2, linestyle = "-.", color = "red")
+plt.axline((0, 0), slope = 0.5, color = "blue")
+plt.xlim(0, 5)
+plt.ylim(-3, 12)
+plt.show()
+```
+
+To plot functions like sin(x) or the standard normal density, we evaluate them on a fine grid of x-values. The standard normal density is provided by the module `scipy.stats`.
+```{python}
+from scipy.stats import norm
+
+grid = np.linspace(-10, 10, 200)
+plt.plot(grid, np.sin(grid))
+plt.show()
+
+grid = np.linspace(-4, 4, 200)
+plt.plot(grid, norm.pdf(grid))
+plt.show()
+```
+
+There are many other useful plotting functions in matplotlib. We won't cover all of them here, but instead focus on some of the most frequently needed.
+
+## Histograms and kernel densities
+Other useful plotting functions include histograms with the function `plt.hist()`. With the function `gaussian_kde()` from `scipy.stats` we get access to kernel density estimates. A kernel density estimator is a nonparametric estimator of density of random variable based on a sample. Details about the estimator are beyond the scope of these notes. In the settings where we will use them, the default choices of the estimator will yield accurate results. Combining our previous knowledge with these possibilities, we can create plots like the following (note: in `plt.hist()` the argument `density = True` leads to relative frequency instead of counts. See `help(plt.hist)` for more details.):
+
+```{python}
+from scipy.stats import gaussian_kde
+
+x = rng.normal(size = 20)
+my_dens = gaussian_kde(x)
+grid = np.arange(-4, 4.05, 0.05)
+
+plt.hist(x, density = True, bins = np.arange(-4, 4.5, 0.5),
+         edgecolor = "black", color = "white")
+plt.xlim(-4, 4)
+plt.plot(grid, my_dens(grid), color = "green", linestyle = "--", linewidth = 2)
+plt.plot(grid, norm.pdf(grid), color = "red", linestyle = "-")
+plt.show()
+```
+
+Further functions include barplots:
+```{python}
+temperatures = [17,23,18,30,32,16,4,-3]
+plt.bar(range(1, 9), temperatures)
+plt.ylim(-15, 35)
+plt.title("Daily Temperature")
+plt.ylabel("Degree Celsius")
+plt.show()
+```
+
+and piecharts:
+```{python}
+slices = [8, 14, 9, 12, 4]
+labels = ["Apple", "Pumpkin", "Pork", "3.14", "American"]
+plt.pie(slices, labels = labels)
+plt.title("Types of pie")
+plt.show()
+```
+
+Another important part of plots - like comments in code - is a legible legend. Matplotlib has built-in support for adding a legend to your plots. Going back to our combined plot from above, one can add a legend as shown in the following example.
+Here, the `label` arguments specify the contents of the legend and the `loc` argument of `plt.legend()` specifies its position in the plot. Since a legend has to be customized for each plot, one should have a look in the documentation `help(plt.legend)`.
+```{python}
+x = np.arange(0, 5.1, 0.1)
+y = rng.normal(size = len(x))
+z = 2*x + rng.normal(size = 51)
+
+plt.scatter(x, y, color = "green", label = "My green points")
+plt.plot(x, z, linewidth = 2, linestyle = "-.", color = "red", label = "My red line")
+plt.xlim(0, 5)
+plt.ylim(-3, 12)
+plt.legend(loc = "upper left")
+plt.show()
+```
+
+If one decides to work with data frames, the package seaborn allows for beautiful, heavily customized plots. An example can be seen below:
+```{python}
+import pandas as pd
+import seaborn as sns
+
+n = 800
+x = rng.uniform(low = -10, high = 10, size = n)
+treatment = np.where(x > 0, 1, 0)
+y = 0.2*x + treatment*3 + rng.normal(loc = 0, scale = 0.6, size = n)
+visualise_data = pd.DataFrame({"x": x, "treatment": treatment, "y": y})
+
+ax = sns.scatterplot(data = visualise_data, x = "x", y = "y",
+                     hue = "treatment", palette = "Dark2", legend = False)
+ax.plot([-10, 0], [-2, 0], color = "red", linewidth = 3)
+ax.plot([0, 10], [3, 5], color = "red", linewidth = 3)
+ax.text(-6, 1.5, "x < 0")
+ax.text(4, 1.5, "x ≥ 0")
+ax.set(title = "Outcome Variable",
+       xlabel = "assignment variable", ylabel = "outcome variable")
+plt.show()
+```
+
+The possibilities of matplotlib and seaborn are vast and can be intimidating, but seaborn offers a consistent plotting experience integrated into a data frame workflow using pandas. (If you like R's ggplot2, have a look at the Python package [plotnine](https://plotnine.org/), which implements the "Grammar of Graphics" in Python.)
+
+## Exercises V
+
+**Exercise 1:**
+
+Draw samples of size 1000 from exponential distributions with varying values of the parameter. Use histograms to visualize differences in the distributions.
+
+**Exercise 2:**
+
+Take the mtcars dataset (you can load it with `import statsmodels.api as sm` and `mtcars = sm.datasets.get_rdataset("mtcars").data`, which requires an internet connection) and plot mpg (miles per gallon) against wt (weight) as a scatterplot.
+Add a red line with `plt.axline` by eyeballing the parameters that could come out of a regression.
+
+**Exercise 3:**
+
+Write a function that takes as its arguments a sample size n and a boolean that indicates, if plotting should take place. Let this function return a sample of size n drawn from a standard normal. If the plotting argument was true, let it also plot your sample in a way that seems sensible to you.

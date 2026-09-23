@@ -4,419 +4,911 @@
     "href": "index.html",
     "title": "Coding Intro",
     "section": "",
-    "text": "Preface\nThe purpose of this tutorial is to introduce the software package R that is used during the lectures, in problem sets, and in the tutorials. The pdf version of these lecture notes is on the class website. The html version is better formatted and can be found here.\nSome additional references and tutorials you might find helpful are:\n\nThe online textbook Introduction to Econometrics with R\nReference card for R commands\n\nMatlab/R reference\n\nThe official introduction to R\n\nwww.r-project.org\n\nAn R-package for learning R: www.swirl.com\n\nA book project which covers also advanced issues such as “writing performant code” and “package development”: adv-r.had.co.nz\n\nAnother excellent book: R for Data Science\n\nAn introduction to statistical learning with R\n\nHere are also links to more advanced tutorials:\n\nIntroduction to data science\nCreating dynamic graphics\n\nChatGPT\n\nWhy do we use R?\n\nR is free of charge and can be downloaded from https://cran.r-project.org/\nThe IDE Positron for R is also free of charge and can be downloaded from\nhttps://positron.posit.co/download.html\nR is equipped with one of the most flexible and powerful graphic routines available anywhere. For instance, check out one of the following repositories:\n\nClean Graphs\nPublication ready plots\n\nToday, R is the de-facto standard for statistical science.",
+    "text": "Preface\nThe purpose of this tutorial is to introduce the programming languages R and Python that are used during the lectures, in problem sets, and in the tutorials. The tutorial consists of two parallel parts:\n\nPart I: Introduction to R\nPart II: Introduction to Python\n\nBoth parts have the same structure: each chapter of the R part has a counterpart in the Python part that covers the same topics with the same examples and exercises. So you can work through the part of your preferred language, or compare how the same task is done in both languages. The pdf version of these lecture notes is on the class website. The html version is better formatted and can be found here.\nSome additional references and tutorials for R you might find helpful are:\n\nThe online textbook Introduction to Econometrics with R\nReference card for R commands\n\nMatlab/R reference\n\nThe official introduction to R\n\nwww.r-project.org\n\nAn R-package for learning R: www.swirl.com\n\nA book project which covers also advanced issues such as “writing performant code” and “package development”: adv-r.had.co.nz\n\nAnother excellent book: R for Data Science\n\nAn introduction to statistical learning with R\n\nSome additional references and tutorials for Python you might find helpful are:\n\nThe official Python tutorial\n\nThe online lectures Python Programming for Economics and Finance by QuantEcon\n\nPython for Data Analysis by Wes McKinney, the creator of pandas\n\nNumPy for MATLAB users\n\nComparison of pandas with R\n\nAn introduction to statistical learning with Python\n\nHere are also links to more advanced tutorials:\n\nIntroduction to data science\nCreating dynamic graphics\n\nChatGPT\n\nWhy do we use R and Python?\n\nR is free of charge and can be downloaded from https://cran.r-project.org/\nPython is free of charge and can be downloaded from https://www.python.org/downloads/\nThe IDE Positron for R and Python is also free of charge and can be downloaded from\nhttps://positron.posit.co/download.html\nR is equipped with one of the most flexible and powerful graphic routines available anywhere. For instance, check out one of the following repositories:\n\nClean Graphs\nPublication ready plots\n\nToday, R is the de-facto standard for statistical science.\nPython is one of the most popular programming languages overall and the de-facto standard for machine learning and data science.",
     "crumbs": [
       "Preface"
     ]
   },
   {
-    "objectID": "01-Getting-Started.html",
-    "href": "01-Getting-Started.html",
+    "objectID": "R-01-Getting-Started.html",
+    "href": "R-01-Getting-Started.html",
     "title": "\n1  The first steps in R\n",
     "section": "",
     "text": "1.1 Positron for the first time\nI highly recommend to install Positron. For installation just follow the instructions onhttps://positron.posit.co/download.html\nWhen you open Positron, its window is typically split into the following areas:\nSome other terms that will be useful:",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>The first steps in R</span>"
     ]
   },
   {
-    "objectID": "01-Getting-Started.html#positron-for-the-first-time",
-    "href": "01-Getting-Started.html#positron-for-the-first-time",
+    "objectID": "R-01-Getting-Started.html#positron-for-the-first-time",
+    "href": "R-01-Getting-Started.html#positron-for-the-first-time",
     "title": "\n1  The first steps in R\n",
     "section": "",
     "text": "The editor (center) showing your script file, which is an ordinary text file with suffix “.R”. For instance, yourFavoritFileName.R. This file contains your code.\nThe Session pane (right) showing all objects (variables) we have defined in the environment.\nThe Plots and Help panes (right) showing plots and help files.\nThe Console (bottom), which allows you to type commands and display results.\nThe Explorer (left) showing the files in your current project folder.\n\n\n\nWorking directory: The file-directory you are working in. Useful commands: with getwd() you get the location of your current working directory and setwd() allows you to set a new location for it. This is very useful when you would like to load or save several files. You can just set your working directory globally and all files can be loaded or will be saved into this directory.\nWorkspace: This is a hidden file (stored in the working directory), where all objects you use (e.g., data, matrices, vectors, variables, functions, etc.) are stored. Useful commands: ls() shows all elements in our current workspace and rm(list=ls()) deletes all elements in our current workspace. It is also possible to remove only some objects with rm(object1, object2).",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>The first steps in R</span>"
     ]
   },
   {
-    "objectID": "01-Getting-Started.html#simple-calculations",
-    "href": "01-Getting-Started.html#simple-calculations",
+    "objectID": "R-01-Getting-Started.html#simple-calculations",
+    "href": "R-01-Getting-Started.html#simple-calculations",
     "title": "\n1  The first steps in R\n",
     "section": "\n1.2 Simple calculations",
     "text": "1.2 Simple calculations\nWe start with a very basic calculation. Let’s type 1+1 into the console window and press enter. We get\n\n 1+1 # first calculation\n\n[1] 2\n\n\ni.e. the result of the calculation is returned.\nNote that everything that is written after the #-sign is ignored by R, which is very useful to comment your code. The second window above, starting with ##, shows the output.\nLet’s consider a second calculation\n\n1+2+3+ # second calculation\n\nError: &lt;text&gt;:2:0: unexpected end of input\n1: 1+2+3+ # second calculation\n   ^\n\n\nThis calculation ended with an error. The reason is that the command can only processed if entered correctly.\n\n1+2+3+4 # second calculation\n\n[1] 10\n\n\nA similar thing happens when parentheses are not closed.\n\n 2*(2+3\n\nError: &lt;text&gt;:2:0: unexpected end of input\n1:  2*(2+3\n   ^\n\n\nIt will be helpful to use a script file, such as yourFavoritFileName.R, to store your R commands. Otherwise, you would have to type your code again when an error occurred. You can send single lines or marked regions of your R-code to the console by pressing the keys STRG+ENTER.",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>The first steps in R</span>"
     ]
   },
   {
-    "objectID": "01-Getting-Started.html#assigments-and-matrix-algebra",
-    "href": "01-Getting-Started.html#assigments-and-matrix-algebra",
+    "objectID": "R-01-Getting-Started.html#assigments-and-matrix-algebra",
+    "href": "R-01-Getting-Started.html#assigments-and-matrix-algebra",
     "title": "\n1  The first steps in R\n",
     "section": "\n1.3 Assigments and matrix algebra",
     "text": "1.3 Assigments and matrix algebra\nThe assignment operator will be your most often used tool. Here is an example where a scalar variable is created:\n\nx &lt;- 9\nx\n\n[1] 9\n\nx+1\n\n[1] 10\n\n\nNote: The &lt;- assignment operator is an unusual syntax that you do not find in other programming languages. In many cases you can alternatively use the = operator. Typical R style uses the &lt;- assignment operator due to some more in depth-differences and compatibility with older version of R. More on R style recommendations can be found in the tidyverse style guide. In simple settings, alternatives to &lt;- are\n\nx = 9\nx\n\n[1] 9\n\n\nor even\n\n4 -&gt; y # possible but unusal\ny\n\n[1] 4\n\n\nWe consider now a vector, an object you will use frequently:\n\nz &lt;- c(1,3,5,6)\nz\n\n[1] 1 3 5 6\n\n\nAs discussed, ls() states the content of the workspace, whereas rm(list =ls()) deletes the workspace.\n\nls()\n\n[1] \"x\" \"y\" \"z\"\n\nrm(list=ls())\nls()\n\ncharacter(0)\n\n\nIn the next step we will consider some vector multiplication. There are three different ways to multiply a vector, namely element by element, using the inner product, or using the outer product. Element by element gives you a vector of the same dimension.\n\nz &lt;- c(1,3,5,6)\nz*z                #multiplication element by element\n\n[1]  1  9 25 36\n\n\nThe function t() gives the transpose of a vector (or matrix). It is therefore tempting to calculate the inner product as\n\nt(z)*z                #multiplication inner product\n\n     [,1] [,2] [,3] [,4]\n[1,]    1    9   25   36\n\n\nbut this does not give the desired answer. Insead, you have to use\n\nz &lt;- c(1,3,5,6)\nt(z)%*%z                #multiplication inner product\n\n     [,1]\n[1,]   71\n\n\nNote that R stores zTz as a matrix.\n\nclass(t(z)%*%z)\n\n[1] \"matrix\" \"array\" \n\nclass(z)\n\n[1] \"numeric\"\n\n\nFinally, we have the outer product that gives us a matrix\n\nz &lt;- c(1,3,5,6)\nz%*%t(z)                #multiplication outer product\n\n     [,1] [,2] [,3] [,4]\n[1,]    1    3    5    6\n[2,]    3    9   15   18\n[3,]    5   15   25   30\n[4,]    6   18   30   36\n\n\nIn general, be very careful with %*% versus *. They are often both feasible, but yield different results!\nYou can also multiply a vector with a scalar:\n\nz*4\n\n[1]  4 12 20 24\n\n\nA strength of R is that operations can be conducted for each element of the vector in one statement\n\nz^2\n\n[1]  1  9 25 36\n\nlog(z)\n\n[1] 0.000000 1.098612 1.609438 1.791759\n\n(z-mean(z))/sd(z)\n\n[1] -1.2402159 -0.3382407  0.5637345  1.0147221\n\n\nSo far, we have seen the function c() that can be used to combine objects. All function calls use the same general notation: a function name is always followed by round parentheses. Sometimes, the parentheses include arguments, such as\n\nz &lt;- seq(from = 1, to = 5, by = 1)\nz\n\n[1] 1 2 3 4 5\n\n\nWith square brackets you can access particular elements, such as\n\nz[1:3]                  #refer to particular elements\n\n[1] 1 2 3\n\n\nWe will next define a matrix and perform matrix-vector multiplication.\n\nM &lt;- matrix(data=1:9, nrow=3, ncol=3)    # define matrix M\nM\n\n     [,1] [,2] [,3]\n[1,]    1    4    7\n[2,]    2    5    8\n[3,]    3    6    9\n\ndim(M)                                  # dimension of M\n\n[1] 3 3\n\ndim(z)                                  # dimension of z - does not work because z is not a matrix\n\nNULL\n\nlength(z)                               # number of elements of z\n\n[1] 5\n\n\nElement-by-element multiplication for M is given by\n\nM * M\n\n     [,1] [,2] [,3]\n[1,]    1   16   49\n[2,]    4   25   64\n[3,]    9   36   81\n\n\nStandard matrix multiplication is again done using %*% such as\n\nM %*% M\n\n     [,1] [,2] [,3]\n[1,]   30   66  102\n[2,]   36   81  126\n[3,]   42   96  150\n\n\n\nt(M) %*% M\n\n     [,1] [,2] [,3]\n[1,]   14   32   50\n[2,]   32   77  122\n[3,]   50  122  194\n\n\nIf matrices and vectors have suitable dimensions, you can multiply them as follows:\n\nM %*% z[1:3]\n\n     [,1]\n[1,]   30\n[2,]   36\n[3,]   42\n\n\nSimilar to before, with square brackets you can excess particular elements, such as\n\nM[,3]                 # state the third column of M\n\n[1] 7 8 9\n\nM[3,3]                # state element in the third column and third row of M\n\n[1] 9\n\n\nHere are some more examples:\n\nM[,1]                 # first column of M\nM[3,3]                # element in the third column and third row of M\nz[c(1,4)]             # first and fourth element of z\n\nLogical statements are also very useful. For example, if you want to know which elements in the first column of matrix M are strictly greater than 2:\n\n# See which elements:\nM[,1]&gt;2\n\n[1] FALSE FALSE  TRUE\n\n# and extract the elements\nM[M[,1]&gt;2,1]\n\n[1] 3\n\n\nNote: Logical operations return so-called boolean objects, i.e., either a TRUE or a FALSE. For instance, if we ask R whether 1&gt;2 we get the answer FALSE.",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>The first steps in R</span>"
     ]
   },
   {
-    "objectID": "01-Getting-Started.html#operators",
-    "href": "01-Getting-Started.html#operators",
+    "objectID": "R-01-Getting-Started.html#operators",
+    "href": "R-01-Getting-Started.html#operators",
     "title": "\n1  The first steps in R\n",
     "section": "\n1.4 Operators",
     "text": "1.4 Operators\nWe have alrady seen basic arithmetic operations such as\n\n+, -, *, /\n\nDecimals are declared with a “.”, not a comma\n\n1.8 not 1,8\n\nExponents are declared with ^, i.e. \\(2^3\\) is written as\n\n2^3\n\nFor mathematical calculations, only parentheses () can be used.\nFrequently used mathematical functions are\n\nsqrt()            # square root\nexp()             # exponential function\nlog()             # nat.  Logarithm\nlog(...,10)       # Logarithm with Base 10\nabs()             # absolute value\nround(...,x)      # rounding to x decimals.\npi \nexp(1)            # Eulers number\nsin(),cos(),tan() # trigonemetric functions\nmin(), max()      # returns the lowest/highest value of a vector/matrix\n\nAsa few examples enter the following calculations and make sure to understand the commands:\n\n 1.8+2\n 1.8-2\n 1.8*2\n 1.8/2\n 2+2*3\n (2+2)*3\n 2^3\n 8^(1/3)\n 3^2\n 9^0.5\n 2^2*2+2\n 2^(2*((0.2+0.3)*(1+2)))+4\n sqrt(2)\n exp(1)\n exp(2)\n log(7.389056)\n log(exp(3))\n log(100,10)\n abs(1.8-2)\n round(sqrt(2),2)\n round(sqrt(2),4)\n pi\n sin(pi/2)\n sin(pi/2)\n sin(pi)\n tan(pi)\n x=2+3i\n y=4+1i\n x\n y\n x+y\n x*y\n\nAttention:\n\n 1.224606e-16\n\nis interpreted as \\(1.224606 \\times 10^{-16}\\). This is often exactly zero, but for internal memory purposes (R uses double-precision floating-point numbers and therefore only has up to 16 decimals), can be a rounding mistake.",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>The first steps in R</span>"
     ]
   },
   {
-    "objectID": "01-Getting-Started.html#further-data-objects",
-    "href": "01-Getting-Started.html#further-data-objects",
+    "objectID": "R-01-Getting-Started.html#further-data-objects",
+    "href": "R-01-Getting-Started.html#further-data-objects",
     "title": "\n1  The first steps in R\n",
     "section": "\n1.5 Further data objects",
     "text": "1.5 Further data objects\nBesides classical data objects such as scalars, vectors, and matrices there are three further data objects in R:\n1.The array: A matrix but with more dimensions. Here is an example of a 2×2×2-dimensional array\n\nmyFirst.Array &lt;- array(c(1:8), dim=c(2,2,2))\n\n\nThe list: In lists you can organize different kinds of data. E.g., consider the following example:\n\n\nmyFirst.List &lt;- list(\"Some_Numbers\" = c(66, 76, 55, 12, 4, 66, 8, 99), \n                     \"Animals\"      = c(\"Rabbit\", \"Cat\", \"Elefant\"),\n                     \"My_Series\"    = c(30:1)) \n\n\nThe data frame: A data.frame is a list-object but with some more formal restrictions (e.g., equal number of rows for all columns). As indicated by its name, a data.frame-object is designed to store data:\n\n\nmyFirst.Dataframe &lt;- data.frame(\"Credit_Default\"   = c( 0, 0, 1, 0, 1, 1), \n                                \"Age\"              = c(35,41,55,36,44,26), \n                                \"Loan_in_1000_EUR\" = c(55,65,23,12,98,76))",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>The first steps in R</span>"
     ]
   },
   {
-    "objectID": "01-Getting-Started.html#r-help",
-    "href": "01-Getting-Started.html#r-help",
+    "objectID": "R-01-Getting-Started.html#r-help",
+    "href": "R-01-Getting-Started.html#r-help",
     "title": "\n1  The first steps in R\n",
     "section": "\n1.6 R help",
     "text": "1.6 R help\nThere exist help files for all commands in R. For example consider the help file of the function sum(). You can access the help file with\n\n?sum\n\nThe file usually contains the categories: Description, Usage, Arguments, Details, Value and References.\nAfter the general description follows the syntax of the command. This usually indicates which (optional) arguments the command allows. Then follows na.rm, which indicates whether missing values (na) will be removed (rm). The default is FALSE.\n\n x&lt;-c(1,2,NA,4,5)\n x\n\n[1]  1  2 NA  4  5\n\nsum(x)\n\n[1] NA\n\nsum(x,na.rm=T)\n\n[1] 12\n\n\nDetails describes the exact calculation (trivial in this case), and some command specific characteristics. Value describes what is returned, in the case of sum() it is obviously a sum of numbers, given that numeric data was used as an input.",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>The first steps in R</span>"
     ]
   },
   {
-    "objectID": "01-Getting-Started.html#r-packages",
-    "href": "01-Getting-Started.html#r-packages",
+    "objectID": "R-01-Getting-Started.html#r-packages",
+    "href": "R-01-Getting-Started.html#r-packages",
     "title": "\n1  The first steps in R\n",
     "section": "\n1.7 R packages",
     "text": "1.7 R packages\nThere are tons of R packages that are useful for different aspects of data analysis. Some packages that can help you make beautiful plots and that you might want check out are the package ggplot2 and the collection of packages tidyverse. You can install the packages with install.package(packagename). In order to use the package type library(package). The package has to be installed only once, but you have to load the package with library(package) every time you want to use it.",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>The first steps in R</span>"
     ]
   },
   {
-    "objectID": "01-Getting-Started.html#exercises-i",
-    "href": "01-Getting-Started.html#exercises-i",
+    "objectID": "R-01-Getting-Started.html#exercises-i",
+    "href": "R-01-Getting-Started.html#exercises-i",
     "title": "\n1  The first steps in R\n",
     "section": "\n1.8 Exercises I",
     "text": "1.8 Exercises I\nExercise 1:\nTry to shorten the notation of the following vectors as much as possible, using : notation:\n\nx &lt;- c(157, 158, 159, 160, 161, 162, 163, 164)\nx &lt;- c(10, 9, 8, 7, 6, 5, 4, 3, 2, 1)\nx &lt;- c(-1071, -1072, -1073, -1074, -1075, -1074, -1073, -1072, -1071)\n\nExercise 2:\nThe ´:´ operator can be used in more complex operations along with arithmetic operators, and variable names. Have a look at the following expressions, and write down what sequence you think they will generate. Then check with R.\n\n(10:20) * 2\n105:(30 * 3)\n10:20*2\n1 + 1:10/10\n2^(0:5)\n\nExercise 3:\nR has several functions for rounding. Let’s start with floor, ceiling, and trunc:\nfloor(x) rounds to the largest integer not greater than x ceiling(x) rounds to the smallest integer not less than x trunc(x) returns the integer part of x\nBelow you will find a series of arguments (x), and results (y), that can be obtained by choosing one or more of the 3 functions above (e.g.y &lt;- floor(x)). Which of the above 3 functions could have been used in each case? First, choose your answer without using R, then check with R.\n\n\nx &lt;- c(300.99, 1.6, 583, 42.10)\ny &lt;- c(300, 1, 583, 42)\n\n\nx &lt;- c(152.34, 1940.63, 1.0001, -2.4, sqrt(26))\ny &lt;- c(152, 1940, 1, -2, 5)\n\n\nx &lt;- -c(3.2, 444.35, 1/9, 100)\ny &lt;- c(-3, -444, 0, -100)\n\n\nx &lt;- c(35.6, 670, -5.4, 3^3)\ny &lt;- c(36, 670, -5, 27)\n\n\nExercise 4:\nConsider the following vectors:\nu &lt;- c(5, 6, 7)\nv &lt;- c(2, 3, 4)\nPerform the following operations:\n\nAdd u and v\n\nsubtract v from u\n\nmultiply u by v element by element\ndivide u by v element by element\ncalculate the inner product of u and v\n\ncalculate the outer product of u and v\n\nraise u to the power of v element by element\n\nThen check your answer with R.",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>The first steps in R</span>"
     ]
   },
   {
-    "objectID": "02-Datasets.html",
-    "href": "02-Datasets.html",
+    "objectID": "R-02-Datasets.html",
+    "href": "R-02-Datasets.html",
     "title": "\n2  Create and load data sets\n",
     "section": "",
-    "text": "2.1 Simulated data\nWe start by considering data that is simulated by the user. We can create data sets by using functions like rnorm(), rexp() or runif(). After the data is created we can work with it as shown in the following example:\nn = 100  # number of observations\n\nZ = rnorm(n, mean = 5, sd = 3)      # draw from normal distribution \nmean(Z)\n\n[1] 5.181715\n\nsd(Z)\n\n[1] 2.950697\n\nE = rexp(n, rate = 3)           # draw data from exponential distribution \nmean(E)\n\n[1] 0.3551192\n\nsd(E)\n\n[1] 0.3445075\n\nU = runif(n, min = 3, max = 5)  # draw data from uniform distribution\nmean(U)\n\n[1] 3.957273\n\nsd(U)\n\n[1] 0.5979996\nAnalogous functions exist for many other distributions in R, and you can find them by searching on the web.",
+    "text": "2.1 Simulated data\nWe start by considering data that is simulated by the user. We can create data sets by using functions like rnorm(), rexp() or runif(). After the data is created we can work with it as shown in the following example:\nn = 100  # number of observations\n\nZ = rnorm(n, mean = 5, sd = 3)      # draw from normal distribution \nmean(Z)\n\n[1] 4.93677\n\nsd(Z)\n\n[1] 3.233367\n\nE = rexp(n, rate = 3)           # draw data from exponential distribution \nmean(E)\n\n[1] 0.3630565\n\nsd(E)\n\n[1] 0.3276719\n\nU = runif(n, min = 3, max = 5)  # draw data from uniform distribution\nmean(U)\n\n[1] 4.017306\n\nsd(U)\n\n[1] 0.6192263\nAnalogous functions exist for many other distributions in R, and you can find them by searching on the web.",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Create and load data sets</span>"
     ]
   },
   {
-    "objectID": "02-Datasets.html#load-datasets",
-    "href": "02-Datasets.html#load-datasets",
+    "objectID": "R-02-Datasets.html#load-datasets",
+    "href": "R-02-Datasets.html#load-datasets",
     "title": "\n2  Create and load data sets\n",
     "section": "\n2.2 Load datasets",
     "text": "2.2 Load datasets\nIt is also possible to work with observed data, which will be loaded into R. Here, we will use some real data, namely a movie database from IMDB that you can download here. The data set contains, among others, the budget, the revenue, and the average rating of movies.\nOnce the data is saved in your working directory, you can load it using\n\ndata_set = read.csv(\"tmdb_5000_movies.csv\")\n\nwhich stores the data in a data frame. You can use the View() function to look the data.\nAfter the file is loaded, we can work with the data using $ to access certain parts of the data set such as\n\ndata_set$original_title[1:5]\n\n[1] \"Avatar\"                                  \n[2] \"Pirates of the Caribbean: At World's End\"\n[3] \"Spectre\"                                 \n[4] \"The Dark Knight Rises\"                   \n[5] \"John Carter\"                             \n\ndata_set$budget[1:5]\n\n[1] 237000000 300000000 245000000 250000000 260000000\n\nmean(data_set$budget[1:5])\n\n[1] 258400000\n\n\nWe will return to this data set when we talk about regression analysis later.\nApart from read.csv there exist also read.dta, read.xls and many more to load suitable data sets.\nAnother important function is readRDS that is used to read in a data set that was saved using the function saveRDS. These functions can be useful in case properties of your R object are not preserved when saved in other formats, such as a csv file.",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Create and load data sets</span>"
     ]
   },
   {
-    "objectID": "02-Datasets.html#save-datasets",
-    "href": "02-Datasets.html#save-datasets",
+    "objectID": "R-02-Datasets.html#save-datasets",
+    "href": "R-02-Datasets.html#save-datasets",
     "title": "\n2  Create and load data sets\n",
     "section": "\n2.3 Save datasets",
     "text": "2.3 Save datasets\nThere are also multiple ways to save your own data. While read.csv can be used to read in data from a csv file, its counterpart write.csv can be used to save a suitable object as a csv file. The most important arguments for this function are x, the object you want to save, and file, which provides the path where to save the file.\nwrite.csv(data_set, &lt;my_path&gt;)\nSimilarly the function saveRDS allows you to save a generic R object to storage. One advantage of this function compared to write.csv is that it preserves properties of your object that might be lost when saved as a csv file. For example, conversions from factors to strings might occur when saving a data.frame as a csv file.\nThe package readxl and openxlsx from the tidyverse family can be used to read in and write to excel files, respectively. This format is usually not be the best option to store your data.",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Create and load data sets</span>"
     ]
   },
   {
-    "objectID": "02-Datasets.html#exercises-ii",
-    "href": "02-Datasets.html#exercises-ii",
+    "objectID": "R-02-Datasets.html#exercises-ii",
+    "href": "R-02-Datasets.html#exercises-ii",
     "title": "\n2  Create and load data sets\n",
     "section": "\n2.4 Exercises II",
     "text": "2.4 Exercises II\nExercise 1:\nSimulate a vector containing 10000 independent normally distributed random variables with means of 1 and variances of 2. How many of them are negative? What is the expected fraction of negative values?\nExercise 2:\nSimulate u and v as independent log-normally distributed random vectors of size 200 each. Pick means and variances you like. Then let w be equal to u+v. Now calculate the following:\n\nthe sample means of u, v, and w\n\nthe sample variances of u, v, and w\n\nall pairwise covariances\n\nExercise 3:\nTake the objects you created in the previous exercises from this chapter and save them to storage in your preferred format. Then close your session, clean your workspace and read them in again. This might be tedious at first, but integrating the export of data into your workflow might save you from time costly mistakes in the future.",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Create and load data sets</span>"
     ]
   },
   {
-    "objectID": "03-Programming.html",
-    "href": "03-Programming.html",
+    "objectID": "R-03-Programming.html",
+    "href": "R-03-Programming.html",
     "title": "\n3  Simple programming\n",
     "section": "",
-    "text": "3.1 The for-loop\nA for-loop is a procedure in which a particular routine is repeated and only an index variable is changed.\nx=0\nfor (i in 1:3) { \n  x=x+i\n  print(x)\n}\n\n[1] 1\n[1] 3\n[1] 6\nWe can also use it to study the behavior of the arithmetic mean\nout = rep(0,100)\nn = 20\nfor (i in 1:100) { \n  x = rnorm(n, mean = 0,sd = 1)\n  out[i]=mean(x)\n}\nmean(out)\n\n[1] -0.02795778\n\nsd(out)\n\n[1] 0.2368533\n\nout = rep(0,100)\nn = 200\nfor (i in 1:100) { \n  x = rnorm(n,mean = 0,sd = 1)\n  out[i]=mean(x)\n}\nmean(out)\n\n[1] 0.008800554\n\nsd(out)\n\n[1] 0.07129175",
+    "text": "3.1 The for-loop\nA for-loop is a procedure in which a particular routine is repeated and only an index variable is changed.\nx=0\nfor (i in 1:3) { \n  x=x+i\n  print(x)\n}\n\n[1] 1\n[1] 3\n[1] 6\nWe can also use it to study the behavior of the arithmetic mean\nout = rep(0,100)\nn = 20\nfor (i in 1:100) { \n  x = rnorm(n, mean = 0,sd = 1)\n  out[i]=mean(x)\n}\nmean(out)\n\n[1] 0.02351549\n\nsd(out)\n\n[1] 0.2123379\n\nout = rep(0,100)\nn = 200\nfor (i in 1:100) { \n  x = rnorm(n,mean = 0,sd = 1)\n  out[i]=mean(x)\n}\nmean(out)\n\n[1] 0.01200624\n\nsd(out)\n\n[1] 0.07115373",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Simple programming</span>"
     ]
   },
   {
-    "objectID": "03-Programming.html#the-if-condition",
-    "href": "03-Programming.html#the-if-condition",
+    "objectID": "R-03-Programming.html#the-if-condition",
+    "href": "R-03-Programming.html#the-if-condition",
     "title": "\n3  Simple programming\n",
     "section": "\n3.2 The if-condition",
     "text": "3.2 The if-condition\nWithin a for-loop, it may be useful to perform arithmetic operations only under certain conditions. The basic syntax for this is\n\nif (condition){\n  statement  \n  } \nelse{\n  alternative\n  }\n\nwhere else can remain unspecified.\n\n###If-condition###\ny &lt;- c(1,4,5,2,7,8,2,4)\nN &lt;- length(y)\n1:N\n## \ny.sq &lt;- numeric(N)#creates an empty numeric vector of length N\n\nfor(i in 1:N){ #initializing the for-loop\n  y.sq[i] &lt;- y[i]^2#every element of y.sq is replaced by the respective squared value.\n  if(i == N){#only when this condition is met, i.e. in the last iteration of the loop \n    print(y.sq)#is the vector printed\n  }\n}\n\nIn shorter form the ifelse() command is an alternative.\n\nifelse(test, yes, no)",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Simple programming</span>"
     ]
   },
   {
-    "objectID": "03-Programming.html#the-while-loop",
-    "href": "03-Programming.html#the-while-loop",
+    "objectID": "R-03-Programming.html#the-while-loop",
+    "href": "R-03-Programming.html#the-while-loop",
     "title": "\n3  Simple programming\n",
     "section": "\n3.3 The while-loop",
     "text": "3.3 The while-loop\nThe while-loop performs a program (“statement”) as long as certain data conditions (“test expression”) are met. The basic syntax is\n\nwhile (testexpression)\n{\n  #increment (i+1);\n  statement\n}\n\nHere, test_expression is evaluated and the body of the loop is entered if the result is TRUE.\n\ni &lt;- 1\n\nwhile (i &lt; 6) {\n  print(i)\n  i = i+1\n}\n\n[1] 1\n[1] 2\n[1] 3\n[1] 4\n[1] 5",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Simple programming</span>"
     ]
   },
   {
-    "objectID": "03-Programming.html#time-saving-and-loops",
-    "href": "03-Programming.html#time-saving-and-loops",
+    "objectID": "R-03-Programming.html#time-saving-and-loops",
+    "href": "R-03-Programming.html#time-saving-and-loops",
     "title": "\n3  Simple programming\n",
     "section": "\n3.4 Time saving and loops",
-    "text": "3.4 Time saving and loops\nOne easy way to make your loops in R faster is to preallocate space for your results instead of appending them to a vector. This is caused by the underlying architectural choice of R that is called copy-on-modify. In some cases it leads to your whole data being copied from one place in memory to another, when you simply wanted to append another value to your vector.\nIf you look at the following code fragments, the second one is about 70 to 80 times faster!\n\n# The slow but simple way\ntime &lt;- system.time(\n  {results &lt;- c() # empty vector\n  for(i in 1:100000){\n    results &lt;- c(results, rnorm(1))\n  }}  \n)\nprint(time)\n\n   user  system elapsed \n 12.363   0.203  12.570 \n\n\n\n# The right way to do it\ntime2 &lt;- system.time(\n  {results2 &lt;- vector(mode = \"double\", length = 100000)\n  for(i in 1:100000){\n    results2[i] &lt;- rnorm(1)  \n  }} \n)\nprint(time2)\n\n   user  system elapsed \n  0.082   0.000   0.082 \n\n\nIf you can avoid a loop altogether and use vector operations instead, your code will will be even faster.\n\n# The right way to do it\ntime3 &lt;- system.time(\n  {results3 &lt;- rnorm(100000)\n  } \n)\nprint(time3)\n\n   user  system elapsed \n  0.003   0.000   0.003 \n\n\nTry to keep this in mind when designing your own code. In R this is one of the most frequent and easily avoidable reasons for why code is slow.",
+    "text": "3.4 Time saving and loops\nOne easy way to make your loops in R faster is to preallocate space for your results instead of appending them to a vector. This is caused by the underlying architectural choice of R that is called copy-on-modify. In some cases it leads to your whole data being copied from one place in memory to another, when you simply wanted to append another value to your vector.\nIf you look at the following code fragments, the second one is about 70 to 80 times faster!\n\n# The slow but simple way\ntime &lt;- system.time(\n  {results &lt;- c() # empty vector\n  for(i in 1:100000){\n    results &lt;- c(results, rnorm(1))\n  }}  \n)\nprint(time)\n\n   user  system elapsed \n 13.538   0.123  13.663 \n\n\n\n# The right way to do it\ntime2 &lt;- system.time(\n  {results2 &lt;- vector(mode = \"double\", length = 100000)\n  for(i in 1:100000){\n    results2[i] &lt;- rnorm(1)  \n  }} \n)\nprint(time2)\n\n   user  system elapsed \n  0.094   0.000   0.093 \n\n\nIf you can avoid a loop altogether and use vector operations instead, your code will will be even faster.\n\n# The right way to do it\ntime3 &lt;- system.time(\n  {results3 &lt;- rnorm(100000)\n  } \n)\nprint(time3)\n\n   user  system elapsed \n  0.004   0.000   0.003 \n\n\nTry to keep this in mind when designing your own code. In R this is one of the most frequent and easily avoidable reasons for why code is slow.",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Simple programming</span>"
     ]
   },
   {
-    "objectID": "03-Programming.html#exercises-iii",
-    "href": "03-Programming.html#exercises-iii",
+    "objectID": "R-03-Programming.html#exercises-iii",
+    "href": "R-03-Programming.html#exercises-iii",
     "title": "\n3  Simple programming\n",
     "section": "\n3.5 Exercises III",
     "text": "3.5 Exercises III\nExercise 1:\nWrite a for-loop that iterates over the numbers 6 to 14 and prints the cube of each number using print()\nExercise 2:\nWrite a while-loop that prints out standard random normal numbers (use rnorm()) but stops (breaks) if you get a number bigger than 1.\nExercise 3:\nUsing a for-loop simulate the flip a coin twenty times, keeping track of the individual outcomes (1 = heads, 0 = tails) in a vector that you preallocated.",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Simple programming</span>"
     ]
   },
   {
-    "objectID": "04-Functions.html",
-    "href": "04-Functions.html",
+    "objectID": "R-04-Functions.html",
+    "href": "R-04-Functions.html",
     "title": "\n4  Functions\n",
     "section": "",
     "text": "4.1 Function definition\nA function definition follows a specific structure.\nmy_function &lt;- function(argument1, argument2){\n  # here I describe what I want to do with my arguments\n  # For example multiply them, assuming that they are numerical.\n  \n  my_return_value = argument1 * argument2\n  \n  # and using return() we tell our function what to return\n  return(my_return_value)\n} \n\nmy_function(argument1 = 5, argument2 = 7)\n\n[1] 35\nThe function can also be called without explicitly naming the arguments, but if you don’t know your code very well, this might lead to difficulties when somebody else or your future self might try to understand the code.\nmy_function(2,5)\n\n[1] 10\nAnother useful feature is the definition of default values for your arguments such that they can be omitted when calling a function.\nmy_2nd_function &lt;- function(argument1, argument2, greetings = FALSE){\n  my_return_value &lt;- argument1 * argument2\n  if(greetings == TRUE){\n    print(\"Hello user, the cake is a lie.\")\n  } \n  return(my_return_value)\n} \n\nmy_2nd_function(2, 7)\n\n[1] 14\n\nmy_2nd_function(3, 12, TRUE)\n\n[1] \"Hello user, the cake is a lie.\"\n\n\n[1] 36",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Functions</span>"
     ]
   },
   {
-    "objectID": "04-Functions.html#recursion",
-    "href": "04-Functions.html#recursion",
+    "objectID": "R-04-Functions.html#recursion",
+    "href": "R-04-Functions.html#recursion",
     "title": "\n4  Functions\n",
     "section": "\n4.2 Recursion",
     "text": "4.2 Recursion\nIn some settings using a recursive approach instead of loops can create more readable code. In simple terms, recursion in programming is calling a function in its own body. A simple example - even though very inefficient from a computational standpoint - is calculating factorials.\n\nfactorial &lt;- function(n){\n  if(n == 1) return(1)\n  else return(n*factorial(n-1))\n} \n\nfactorial(17)\n\n[1] 3.556874e+14\n\n\nOften recursion relies on a principle called “divide and conquer”. We test for a simple base case, like n being equal to one in the case of factorials, and otherwise reducing the problem to a more simple one.\nAnother example is the calculation of Fibonacci numbers using recursion.\n\nfibonacci &lt;- function(n){\n  if(n == 1 || n == 2) return(1)\n  else return(fibonacci(n-1) + fibonacci(n-2))\n} \n\nfibonacci(20)\n\n[1] 6765",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Functions</span>"
     ]
   },
   {
-    "objectID": "04-Functions.html#exercises-iv",
-    "href": "04-Functions.html#exercises-iv",
+    "objectID": "R-04-Functions.html#exercises-iv",
+    "href": "R-04-Functions.html#exercises-iv",
     "title": "\n4  Functions\n",
     "section": "\n4.3 Exercises IV",
     "text": "4.3 Exercises IV\nExercise 1:\nWrite a function that takes 2 integers as inputs and outputs whether or not the first integer is divisible by the second as a boolean.\nExercise 2:\nTry to solve the problem of adding all squares from 1 to n first using loops and then recursion. Think about the underlying way in which the function works. Which approach do you prefer? Why?\nExercise 3:\nWrite a function that receives a single vector of real numbers as its argument and returns an ordered vector with the same entries.\nIf you are interested to see recursion in action look for mergesort, that solves this problem with a cool recursive approach.",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Functions</span>"
     ]
   },
   {
-    "objectID": "05-Plotting.html",
-    "href": "05-Plotting.html",
+    "objectID": "R-05-Plotting.html",
+    "href": "R-05-Plotting.html",
     "title": "\n5  Plotting in R\n",
     "section": "",
     "text": "5.1 The plot-function\nIn its simplest form, the plot function in R delivers a scatterplot. In the call below,type = \"p\" could be omitted as it is the default value if the argument is not provided in the call.\nx &lt;- seq(0, 5, 0.1)\ny &lt;- rnorm(n = length(x))\nplot(x = x, y = y, type = \"p\")\nIf we instead want a simple line plot or a combination of both, we can specify this behavior using the type argument.\nz &lt;- 2*x + rnorm(n = 51)\nplot(x = x, y = z, type = \"l\")\nplot(x = x, y = z, type = \"b\")\nOther arguments to the plot function can be used to specify color, linetype (dashed etc.), linewidth, title, subtitle and many more. The help files ?plot and ?par can be very helpful when trying to achieve a specific look for your plot.\nAn example could look a little like this:\nplot(x = x, y = y, type = \"l\", lty = 4, lwd = 2, col = \"green\", main = \"Testplot\")\nIf we want to show multiple things in one diagram it can be useful to plot multiple objects in one coordinate grid. R provides some ways to do so, the most simple ones being the lines function that works similar to the plot function and the abline function which can be used to add straight lines.\nplot(x = x, y = y, type = \"p\", col = \"green\")\nlines(x = x, y = z, type = \"l\", lwd = 2, lty = 4, col = \"red\")\nabline(a=0, b=0.5, col = \"blue\")\nAs you may see from this plot, our y-axis is not adjusted to our newly added line. But we have a possibility to manually adjust the range of our axes if we choose to do so. This is done using the xlim and ylim arguments in the original plot function.\nplot(x = x, y = y, type = \"p\", col = \"green\", xlim = c(0,5), ylim = c(-3, 12))\nlines(x = x, y = z, type = \"l\", lwd = 2, lty = 4, col = \"red\")\nabline(a=0, b=0.5, col = \"blue\")\nIt is also possible to plot functions like sin(x) or the standard normal density.\nplot(sin, xlim = c(-10, 10))\n\n\n\n\n\n\nplot(dnorm, xlim = c(-4, 4))\nThere are many other useful plotting functions that are integrated in base R. We won’t cover all of them here, but instead focus on some of the most frequently needed.",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Plotting in R</span>"
     ]
   },
   {
-    "objectID": "05-Plotting.html#histograms-and-kernel-densities",
-    "href": "05-Plotting.html#histograms-and-kernel-densities",
+    "objectID": "R-05-Plotting.html#histograms-and-kernel-densities",
+    "href": "R-05-Plotting.html#histograms-and-kernel-densities",
     "title": "\n5  Plotting in R\n",
     "section": "\n5.2 Histograms and kernel densities",
     "text": "5.2 Histograms and kernel densities\nOther useful plotting functions that are offered in the default R experience include histograms with the function hist. With a combination of plot and density we get access to kernel density plots. A kernel density estimator is a nonparametric estimator of density of random variable based on a sample. Details about the estimator are beyond the scope of these notes. In the settings where we will use them, the default choices of the estimator will yield accurate results. Combining our previous knowledge with these possibilities, we can create plots like the following (note: in hist the argument freq = FALSE leads to relative frequency instead of counts. See ?hist for more details.):\n\nx &lt;- rnorm(n = 20)\nmy_dens &lt;- density(x)\n\nhist(x, freq = FALSE, breaks = seq(-4, 4, 0.5), xlim = c(-4, 4)) \nlines(my_dens, col = \"green\", lty = 2, lwd = 2)\nlines(x = seq(-4, 4, 0.05), y = dnorm(seq(-4, 4, 0.05)), col = \"red\", lty = 1)\n\n\n\n\n\n\n\nFurther functions include barplots:\n\ntemperatures &lt;- c(17,23,18,30,32,16,4,-3)\nbarplot(temperatures,\n        ylim = c(-15, 35),\n        main = \"Daily Temperature\",\n        ylab = \"Degree Celsius\")\n\n\n\n\n\n\n\nand piecharts:\n\nslices &lt;- c(8, 14, 9, 12, 4)\nlabels &lt;- c(\"Apple\", \"Pumpkin\", \"Pork\", \"3.14\", \"American\")\npie(slices, labels = labels, main = \"Types of pie\")\n\n\n\n\n\n\n\nAnother important part of plots - like comments in code - is a legible legend. R has built-in support for adding a legend to your plots. Going back to our combined plot from above, one can add a legend as shown in the following example. Here the x and y arguments specify the position of the legend in the plot and the other arguments specify its contents. Since a legend has to be customized for each plot, one should have a look in the documentation ?legend.\n\nx &lt;- seq(0, 5, 0.1)\ny &lt;- rnorm(n = length(x))\nz &lt;- 2*x + rnorm(n = 51)\n\nplot(x = x, y = y, type = \"p\", col = \"green\", xlim = c(0,5), ylim = c(-3, 12))\nlines(x = x, y = z, type = \"l\", lwd = 2, lty = 4, col = \"red\")\nlegend(x = 0, y = 10,\n       legend = c(\"My green points\", \"My red line\"),\n       col = c(\"green\", \"red\"),\n       lty = c(1, 4),\n       lwd = 2)\n\n\n\n\n\n\n\nIf one decides to pursue a tidyverse approach, the package ggplot allows for beautiful, heavily customized plots. An example can be seen below:\n\nlibrary(ggplot2)\nlibrary(ggforce)\nlibrary(hrbrthemes)\n\nn = 800\nx &lt;- runif(n, min = -10, max = 10)\ntreatment &lt;- ifelse(x&gt;0,1,0)\ny &lt;- 0.2*x + treatment*3 + rnorm(n, mean = 0, sd = 0.6)\nvisualise.data &lt;- data.frame(x, treatment, y)\n\np1 &lt;- ggplot(visualise.data, aes(x=x, y=y, colour = treatment == 1)) +\n        labs(title = \"Outcome Variable\", y = \"outcome variable\", x = \"assignment variable\") +\n        geom_point() + \n        geom_mark_ellipse(aes(filter = treatment == 1,\n                              label = 'x \\U02265 0')) + \n        geom_mark_ellipse(aes(filter = treatment == 0,\n                              label = 'x &lt; 0')) +\n        geom_segment(aes(x = -10, y = -2, xend = 0, yend = 0), color = 'red', size = 1.5) +\n        geom_segment(aes(x = 0, y = 3, xend = 10, yend = 5), color = 'red', size = 1.5) +\n        #theme_ipsum(axis_title_size = 18) +\n        theme(legend.position = \"none\",\n              legend.title = element_text(size = 18)) +\n        scale_colour_brewer(type = 'qual', palette = 'Dark2')\n\np1\n\n\n\n\n\n\n\nThe possibilities of ggplot2 are vast and can be intimidating, but it offers a consistent plotting experience integrated into a tidy data workflow using the tidyverse family of packages.",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Plotting in R</span>"
     ]
   },
   {
-    "objectID": "05-Plotting.html#exercises-v",
-    "href": "05-Plotting.html#exercises-v",
+    "objectID": "R-05-Plotting.html#exercises-v",
+    "href": "R-05-Plotting.html#exercises-v",
     "title": "\n5  Plotting in R\n",
     "section": "\n5.3 Exercises V",
     "text": "5.3 Exercises V\nExercise 1:\nDraw samples of size 1000 from exponential distributions with varying values of the parameter. Use histograms to visualize differences in the distributions.\nExercise 2:\nTake the mtcars dataset that is included in base R and plot mpg (miles per gallon) against wt (weight) as a scatterplot. Add a red line with abline by eyeballing the parameters that could come out of a regression.\nExercise 3:\nWrite a function that takes as its arguments a sample size n and a boolean that indicates, if plotting should take place. Let this function return a sample of size n drawn from a standard normal. If the plotting argument was true, let it also plot your sample in a way that seems sensible to you.",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Plotting in R</span>"
     ]
   },
   {
-    "objectID": "06-Monte-Carlo-Simulations.html",
-    "href": "06-Monte-Carlo-Simulations.html",
+    "objectID": "R-06-Monte-Carlo-Simulations.html",
+    "href": "R-06-Monte-Carlo-Simulations.html",
     "title": "\n6  Monte Carlo simulations\n",
     "section": "",
     "text": "6.1 Some important concepts\nWe will spend a lot of time learning about statistical properties of estimators. To be precise, let \\(\\hat{\\theta}_n\\) be an estimator of a parameter \\(\\theta\\). The estimator is a functions of the sample, say \\(\\{X_1, X_2, \\ldots, X_n\\}\\). The sample consists of random variables and any function of the sample, including \\(\\hat{\\theta}_n\\), is a random variable as well. That is, for different realizations of the data, we get different realizations of the estimator.\nThese arguments can be confusing because in practice we typically only have one data set and therefore only one realization of the estimator. But we could also think of all the other realizations of the data we could have obtained. For example, consider your starting salary after graduation. Let \\(\\theta\\) be the expected starting salary, which is a fixed number that we do not know. After everyone started working and we see your actual starting salaries, we can calculate the sample average as an estimate of the expected value, but this estimate is just one potential realization. If things had turned out slightly different, your starting salaries might have been different and we would have seen a different realization of the estimator.\nSince an estimator is a random variable, it has a distribution and (typically) a mean and a variance. We call an estimator unbiased if \\[E\\left(\\hat{\\theta}_n\\right) = \\theta\\] That is, the average value of the estimator over all the hypothetical data sets we could have obtained is equal to \\(\\theta\\). Unbiasedness can hold for any sample size \\(n\\) and is therefore called a small-sample property. Unbiasedness does not imply that \\(\\hat{\\theta}_n\\) is necessarily close to \\(\\theta\\).\nWe will define what it means for an estimator to be consistent: \\[\\hat{\\theta}_n \\rightarrow_P  \\theta\\] and asymptotically normally distributed: \\[\\sqrt{n}\\left(\\hat{\\theta}_n  - \\theta \\right) \\rightarrow_D N(0,V_{\\theta}^2) \\] These properties only hold in the limit and are called large-sample properties. Knowing the large-sample distribution is particularly useful because it allows us to test hypotheses and obtain confidence intervals. For example, let \\(\\hat{V}_{\\theta}\\) be a consistent estimator of \\(V_{\\theta}\\). Then \\[P\\left( \\theta \\in \\left[ \\hat{\\theta}_n - 1.96\\frac{\\hat{V}_{\\theta}}{\\sqrt{n}} , \\, \\hat{\\theta}_n + 1.96\\frac{\\hat{V}_{\\theta}}{\\sqrt{n}} \\right] \\right) \\rightarrow 0.95\\] and the interval \\[\\left[ \\hat{\\theta}_n - 1.96\\frac{\\hat{V}_{\\theta}}{\\sqrt{n}} , \\, \\hat{\\theta}_n + 1.96\\frac{\\hat{V}_{\\theta}}{\\sqrt{n}} \\right]\\] is a \\(95\\%\\) confidence interval for \\(\\theta\\). That is, looking at all hypothetical data sets, \\(\\theta\\) is in \\(95\\%\\) of the confidence intervals. Notice that in different data sets, we get different intervals, but the parameter \\(\\theta\\) does not change.\nThe \\(95\\%\\) coverage probability only holds in the limit, but for any fixed sample size \\[P\\left( \\theta \\in \\left[ \\hat{\\theta}_n - 1.96\\frac{\\hat{V}_{\\theta}}{\\sqrt{n}} , \\, \\hat{\\theta}_n + 1.96\\frac{\\hat{V}_{\\theta}}{\\sqrt{n}} \\right] \\right) \\] could be much smaller than \\(95\\%\\). This actual coverage probability is unknown in applications.\nThe goal of Monte Carlo simulations is typically to investigate small sample properties of estimators, such as the actual coverage probability of confidence intervals for fixed \\(n\\). To do so, we can simulate many random samples from an underlying distribution and obtain the realization of the estimator for each sample. We can then use the realizations to approximate the actual small sample distribution of the estimator and check properties, such as coverage probabilities of confidence intervals. Of course, the properties of the estimator depend on which underlying distribution we sample from.",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Monte Carlo simulations</span>"
     ]
   },
   {
-    "objectID": "06-Monte-Carlo-Simulations.html#simple-simulation-example",
-    "href": "06-Monte-Carlo-Simulations.html#simple-simulation-example",
+    "objectID": "R-06-Monte-Carlo-Simulations.html#simple-simulation-example",
+    "href": "R-06-Monte-Carlo-Simulations.html#simple-simulation-example",
     "title": "\n6  Monte Carlo simulations\n",
     "section": "\n6.2 Simple simulation example",
     "text": "6.2 Simple simulation example\nAs a simple example, let \\(\\{X_1, X_2, \\ldots, X_n\\}\\) be a random sample from some distribution \\(F_X\\). Define \\(\\theta = E(X)\\) and let \\[\\hat{\\theta}_n = \\bar{X}_n = \\frac1n \\sum_{i=1}^n X_i\\] and \\[s_n = \\sqrt{\\frac{1}{n-1} \\sum_{i=1}^n \\left(X_i - \\bar{X}_n\\right)^2} \\] Applications of a Law of Large Numbers and a Central Limit Theorem for iid data imply that \\[\\hat{\\theta}_n  \\rightarrow_P \\theta,\\] \\[s_n  \\rightarrow_P sd(X),\\] and \\[\\sqrt{n}\\left(\\hat{\\theta}_n  - \\theta \\right) \\rightarrow_D N(0,Var(X)) \\] The previously discussed confidence interval for \\(E(X)\\) is \\[\\left[ \\bar{X}_n - 1.96\\frac{s_n}{\\sqrt{n}} , \\, \\bar{X}_n + 1.96\\frac{s_n}{\\sqrt{n}} \\right]\\]",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Monte Carlo simulations</span>"
     ]
   },
   {
-    "objectID": "06-Monte-Carlo-Simulations.html#consistency",
-    "href": "06-Monte-Carlo-Simulations.html#consistency",
+    "objectID": "R-06-Monte-Carlo-Simulations.html#consistency",
+    "href": "R-06-Monte-Carlo-Simulations.html#consistency",
     "title": "\n6  Monte Carlo simulations\n",
     "section": "\n6.3 Consistency",
     "text": "6.3 Consistency\nThe estimator \\(\\hat{\\theta}_n\\) is weakly consistent if for any \\(\\varepsilon &gt; 0\\) \\[P\\left( \\left|\\hat{\\theta}_n - \\theta \\right| &gt; \\varepsilon  \\right) \\rightarrow 0\\] or \\[P\\left( \\left|\\hat{\\theta}_n - \\theta \\right| \\leq \\varepsilon  \\right) \\rightarrow 1\\] That is, as long as \\(n\\) is large enough, \\(\\hat{\\theta}_n\\) is in an arbitrarily small neighborhood around \\(\\theta\\) with arbitrarily large probability.\nTo illustrate this property, let’s return to the example with sample averages and expectations. Let \\(\\{X_1, X_2, \\ldots, X_n\\}\\) be a random sample from the Bernoulli distribution with \\(p = P(X_i = 1) = 0.7\\). Let \\(\\theta = E(X) = p\\) and let \\(\\hat{\\theta}_n\\) be the sample average. We start with a sample size of 20 and set the parameters:\n\nn &lt;- 20\np &lt;- 0.7\ntheta = p\n\nWe now want to take \\(S\\) random samples and obtain \\(S\\) corresponding sample averages, where \\(S\\) is ideally a large number. The larger \\(S\\), the more precise our results will be. It is also useful to set a seed.\n\nset.seed(4519)\nS &lt;- 10000\nX &lt;- replicate(S,rbinom(n,1,p))\ntheta_hat &lt;- colMeans(X)\n\nNow for some \\(\\varepsilon &gt; 0\\), we can check \\(P\\left( \\left|\\hat{\\theta}_n - \\theta \\right| \\leq \\varepsilon  \\right)\\):\n\neps &lt;- 0.1\nmean(abs(theta_hat - p) &lt;= eps)\n\n[1] 0.647\n\n\nWe can also calculate this probability for different values of \\(\\varepsilon &gt; 0\\). I use a loop here for readability, but you can try using matrices on your own. Since I want to repeat the following steps for different sample sizes, it is useful to first define a functions that performs all operations:\n\ncalc_probs_consistency &lt;- function(n,S,p,all_eps) {\n  n_eps = length(all_eps)\n  X &lt;- replicate(S,rbinom(n,1,p))\n  theta_hat &lt;- colMeans(X)\n  probs = rep(0, n_eps)\n  for (i in 1:n_eps) {\n    probs[i] = mean(abs(theta_hat - p) &lt;= all_eps[i])\n  }\n  return(probs)\n}\n\nWe can now call the function for any \\(n\\), \\(S\\), \\(p\\), and a vector containing different values for \\(\\varepsilon\\). For each of these values, the function then returns a probability.\n\nall_eps = seq(0.01, 0.5, by= 0.01)\nprobs &lt;- calc_probs_consistency(n = 20, S = 1000, p = 0.7, all_eps = all_eps)\n\nNext, we can plot all probabilities:\n\nplot(all_eps,probs,ylim = c(0,1),xlab=\"epsilon\",ylab=\"Probability\", col = 'blue')\n\n\n\n\n\n\n\nWe can see from the plot that \\(P\\left( \\left|\\hat{\\theta}_n - \\theta \\right| \\leq \\varepsilon  \\right)\\) is quite small for small values of \\(\\varepsilon\\). Consistency means that for any \\(\\varepsilon &gt; 0\\), the probability approaches \\(1\\) as \\(n \\rightarrow \\infty\\). We can now easily change the sample size and see how the results change. For example, take \\(n=200\\):\n\nprobs &lt;- calc_probs_consistency(n = 200, S = 10000, p = 0.7, all_eps = seq(0.01, 0.5, by= 0.01))\nplot(all_eps,probs,ylim = c(0,1),xlab=\"epsilon\",ylab=\"Probability\", col = 'blue')",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Monte Carlo simulations</span>"
     ]
   },
   {
-    "objectID": "06-Monte-Carlo-Simulations.html#asymptotic-normality",
-    "href": "06-Monte-Carlo-Simulations.html#asymptotic-normality",
+    "objectID": "R-06-Monte-Carlo-Simulations.html#asymptotic-normality",
+    "href": "R-06-Monte-Carlo-Simulations.html#asymptotic-normality",
     "title": "\n6  Monte Carlo simulations\n",
     "section": "\n6.4 Asymptotic normality",
     "text": "6.4 Asymptotic normality\nWe know from the Central Limit Theorem that \\[\\frac{\\sqrt{n}(\\bar{X}_n - E(X))}{s_n} \\rightarrow_D N(0,1)\\] where \\(s_n\\) is the sample standard deviation. Convergence in distribution means that the distribution of the normalized sample average converges to the distribution function of a standard normal random variable.\nAgain, we can use the previous simulation setup to illustrate this property. To do so, we calculate \\[P\\left(\\frac{\\sqrt{n}(\\bar{X}_n - E(X))}{s_n} \\leq z\\right)\\] and compare it to the standard normal cdf evaluated at \\(z\\). We then plot the results as a function of \\(z\\). Just as before, we define a function that calculates the probabilities:\n\ncalc_probs_asymp_normal &lt;- function(n,S,p,z) {\n  n_z = length(z)\n  X &lt;- replicate(S,rbinom(n,1,p))\n  theta_hat &lt;- colMeans(X)\n  stds &lt;- apply(X, 2, sd)\n  probs = rep(0, n_z)\n  for (i in 1:n_z) {\n    probs[i] = mean( sqrt(n)*(theta_hat - p)/stds &lt;= z[i])\n  }\n  return(probs)\n}\n\nWe can now plot the results for different sample sizes such as\n\nz = seq(-3,3,by=0.01)\nprobs &lt;- calc_probs_asymp_normal(n = 20, S = 10000, p = 0.7, z = z)\nplot(z,probs,ylim = c(0,1),xlab=\"z\",ylab=\"Probability\", col = 'blue')\nlines(z, pnorm(z, 0, 1), col = 'red',lwd = 2)\n\n\n\n\n\n\n\nor\n\nprobs &lt;- calc_probs_asymp_normal(n = 2000, S = 10000, p = 0.7, z = z)\nplot(z,probs,ylim = c(0,1),xlab=\"z\",ylab=\"Probability\", col = 'blue')\nlines(z, pnorm(z, 0, 1), col = 'red',lwd = 2)",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Monte Carlo simulations</span>"
     ]
   },
   {
-    "objectID": "06-Monte-Carlo-Simulations.html#testing",
-    "href": "06-Monte-Carlo-Simulations.html#testing",
+    "objectID": "R-06-Monte-Carlo-Simulations.html#testing",
+    "href": "R-06-Monte-Carlo-Simulations.html#testing",
     "title": "\n6  Monte Carlo simulations\n",
     "section": "\n6.5 Testing",
     "text": "6.5 Testing\nLet \\(\\{X_1, X_2, \\dots, X_n\\}\\) be a random sample and define \\(\\mu = E(X)\\). Suppose we want to test \\(H_0: \\mu = \\mu_0\\) where \\(\\mu_0\\) is a fixed number. To do so, define \\[t = \\frac{\\sqrt{n}(\\bar{X}_n - \\mu_0)}{s_n} \\] An immediate consequence of the Central Limit Theorem is that if \\(H_0\\) is true then \\[t = \\frac{\\sqrt{n}(\\bar{X}_n - \\mu_0)}{s_n} = \\frac{\\sqrt{n}(\\bar{X}_n - \\mu)}{s_n} \\rightarrow_D N(0,1) \\] and therefore \\[P\\left(|t| &gt; 1.96 \\mid \\mu = \\mu_0\\right) \\rightarrow 0.05\\] Hence, if we reject when \\(|t|&gt;1.96\\), we only reject a true null hypothesis with probability approaching 5%.\nIf the null hypothesis is false, we can write \\[t = \\frac{\\sqrt{n}(\\bar{X}_n - \\mu_0)}{s_n} = \\frac{\\sqrt{n}(\\bar{X}_n - \\mu)}{s_n} + \\frac{\\sqrt{n}(\\mu - \\mu_0)}{s_n} \\rightarrow_D N(0,1) \\] Since in this case \\(\\sqrt{n}|\\mu - \\mu_0| \\rightarrow \\infty\\), it follows that \\[P\\left(|t| &gt; 1.96  \\mid \\mu \\neq \\mu_0\\right) \\rightarrow 1\\] That is, we reject a false null hypothesis with probability approaching \\(1\\). However, for a small sample size, the rejection probability is typically much smaller when \\(\\mu_0\\) is close to \\(\\mu\\).\nWe now want to calculate the small sample rejection probabilities using Monte Carlo simulations. We could either vary \\(\\mu_0\\) (the value we test) or \\(\\mu\\) (the true mean). We take the latter because we can then plot the power functions you have seen in the theoretical part of the class to illustrate the results.\nWe work with the Bernoulli distribution again and define a function that calculates certain rejection probabilities.\n\ncalc_rej_probs &lt;- function(n,S,mus,mu0,alpha) {\n  n_mus = length(mus)\n  probs = rep(0, n_mus)\n  for (i in 1:n_mus) {\n    X &lt;- replicate(S,rbinom(n,1,mus[i]))\n    theta_hat &lt;- colMeans(X)\n    stds &lt;- apply(X, 2, sd)\n    probs[i] = mean(abs( sqrt(n)*(theta_hat - mu0)/stds ) &gt; qnorm(1-alpha/2) )\n  }\n  return(probs)\n}\n\nWe can now call the function for different values of \\(\\mu\\) and plot the rejection probabilities\n\nmus = seq(0.5,0.9,by=0.01)\nprobs &lt;- calc_rej_probs(n = 200, S = 10000, mus = mus, mu0 = 0.7, alpha = 0.05)\nplot(mus,probs,ylim = c(0,1),xlab=\"True mean\",ylab=\"Rejection Probability\", col = 'blue')\nabline(h=0.05, col = 'red',lwd = 2)\n\n\n\n\n\n\n\nThink about how the figure changes as the sample size increases.",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Monte Carlo simulations</span>"
     ]
   },
   {
-    "objectID": "06-Monte-Carlo-Simulations.html#exercises-vi",
-    "href": "06-Monte-Carlo-Simulations.html#exercises-vi",
+    "objectID": "R-06-Monte-Carlo-Simulations.html#exercises-vi",
+    "href": "R-06-Monte-Carlo-Simulations.html#exercises-vi",
     "title": "\n6  Monte Carlo simulations\n",
     "section": "\n6.6 Exercises VI",
     "text": "6.6 Exercises VI\nExercise 1:\nSuppose \\(X \\sim U[0,2]\\) where \\(U[0,2]\\) denotes the uniform distribution on the interval \\([0,2]\\). It is easy to show (make sure to verify this!) that \\(E(X) = 1\\). Now repeat the following two steps at least \\(1,000\\) times:\n\nTake a random sample from the distribution of \\(X\\) with sample size \\(n = 20\\).\nCalculate the sample average and a \\(95\\%\\) confidence interval for \\(E(X)\\) using the sample from (1).\n\nYou should now have \\(1,000\\) sample averages and \\(1,000\\) confidence intervals, which you can use to answer the following questions:\n\nWhat is average of your \\(1,000\\) sample averages?\nWhat is the standard deviation of your \\(1,000\\) sample averages?\nHow many times is \\(E(X)\\) in the \\(95\\%\\) confidence interval?\n\nExercise 2:\nIn this exercise, we use the Monte-Carlo method to approximate the number pi. To do so, randomly choose n points from a square and count how many of those draws lie inside the square’s incircle. Based on this results and the formula for the area of a circle, calculate an approximation of pi.\n\nCreate a plot that portrays your findings in an intuitive manner, such as histograms, density plots, boxplots, etc.) –&gt;",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Monte Carlo simulations</span>"
     ]
   },
   {
-    "objectID": "07-Regression.html",
-    "href": "07-Regression.html",
+    "objectID": "R-07-Regression.html",
+    "href": "R-07-Regression.html",
     "title": "\n7  Regression analysis\n",
     "section": "",
     "text": "7.1 Basic linear model\nYou have probably all learnt about the linear regression model in a previous econometrics class where \\[Y =  \\beta_1 X_1 + \\beta_2 X_2 + \\ldots + \\beta_{k} X_{k} + \\beta_{k+1} + e \\] and \\[E(e \\mid X_1, X_2, \\ldots, X_{k}) = 0.\\] That is, the conditional mean of the outcome variable \\(Y\\) is a linear function of the regressors \\(X_1, X_2, \\ldots, X_{k}\\).\nWhen we have a random sample of size \\(n\\), we can also write \\[Y_i = \\beta_1 X_{i1} + \\beta_2 X_{i2} + \\ldots + \\beta_k X_{ik} + \\beta_{k+1} +  e_i, \\qquad i = 1, 2, \\ldots, n.\\] Our goal is to estimate the coefficients \\(\\beta_1, \\ldots, \\beta_{k+1}\\) using the data \\(\\{Y_i, X_{i1},X_{i2},\\ldots, X_{ik}\\}^n_{i=1}\\).",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Regression analysis</span>"
     ]
   },
   {
-    "objectID": "07-Regression.html#empirical-example",
-    "href": "07-Regression.html#empirical-example",
+    "objectID": "R-07-Regression.html#empirical-example",
+    "href": "R-07-Regression.html#empirical-example",
     "title": "\n7  Regression analysis\n",
     "section": "\n7.2 Empirical example",
     "text": "7.2 Empirical example\nWe will now see how to run regressions in R using the movie data set. Again, you can load it using\n\ndata_set = read.csv(\"tmdb_5000_movies.csv\")\n\nSuppose we are interested in studying how the budget of a movie is related to its revenue and we model the relationship as: \\[revenue_i = \\beta_1 budget_{i} +  \\beta_2 + e_i\\] Before we run a regression, let’s look at a scatter plot of the relevant variables:\n\nplot(data_set$budget, data_set$revenue, xlab = \"Budget\", ylab = \"Revenue\")\n\n\n\n\n\n\n\nClearly, movies with higher budgets tend to have higher revenues. To estimate the regression coefficients, you can use the lm() command:\n\nlm_result &lt;- lm(formula = data_set$revenue~data_set$budget)\nlm_summary  &lt;- summary(lm_result)\nlm_summary\n\n\nCall:\nlm(formula = data_set$revenue ~ data_set$budget)\n\nResiduals:\n       Min         1Q     Median         3Q        Max \n-653371282  -35365659    2250851    8486969 2097912654 \n\nCoefficients:\n                  Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)     -2.630e+06  1.970e+06  -1.335    0.182    \ndata_set$budget  2.923e+00  3.940e-02  74.188   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 111200000 on 4801 degrees of freedom\nMultiple R-squared:  0.5341,    Adjusted R-squared:  0.534 \nF-statistic:  5504 on 1 and 4801 DF,  p-value: &lt; 2.2e-16\n\n\nThink about how you can interpret the estimated slope coefficient.\nWe can also plot the regression line in the scatter plot:\n\nb0 &lt;- lm_summary$coefficients[1]\nb1  &lt;- lm_summary$coefficients[2]\n\n## Plot all:\nplot(y=data_set$revenue, x=data_set$budget, \n     xlab=\"Budget\", \n     ylab=\"Revenue\", \n     main=\"Scatter plot and regression line\")\nabline(a=b0, b=b1, col=\"red\")\n\n\n\n\n\n\n\nLet’s now see if a higher budget also implies a higher rating:\n\nlm_result_rating &lt;- lm(data_set$vote_average~data_set$budget)\nlm_summary_rating  &lt;- summary(lm_result_rating)\nlm_summary_rating \n\n\nCall:\nlm(formula = data_set$vote_average ~ data_set$budget)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-6.0224 -0.5131  0.1139  0.7462  3.9872 \n\nCoefficients:\n                 Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)     6.013e+00  2.108e-02 285.190  &lt; 2e-16 ***\ndata_set$budget 2.732e-09  4.215e-10   6.482 9.95e-11 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.19 on 4801 degrees of freedom\nMultiple R-squared:  0.008676,  Adjusted R-squared:  0.00847 \nF-statistic: 42.02 on 1 and 4801 DF,  p-value: 9.949e-11\n\n\nNotice that the estimated slope coefficient is tiny. Does that mean that the rating is unrelated to the budget?\nThe budget is often huge. For a better interpretation of the coefficients, define the budget in millions as\n\ndata_set$budget_mil &lt;- data_set$budget/1000000\n\nlook at summary statistics of the variables\n\nsummary(data_set$vote_average)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  0.000   5.600   6.200   6.092   6.800  10.000 \n\nsummary(data_set$budget_mil )\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   0.00    0.79   15.00   29.05   40.00  380.00 \n\n\nand redo the analysis:\n\nlm_result_rating &lt;- lm(formula = data_set$vote_average~data_set$budget_mil)\nlm_summary_rating  &lt;- summary(lm_result_rating)\nlm_summary_rating \n\n\nCall:\nlm(formula = data_set$vote_average ~ data_set$budget_mil)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-6.0224 -0.5131  0.1139  0.7462  3.9872 \n\nCoefficients:\n                     Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)         6.0128066  0.0210835 285.190  &lt; 2e-16 ***\ndata_set$budget_mil 0.0027325  0.0004215   6.482 9.95e-11 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.19 on 4801 degrees of freedom\nMultiple R-squared:  0.008676,  Adjusted R-squared:  0.00847 \nF-statistic: 42.02 on 1 and 4801 DF,  p-value: 9.949e-11\n\n\nDo think that the budget has a large impact on the rating?\nOf course, we are not limited to one regressors. To include three regressors, can use lm(formula = Y~X1+X2+X3). We will return to regression analysis later in the semester.",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Regression analysis</span>"
     ]
   },
   {
-    "objectID": "07-Regression.html#exercises-vii",
-    "href": "07-Regression.html#exercises-vii",
+    "objectID": "R-07-Regression.html#exercises-vii",
+    "href": "R-07-Regression.html#exercises-vii",
     "title": "\n7  Regression analysis\n",
     "section": "\n7.3 Exercises VII",
     "text": "7.3 Exercises VII\nExercise 1:\nIn the previous section, we looked at Monte Carlo simulations in a very simple setting. We can analyze analogous issues in other settings, such as the linear regression model. Also in this case, we have parameters (the regression coefficients) and estimators (the OLS estimators). The parameters are random and have certain known small and large sample properties that you discussed in the theoretical part of the class. Many other small sample properties, such as actual coverage rates of confidence intervals are unknown, but can be studies in Monte Carlo simulations.\nLet \\[Y_i = \\beta_1 X_{i1} + \\beta_2 X_{i2}+  \\beta_3 + e_i, \\qquad i = 1, 2, \\ldots, n.\\] where \\[\\begin{pmatrix}X_{i1}\\\\X_{i2}\\\\\\end{pmatrix} \\sim N\\left( \\begin{pmatrix}2\\\\-3 \\end{pmatrix}, \\begin{pmatrix}1& \\rho  \\\\ \\rho &1 \\end{pmatrix} \\right)\\] and \\((\\beta_1, \\beta_2, \\beta_3) = (2,1,-1)\\). Let \\(e_i \\sim U[-2,2]\\) and assume that \\(e_i\\) is independent of \\((X_{i1},X_{i2})\\). Assume that the data is a random sample. Let \\((\\hat{\\beta}_1, \\hat{\\beta}_2, \\hat{\\beta}_3 )\\) be the OLS estimator of \\((\\beta_1, \\beta_2, \\beta_3)\\).\nFor different values of \\(n\\) and \\(\\rho\\) use simulations to calculate\n\n\n\\(E(\\hat{\\beta}_1)\\),\n\n\\(Var(\\hat{\\beta}_1)\\),\nthe probability that \\(\\beta_1\\) is in a \\(95\\%\\) confidence interval,\nthe expected length of the confidence interval,\nthe probability that we reject \\(H_0: \\beta_1 = 2\\) using a two-sided t-test and a \\(1\\%\\) significance level, and\nthe probability that we reject \\(H_0: \\beta_1 = 1.8\\) using a two-sided t-test and a \\(1\\%\\) significance level.\n\nDiscuss the results.\nHow do you think the results will change if \\(X_{i1}\\) and \\(e_i\\) are correlated?\nExercise 2:\nStart with the help file ?lm() of the linear model - one of the functions most often used in R - and try to answer these questions:\n\nHow do you estimate a model without a constant?\nIn what setting could na.action = na.exclude be more useful to you than the function’s default value?\nFor a given lm-object, what does the function summary do?\n\nExercise 3:\nAssume that \\(X \\sim U[0,1]\\) and \\(Y \\sim U[0,1]\\) are independent random variables. For different sample sizes (\\(n \\in\\{ 2, 5, 10, 100, 1000\\}\\)) draw two i.i.d. samples of \\(X\\) and \\(Y\\) and regress \\(Y\\) on \\(X\\) for both samples. Using a Monte-Carlo simulation, approximate the probability that the two corresponding regression lines intersect on \\([0,1]\\times  [0,1]\\). Do the results depend on the sample size?",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Regression analysis</span>"
     ]
   },
   {
-    "objectID": "08-Notes-on-useful-packages.html",
-    "href": "08-Notes-on-useful-packages.html",
+    "objectID": "R-08-Notes-on-useful-packages.html",
+    "href": "R-08-Notes-on-useful-packages.html",
     "title": "\n8  Some notes on useful packages\n",
     "section": "",
     "text": "8.1 The tidyverse family\n\"The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures.\" The tidyverse family of R packages provides a comprehensive framework for many useful tools we need: from reading in data with readr [csv, tsv etc.] and haven [SPSS, Stata, SAS], wrangling it into the shape one desires with dplyr (mostly so called tidy-data) to visualization with ggplot2. These packages are not necessary to use R efficiently, but have a large following in the R community and often provide a more comfortable way to perform tedious tasks. A comprehensive guide to the tidyverse is provided in Hadley Wickham’s book R for Data Science.",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Some notes on useful packages</span>"
     ]
   },
   {
-    "objectID": "08-Notes-on-useful-packages.html#tidymodels",
-    "href": "08-Notes-on-useful-packages.html#tidymodels",
+    "objectID": "R-08-Notes-on-useful-packages.html#tidymodels",
+    "href": "R-08-Notes-on-useful-packages.html#tidymodels",
     "title": "\n8  Some notes on useful packages\n",
     "section": "\n8.2 Tidymodels",
     "text": "8.2 Tidymodels\nA set of modeling packages built on the tidyverse architecture that can be used for a multitude of tasks. https://www.tidymodels.org/",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Some notes on useful packages</span>"
     ]
   },
   {
-    "objectID": "08-Notes-on-useful-packages.html#lmtest",
-    "href": "08-Notes-on-useful-packages.html#lmtest",
+    "objectID": "R-08-Notes-on-useful-packages.html#lmtest",
+    "href": "R-08-Notes-on-useful-packages.html#lmtest",
     "title": "\n8  Some notes on useful packages\n",
     "section": "\n8.3 lmtest",
     "text": "8.3 lmtest\n\"A collection of tests, data sets, and examples for diagnostic checking in linear regression models. Furthermore, some generic tools for inference in parametric models are provided.\"",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Some notes on useful packages</span>"
     ]
   },
   {
-    "objectID": "08-Notes-on-useful-packages.html#mass",
-    "href": "08-Notes-on-useful-packages.html#mass",
+    "objectID": "R-08-Notes-on-useful-packages.html#mass",
+    "href": "R-08-Notes-on-useful-packages.html#mass",
     "title": "\n8  Some notes on useful packages\n",
     "section": "\n8.4 MASS",
-    "text": "8.4 MASS\nCollection of many useful functions that originated as a support package for a book on applied statistics with S (the predecessor language of R). One example is its function mvrnorm that enables its user to draw from a multivariate normal with a given mean vector and covariance matrix.\n\nlibrary(MASS)\nmy_sample &lt;-mvrnorm(n = 100, mu = c(0,0), Sigma = matrix(data = c(1,0.5,0.5,1), nrow = 2, byrow = T))\nhead(my_sample)\n\n           [,1]        [,2]\n[1,] -0.2494320 -0.06426587\n[2,] -0.3098868 -0.83584456\n[3,]  1.2317152  0.03393032\n[4,]  1.1992414 -0.18225171\n[5,] -0.4661908 -1.12457692\n[6,] -0.7037536  0.13805682",
+    "text": "8.4 MASS\nCollection of many useful functions that originated as a support package for a book on applied statistics with S (the predecessor language of R). One example is its function mvrnorm that enables its user to draw from a multivariate normal with a given mean vector and covariance matrix.\n\nlibrary(MASS)\nmy_sample &lt;-mvrnorm(n = 100, mu = c(0,0), Sigma = matrix(data = c(1,0.5,0.5,1), nrow = 2, byrow = T))\nhead(my_sample)\n\n           [,1]       [,2]\n[1,] -0.4682363 -0.3163684\n[2,] -0.5777006 -0.3109616\n[3,]  1.4137128  2.4320826\n[4,]  0.8685785  0.8295793\n[5,]  0.3581463 -0.2002019\n[6,]  0.9076160 -0.1322555",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Some notes on useful packages</span>"
     ]
   },
   {
-    "objectID": "08-Notes-on-useful-packages.html#aer---applied-econometrics-with-r",
-    "href": "08-Notes-on-useful-packages.html#aer---applied-econometrics-with-r",
+    "objectID": "R-08-Notes-on-useful-packages.html#aer---applied-econometrics-with-r",
+    "href": "R-08-Notes-on-useful-packages.html#aer---applied-econometrics-with-r",
     "title": "\n8  Some notes on useful packages\n",
     "section": "\n8.5 AER - “Applied Econometrics with R”",
     "text": "8.5 AER - “Applied Econometrics with R”\nProvides many useful function in the context of applied Econometrics. One prominent example is the function ivreg used for IV-estimation.",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Some notes on useful packages</span>"
     ]
   },
   {
-    "objectID": "08-Notes-on-useful-packages.html#knitr",
-    "href": "08-Notes-on-useful-packages.html#knitr",
+    "objectID": "R-08-Notes-on-useful-packages.html#knitr",
+    "href": "R-08-Notes-on-useful-packages.html#knitr",
     "title": "\n8  Some notes on useful packages\n",
     "section": "\n8.6 knitr",
     "text": "8.6 knitr\nFormally an engine for dynamic report generation, knitr can be especially useful in your studies, if you want to use R in conjunction with markdown and output to different files. For example. this introduction is created from a bunch of Rmd files [R Markdown]. It can also be used to utilize R in a similar way to a Jupyter notebook, intermingling code and text freely.",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Some notes on useful packages</span>"
     ]
   },
   {
-    "objectID": "08-Notes-on-useful-packages.html#shiny",
-    "href": "08-Notes-on-useful-packages.html#shiny",
+    "objectID": "R-08-Notes-on-useful-packages.html#shiny",
+    "href": "R-08-Notes-on-useful-packages.html#shiny",
     "title": "\n8  Some notes on useful packages\n",
     "section": "\n8.7 Shiny",
     "text": "8.7 Shiny\nUsed to build interactive web-aps with R. Somewhat more advanced, but very cool.",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Some notes on useful packages</span>"
     ]
   },
   {
-    "objectID": "08-Notes-on-useful-packages.html#faster-code",
-    "href": "08-Notes-on-useful-packages.html#faster-code",
+    "objectID": "R-08-Notes-on-useful-packages.html#faster-code",
+    "href": "R-08-Notes-on-useful-packages.html#faster-code",
     "title": "\n8  Some notes on useful packages\n",
     "section": "\n8.8 Faster Code",
     "text": "8.8 Faster Code\nYou might want to look at these packages:\n\nRcpp\nparallel\ndata.table\nfuture & future.apply\n\nThese can get complicated very quickly, so beware.",
     "crumbs": [
+      "Introduction to R",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Some notes on useful packages</span>"
+    ]
+  },
+  {
+    "objectID": "Python-01-Getting-Started.html",
+    "href": "Python-01-Getting-Started.html",
+    "title": "9  The first steps in Python",
+    "section": "",
+    "text": "9.1 Positron for the first time\nPositron is not only an IDE for R, but also for Python. For installation just follow the instructions on https://positron.posit.co/download.html\nIn addition, you need a Python installation. Positron detects installed Python versions automatically and lets you pick one as interpreter (the button in the upper right corner of the window). A good practice is to create a virtual environment for each project, i.e., a folder (usually called .venv) that contains the Python interpreter together with all packages you install for this project. In Positron you can create one via the command palette (Ctrl+Shift+P) and the command Python: Create Environment.\nWhen you open Positron, its window is typically split into the following areas:\nSome other terms that will be useful:",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>The first steps in Python</span>"
+    ]
+  },
+  {
+    "objectID": "Python-01-Getting-Started.html#positron-for-the-first-time",
+    "href": "Python-01-Getting-Started.html#positron-for-the-first-time",
+    "title": "9  The first steps in Python",
+    "section": "",
+    "text": "The editor (center) showing your script file, which is an ordinary text file with suffix “.py”. For instance, yourFavoritFileName.py. This file contains your code.\nThe Session pane (right) showing all objects (variables) we have defined in the environment.\nThe Plots and Help panes (right) showing plots and help files.\nThe Console (bottom), which allows you to type commands and display results.\nThe Explorer (left) showing the files in your current project folder.\n\n\n\nWorking directory: The file-directory you are working in. Useful commands: with os.getcwd() you get the location of your current working directory and os.chdir() allows you to set a new location for it (both functions are part of the module os, which you load with import os). This is very useful when you would like to load or save several files. You can just set your working directory globally and all files can be loaded or will be saved into this directory.\nWorkspace (namespace): This is where all objects you use (e.g., data, matrices, vectors, variables, functions, etc.) are stored during your session. Useful commands in the Positron console: %who shows all variables in our current workspace and %reset -f deletes all elements in our current workspace. It is also possible to remove only some objects with del object1, object2.",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>The first steps in Python</span>"
+    ]
+  },
+  {
+    "objectID": "Python-01-Getting-Started.html#simple-calculations",
+    "href": "Python-01-Getting-Started.html#simple-calculations",
+    "title": "9  The first steps in Python",
+    "section": "9.2 Simple calculations",
+    "text": "9.2 Simple calculations\nWe start with a very basic calculation. Let’s type 1+1 into the console window and press enter. We get\n\n1+1 # first calculation\n\n2\n\n\ni.e. the result of the calculation is returned.\nNote that everything that is written after the #-sign is ignored by Python, which is very useful to comment your code. The second window above shows the output.\nLet’s consider a second calculation\n\n1+2+3+ # second calculation\n\n\n  Cell In[2], line 1\n    1+2+3+ # second calculation\n           ^\nSyntaxError: invalid syntax\n\n\n\n\nThis calculation ended with an error. The reason is that the command can only processed if entered correctly.\n\n1+2+3+4 # second calculation\n\n10\n\n\nA similar thing happens when parentheses are not closed.\n\n2*(2+3\n\n\n  Cell In[4], line 1\n    2*(2+3\n          ^\nSyntaxError: incomplete input\n\n\n\n\nIt will be helpful to use a script file, such as yourFavoritFileName.py, to store your Python commands. Otherwise, you would have to type your code again when an error occurred. You can send single lines or marked regions of your Python code to the console by pressing the keys STRG+ENTER.",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>The first steps in Python</span>"
+    ]
+  },
+  {
+    "objectID": "Python-01-Getting-Started.html#assigments-and-matrix-algebra",
+    "href": "Python-01-Getting-Started.html#assigments-and-matrix-algebra",
+    "title": "9  The first steps in Python",
+    "section": "9.3 Assigments and matrix algebra",
+    "text": "9.3 Assigments and matrix algebra\nThe assignment operator will be your most often used tool. Here is an example where a scalar variable is created:\n\nx = 9\nx\n\n9\n\n\n\nx+1\n\n10\n\n\nNote: In a script, Python only shows the result of the last line of a code block. If you want to see several results, use the print() function:\n\nx = 9\nprint(x)\nprint(x+1)\n\n9\n10\n\n\nPython only knows the = assignment operator (there is no &lt;- as in R). More on Python style recommendations can be found in the PEP 8 style guide.\nWe consider now a vector, an object you will use frequently. Python itself does not have vectors and matrices in the mathematical sense. They are provided by the package NumPy, which we load (under the usual short name np) with\n\nimport numpy as np\n\nA vector is then created with np.array():\n\nz = np.array([1,3,5,6])\nz\n\narray([1, 3, 5, 6])\n\n\nAs discussed, %who states the content of the workspace, whereas %reset -f deletes the workspace.\n\n%who\n\nnp   ojs_define  x   z   \n\n\n\n%reset -f\n%who\n\nInteractive namespace is empty.\n\n\nNote that %reset -f also removed the NumPy package from the workspace, so we have to load it again.\n\nimport numpy as np\n\nIn the next step we will consider some vector multiplication. There are three different ways to multiply a vector, namely element by element, using the inner product, or using the outer product. Element by element gives you a vector of the same dimension.\n\nz = np.array([1,3,5,6])\nz*z                #multiplication element by element\n\narray([ 1,  9, 25, 36])\n\n\nThe attribute .T gives the transpose of a vector (or matrix). It is therefore tempting to calculate the inner product as\n\nz.T*z                #multiplication inner product?\n\narray([ 1,  9, 25, 36])\n\n\nbut this does not give the desired answer. (A one-dimensional NumPy array is neither a row nor a column vector, so transposing it does not change anything.) Instead, you have to use the matrix multiplication operator @\n\nz = np.array([1,3,5,6])\nz @ z                #multiplication inner product\n\nnp.int64(71)\n\n\nNote that, in contrast to R, NumPy stores zTz as a number and not as a matrix.\n\ntype(z @ z)\n\nnumpy.int64\n\n\n\ntype(z)\n\nnumpy.ndarray\n\n\nFinally, we have the outer product that gives us a matrix\n\nz = np.array([1,3,5,6])\nnp.outer(z, z)                #multiplication outer product\n\narray([[ 1,  3,  5,  6],\n       [ 3,  9, 15, 18],\n       [ 5, 15, 25, 30],\n       [ 6, 18, 30, 36]])\n\n\nIn general, be very careful with @ versus *. They are often both feasible, but yield different results!\nYou can also multiply a vector with a scalar:\n\nz*4\n\narray([ 4, 12, 20, 24])\n\n\nA strength of NumPy is that operations can be conducted for each element of the vector in one statement\n\nprint(z**2)\nprint(np.log(z))\nprint((z-np.mean(z))/np.std(z, ddof=1))\n\n[ 1  9 25 36]\n[0.         1.09861229 1.60943791 1.79175947]\n[-1.24021595 -0.33824071  0.56373452  1.01472214]\n\n\nNote: np.std() divides by \\(n\\) by default. With the argument ddof=1 it divides by \\(n-1\\), as R’s sd() does.\nSo far, we have seen the function np.array() that can be used to combine objects. All function calls use the same general notation: a function name is always followed by round parentheses. Sometimes, the parentheses include arguments, such as\n\nz = np.arange(start = 1, stop = 6, step = 1)\nz\n\narray([1, 2, 3, 4, 5])\n\n\nNote that the stop value is not included.\nWith square brackets you can access particular elements, such as\n\nz[0:3]                  #refer to particular elements\n\narray([1, 2, 3])\n\n\nAttention: In Python, counting starts at 0, i.e., z[0] is the first element of z. Moreover, z[0:3] includes the elements at positions 0, 1, and 2, but not the element at position 3.\nWe will next define a matrix and perform matrix-vector multiplication.\n\nM = np.arange(1, 10).reshape((3,3), order = \"F\")    # define matrix M (filled column by column, as in R)\nprint(M)\nprint(M.shape)                                     # dimension of M\nprint(z.shape)                                     # dimension of z\nprint(len(z))                                      # number of elements of z\n\n[[1 4 7]\n [2 5 8]\n [3 6 9]]\n(3, 3)\n(5,)\n5\n\n\nElement-by-element multiplication for M is given by\n\nM * M\n\narray([[ 1, 16, 49],\n       [ 4, 25, 64],\n       [ 9, 36, 81]])\n\n\nStandard matrix multiplication is again done using @ such as\n\nM @ M\n\narray([[ 30,  66, 102],\n       [ 36,  81, 126],\n       [ 42,  96, 150]])\n\n\n\nM.T @ M\n\narray([[ 14,  32,  50],\n       [ 32,  77, 122],\n       [ 50, 122, 194]])\n\n\nIf matrices and vectors have suitable dimensions, you can multiply them as follows:\n\nM @ z[0:3]\n\narray([30, 36, 42])\n\n\nSimilar to before, with square brackets you can access particular elements, such as\n\nprint(M[:,2])                 # state the third column of M\nprint(M[2,2])                 # state element in the third column and third row of M\n\n[7 8 9]\n9\n\n\nHere are some more examples:\n\nM[:,0]                 # first column of M\nM[2,2]                 # element in the third column and third row of M\nz[[0,3]]               # first and fourth element of z\n\nLogical statements are also very useful. For example, if you want to know which elements in the first column of matrix M are strictly greater than 2:\n\n# See which elements:\nprint(M[:,0]&gt;2)\n# and extract the elements\nprint(M[M[:,0]&gt;2,0])\n\n[False False  True]\n[3]\n\n\nNote: Logical operations return so-called boolean objects, i.e., either a True or a False. For instance, if we ask Python whether 1&gt;2 we get the answer False.",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>The first steps in Python</span>"
+    ]
+  },
+  {
+    "objectID": "Python-01-Getting-Started.html#operators",
+    "href": "Python-01-Getting-Started.html#operators",
+    "title": "9  The first steps in Python",
+    "section": "9.4 Operators",
+    "text": "9.4 Operators\nWe have already seen basic arithmetic operations such as\n\n+, -, *, /\n\nDecimals are declared with a “.”, not a comma\n\n1.8 not 1,8\n\nExponents are declared with **, i.e. \\(2^3\\) is written as\n\n2**3\n\nAttention: In contrast to R, 2^3 does not compute \\(2^3\\) in Python (^ is the “bitwise exclusive or” operator).\nFor mathematical calculations, only parentheses () can be used.\nFrequently used mathematical functions are (most of them are provided by NumPy)\n\nnp.sqrt()                # square root\nnp.exp()                 # exponential function\nnp.log()                 # nat.  Logarithm\nnp.log10()               # Logarithm with Base 10\nabs()                    # absolute value\nround(...,x)             # rounding to x decimals.\nnp.pi\nnp.e                     # Eulers number\nnp.sin(),np.cos(),np.tan() # trigonemetric functions\nnp.min(), np.max()       # returns the lowest/highest value of a vector/matrix\n\nAs a few examples enter the following calculations and make sure to understand the commands:\n\n1.8+2\n1.8-2\n1.8*2\n1.8/2\n2+2*3\n(2+2)*3\n2**3\n8**(1/3)\n3**2\n9**0.5\n2**2*2+2\n2**(2*((0.2+0.3)*(1+2)))+4\nnp.sqrt(2)\nnp.exp(1)\nnp.exp(2)\nnp.log(7.389056)\nnp.log(np.exp(3))\nnp.log10(100)\nabs(1.8-2)\nround(np.sqrt(2),2)\nround(np.sqrt(2),4)\nnp.pi\nnp.sin(np.pi/2)\nnp.sin(np.pi)\nnp.tan(np.pi)\nx=2+3j\ny=4+1j\nx\ny\nx+y\nx*y\n\nAttention:\n\n1.2246467991473532e-16\n\nis interpreted as \\(1.2246467991473532 \\times 10^{-16}\\). This is often exactly zero, but for internal memory purposes (Python uses double-precision floating-point numbers and therefore only has up to 16 decimals), can be a rounding mistake.",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>The first steps in Python</span>"
+    ]
+  },
+  {
+    "objectID": "Python-01-Getting-Started.html#further-data-objects",
+    "href": "Python-01-Getting-Started.html#further-data-objects",
+    "title": "9  The first steps in Python",
+    "section": "9.5 Further data objects",
+    "text": "9.5 Further data objects\nBesides classical data objects such as scalars, vectors, and matrices there are three further data objects that we will use frequently:\n\nThe array: A NumPy array can have more than two dimensions. Here is an example of a 2×2×2-dimensional array\n\n\nmyFirst_Array = np.arange(1, 9).reshape((2,2,2), order = \"F\")\n\n\nThe dictionary: In dicts you can organize different kinds of data (this is the counterpart of R’s list). E.g., consider the following example:\n\n\nmyFirst_Dict = {\"Some_Numbers\": [66, 76, 55, 12, 4, 66, 8, 99],\n                \"Animals\"     : [\"Rabbit\", \"Cat\", \"Elefant\"],\n                \"My_Series\"   : list(range(30, 0, -1))}\n\nPython also has a data object called list, e.g., [\"Rabbit\", \"Cat\", \"Elefant\"], which is simply an ordered collection of arbitrary objects.\n\nThe data frame: Data frames are provided by the package pandas. A DataFrame is designed to store data, where each column can have a different type, but all columns have the same number of rows:\n\n\nimport pandas as pd\n\nmyFirst_Dataframe = pd.DataFrame({\"Credit_Default\"  : [ 0, 0, 1, 0, 1, 1],\n                                  \"Age\"             : [35,41,55,36,44,26],\n                                  \"Loan_in_1000_EUR\": [55,65,23,12,98,76]})",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>The first steps in Python</span>"
+    ]
+  },
+  {
+    "objectID": "Python-01-Getting-Started.html#python-help",
+    "href": "Python-01-Getting-Started.html#python-help",
+    "title": "9  The first steps in Python",
+    "section": "9.6 Python help",
+    "text": "9.6 Python help\nThere exist help files for all commands in Python. For example consider the help file of the function np.sum(). You can access the help file with\n\nhelp(np.sum)\n\nor, in the Positron console, with ?np.sum.\nThe file usually contains the categories: Parameters, Returns, See Also, Notes and Examples.\nAfter the general description follows the syntax of the command. This usually indicates which (optional) arguments the command allows. Missing values are denoted by np.nan (“not a number”). If a vector contains missing values, np.sum() returns nan. The function np.nansum() ignores missing values.\n\nx = np.array([1,2,np.nan,4,5])\nprint(x)\nprint(np.sum(x))\nprint(np.nansum(x))\n\n[ 1.  2. nan  4.  5.]\nnan\n12.0\n\n\nNote that the behavior of pandas is different: Here, missing values are ignored by default (argument skipna=True).\n\npd.Series(x).sum()\n\nnp.float64(12.0)",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>The first steps in Python</span>"
+    ]
+  },
+  {
+    "objectID": "Python-01-Getting-Started.html#python-packages",
+    "href": "Python-01-Getting-Started.html#python-packages",
+    "title": "9  The first steps in Python",
+    "section": "9.7 Python packages",
+    "text": "9.7 Python packages\nThere are tons of Python packages that are useful for different aspects of data analysis. Some packages that you will use all the time are numpy (vectors and matrices), pandas (data frames), matplotlib and seaborn (plots), and scipy and statsmodels (statistics). You can install packages in the terminal (not in the Python console) with pip install packagename. In order to use the package type import packagename, or, with a short name, import packagename as short_name. The package has to be installed only once (per virtual environment), but you have to load the package with import every time you want to use it.",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>The first steps in Python</span>"
+    ]
+  },
+  {
+    "objectID": "Python-01-Getting-Started.html#exercises-i",
+    "href": "Python-01-Getting-Started.html#exercises-i",
+    "title": "9  The first steps in Python",
+    "section": "9.8 Exercises I",
+    "text": "9.8 Exercises I\nExercise 1:\nTry to shorten the notation of the following vectors as much as possible, using np.arange() and np.concatenate():\n\nx = np.array([157, 158, 159, 160, 161, 162, 163, 164])\nx = np.array([10, 9, 8, 7, 6, 5, 4, 3, 2, 1])\nx = np.array([-1071, -1072, -1073, -1074, -1075, -1074, -1073, -1072, -1071])\n\nExercise 2:\nThe np.arange() function can be used in more complex operations along with arithmetic operators, and variable names. Have a look at the following expressions, and write down what sequence you think they will generate. Then check with Python.\n\nnp.arange(10, 21) * 2\nnp.arange(105, 89, -1)\nnp.arange(10, 21*2)\n1 + np.arange(1, 11)/10\n2**np.arange(0, 6)\n\nExercise 3:\nNumPy has several functions for rounding. Let’s start with floor, ceil, and trunc:\nnp.floor(x) rounds to the largest integer not greater than x np.ceil(x) rounds to the smallest integer not less than x np.trunc(x) returns the integer part of x\nBelow you will find a series of arguments (x), and results (y), that can be obtained by choosing one or more of the 3 functions above (e.g.y = np.floor(x)). Which of the above 3 functions could have been used in each case? First, choose your answer without using Python, then check with Python.\n\nx = np.array([300.99, 1.6, 583, 42.10])\ny = np.array([300, 1, 583, 42])\nx = np.array([152.34, 1940.63, 1.0001, -2.4, np.sqrt(26)])\ny = np.array([152, 1940, 1, -2, 5])\nx = -np.array([3.2, 444.35, 1/9, 100])\ny = np.array([-3, -444, 0, -100])\nx = np.array([35.6, 670, -5.4, 3**3])\ny = np.array([36, 670, -5, 27])\n\nExercise 4:\nConsider the following vectors:\nu = np.array([5, 6, 7])\nv = np.array([2, 3, 4])\nPerform the following operations:\n\nAdd u and v\nsubtract v from u\nmultiply u by v element by element\ndivide u by v element by element\ncalculate the inner product of u and v\ncalculate the outer product of u and v\nraise u to the power of v element by element\n\nThen check your answer with Python.",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>The first steps in Python</span>"
+    ]
+  },
+  {
+    "objectID": "Python-02-Datasets.html",
+    "href": "Python-02-Datasets.html",
+    "title": "10  Create and load data sets",
+    "section": "",
+    "text": "10.1 Simulated data\nWe start by considering data that is simulated by the user. In NumPy, random numbers are drawn from a random number generator, which we create with np.random.default_rng(). We can then create data sets by using its methods like normal(), exponential() or uniform(). After the data is created we can work with it as shown in the following example:\nimport numpy as np\n\nrng = np.random.default_rng()  # random number generator\n\nn = 100  # number of observations\n\nZ = rng.normal(loc = 5, scale = 3, size = n)      # draw from normal distribution\nprint(np.mean(Z))\nprint(np.std(Z, ddof = 1))\n\nE = rng.exponential(scale = 1/3, size = n)        # draw data from exponential distribution\nprint(np.mean(E))\nprint(np.std(E, ddof = 1))\n\n\nU = rng.uniform(low = 3, high = 5, size = n)      # draw data from uniform distribution\nprint(np.mean(U))\nprint(np.std(U, ddof = 1))\n\n4.727542252622904\n3.0507640765975745\n0.35800237462669815\n0.3538934334052337\n3.9839858554963423\n0.6254176725296046\nNote that NumPy parametrizes the exponential distribution by its scale, i.e., by \\(1/\\text{rate}\\).\nAnalogous functions exist for many other distributions, and you can find them in the NumPy documentation. Densities, distribution functions, and quantile functions are provided by the module scipy.stats.",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Create and load data sets</span>"
+    ]
+  },
+  {
+    "objectID": "Python-02-Datasets.html#load-datasets",
+    "href": "Python-02-Datasets.html#load-datasets",
+    "title": "10  Create and load data sets",
+    "section": "10.2 Load datasets",
+    "text": "10.2 Load datasets\nIt is also possible to work with observed data, which will be loaded into Python. Here, we will use some real data, namely a movie database from IMDB that you can download here. The data set contains, among others, the budget, the revenue, and the average rating of movies.\nOnce the data is saved in your working directory, you can load it with the pandas function pd.read_csv()\n\nimport pandas as pd\n\ndata_set = pd.read_csv(\"tmdb_5000_movies.csv\")\n\nwhich stores the data in a data frame. You can use data_set.head() or the Session pane in Positron (click on the table symbol next to data_set) to look at the data.\nAfter the file is loaded, we can work with the data using data_set[\"column_name\"] (or data_set.column_name) to access certain parts of the data set such as\n\nprint(data_set[\"original_title\"][0:5])\nprint(data_set[\"budget\"][0:5])\nprint(data_set[\"budget\"][0:5].mean())\n\n0                                      Avatar\n1    Pirates of the Caribbean: At World's End\n2                                     Spectre\n3                       The Dark Knight Rises\n4                                 John Carter\nName: original_title, dtype: str\n0    237000000\n1    300000000\n2    245000000\n3    250000000\n4    260000000\nName: budget, dtype: int64\n258400000.0\n\n\nWe will return to this data set when we talk about regression analysis later.\nApart from pd.read_csv there exist also pd.read_stata, pd.read_excel and many more to load suitable data sets.\nAnother important function is pd.read_pickle that is used to read in a data set that was saved using the method to_pickle. These functions can be useful in case properties of your Python object are not preserved when saved in other formats, such as a csv file.",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Create and load data sets</span>"
+    ]
+  },
+  {
+    "objectID": "Python-02-Datasets.html#save-datasets",
+    "href": "Python-02-Datasets.html#save-datasets",
+    "title": "10  Create and load data sets",
+    "section": "10.3 Save datasets",
+    "text": "10.3 Save datasets\nThere are also multiple ways to save your own data. While pd.read_csv can be used to read in data from a csv file, its counterpart, the data frame method to_csv, can be used to save a data frame as a csv file. The most important arguments of this method are path_or_buf, which provides the path where to save the file, and index, which specifies whether the row names should be saved as well.\ndata_set.to_csv(&lt;my_path&gt;, index = False)\nSimilarly, the method to_pickle allows you to save a data frame to storage. (For arbitrary Python objects you can use the module pickle.) One advantage compared to to_csv is that it preserves properties of your object that might be lost when saved as a csv file. For example, the data types of columns (e.g., dates or categorical variables) might get lost when saving a data frame as a csv file.\nThe methods to_excel and pd.read_excel (which require the package openpyxl) can be used to write to and read in excel files, respectively. This format is usually not be the best option to store your data.",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Create and load data sets</span>"
+    ]
+  },
+  {
+    "objectID": "Python-02-Datasets.html#exercises-ii",
+    "href": "Python-02-Datasets.html#exercises-ii",
+    "title": "10  Create and load data sets",
+    "section": "10.4 Exercises II",
+    "text": "10.4 Exercises II\nExercise 1:\nSimulate a vector containing 10000 independent normally distributed random variables with means of 1 and variances of 2. How many of them are negative? What is the expected fraction of negative values?\nExercise 2:\nSimulate u and v as independent log-normally distributed random vectors of size 200 each. Pick means and variances you like. Then let w be equal to u+v. Now calculate the following:\n\nthe sample means of u, v, and w\nthe sample variances of u, v, and w\nall pairwise covariances\n\nExercise 3:\nTake the objects you created in the previous exercises from this chapter and save them to storage in your preferred format. Then close your session, clean your workspace and read them in again. This might be tedious at first, but integrating the export of data into your workflow might save you from time costly mistakes in the future.",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Create and load data sets</span>"
+    ]
+  },
+  {
+    "objectID": "Python-03-Programming.html",
+    "href": "Python-03-Programming.html",
+    "title": "11  Simple programming",
+    "section": "",
+    "text": "11.1 The for-loop\nA for-loop is a procedure in which a particular routine is repeated and only an index variable is changed.\nx = 0\nfor i in range(1, 4):\n    x = x + i\n    print(x)\n\n1\n3\n6\nNote that range(1, 4) generates the numbers 1, 2, and 3, i.e., the stop value 4 is not included.\nWe can also use it to study the behavior of the arithmetic mean\nimport numpy as np\n\nrng = np.random.default_rng()\n\nout = np.zeros(100)\nn = 20\nfor i in range(100):\n    x = rng.normal(loc = 0, scale = 1, size = n)\n    out[i] = np.mean(x)\n\nprint(np.mean(out))\nprint(np.std(out, ddof = 1))\n\n\n\nout = np.zeros(100)\nn = 200\nfor i in range(100):\n    x = rng.normal(loc = 0, scale = 1, size = n)\n    out[i] = np.mean(x)\n\nprint(np.mean(out))\nprint(np.std(out, ddof = 1))\n\n0.007125522473819944\n0.21330791833054472\n0.006756688323036323\n0.07625566922261619",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Simple programming</span>"
+    ]
+  },
+  {
+    "objectID": "Python-03-Programming.html#the-if-condition",
+    "href": "Python-03-Programming.html#the-if-condition",
+    "title": "11  Simple programming",
+    "section": "11.2 The if-condition",
+    "text": "11.2 The if-condition\nWithin a for-loop, it may be useful to perform arithmetic operations only under certain conditions. The basic syntax for this is\n\nif condition:\n    statement\nelse:\n    alternative\n\nwhere else can remain unspecified. Further conditions can be checked with elif condition:.\n\n###If-condition###\ny = np.array([1,4,5,2,7,8,2,4])\nN = len(y)\n\ny_sq = np.zeros(N)  # creates a numeric vector of zeros of length N\n\nfor i in range(N):  # initializing the for-loop\n    y_sq[i] = y[i]**2  # every element of y_sq is replaced by the respective squared value.\n    if i == N-1:  # only when this condition is met, i.e. in the last iteration of the loop\n        print(y_sq)  # is the vector printed\n\n[ 1. 16. 25.  4. 49. 64.  4. 16.]\n\n\nIn shorter form the np.where() command is an alternative, which works element-wise on vectors.\n\nnp.where(test, yes, no)",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Simple programming</span>"
+    ]
+  },
+  {
+    "objectID": "Python-03-Programming.html#the-while-loop",
+    "href": "Python-03-Programming.html#the-while-loop",
+    "title": "11  Simple programming",
+    "section": "11.3 The while-loop",
+    "text": "11.3 The while-loop\nThe while-loop performs a program (“statement”) as long as certain data conditions (“test expression”) are met. The basic syntax is\n\nwhile test_expression:\n    # increment (i+1);\n    statement\n\nHere, test_expression is evaluated and the body of the loop is entered if the result is True.\n\ni = 1\n\nwhile i &lt; 6:\n    print(i)\n    i = i + 1\n\n1\n2\n3\n4\n5",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Simple programming</span>"
+    ]
+  },
+  {
+    "objectID": "Python-03-Programming.html#time-saving-and-loops",
+    "href": "Python-03-Programming.html#time-saving-and-loops",
+    "title": "11  Simple programming",
+    "section": "11.4 Time saving and loops",
+    "text": "11.4 Time saving and loops\nOne easy way to make your loops faster is to preallocate space for your results instead of appending them to a vector. NumPy arrays have a fixed size. Appending a value with np.append() therefore creates a new array and copies the whole data from one place in memory to another, when you simply wanted to append another value to your vector.\nIf you look at the following code fragments, the second one is much faster! (We use only 20000 iterations here, since the first version takes very long otherwise.)\n\nimport time\n\n# The slow but simple way\nstart = time.perf_counter()\nresults = np.array([])  # empty vector\nfor i in range(20000):\n    results = np.append(results, rng.normal())\ntime1 = time.perf_counter() - start\nprint(time1)\n\n0.10582784799771616\n\n\n\n# The right way to do it\nstart = time.perf_counter()\nresults2 = np.zeros(20000)\nfor i in range(20000):\n    results2[i] = rng.normal()\ntime2 = time.perf_counter() - start\nprint(time2)\n\n0.016221781999774976\n\n\nIf you can avoid a loop altogether and use vector operations instead, your code will will be even faster.\n\n# The right way to do it\nstart = time.perf_counter()\nresults3 = rng.normal(size = 20000)\ntime3 = time.perf_counter() - start\nprint(time3)\n\n0.0003787609966821037\n\n\nTry to keep this in mind when designing your own code. In Python this is one of the most frequent and easily avoidable reasons for why code is slow. (Note: Python’s built-in list objects are an exception. Appending to a list with my_list.append(value) is fast.)",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Simple programming</span>"
+    ]
+  },
+  {
+    "objectID": "Python-03-Programming.html#exercises-iii",
+    "href": "Python-03-Programming.html#exercises-iii",
+    "title": "11  Simple programming",
+    "section": "11.5 Exercises III",
+    "text": "11.5 Exercises III\nExercise 1:\nWrite a for-loop that iterates over the numbers 6 to 14 and prints the cube of each number using print()\nExercise 2:\nWrite a while-loop that prints out standard random normal numbers (use rng.normal()) but stops (breaks) if you get a number bigger than 1.\nExercise 3:\nUsing a for-loop simulate the flip a coin twenty times, keeping track of the individual outcomes (1 = heads, 0 = tails) in a vector that you preallocated.",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Simple programming</span>"
+    ]
+  },
+  {
+    "objectID": "Python-04-Functions.html",
+    "href": "Python-04-Functions.html",
+    "title": "12  Functions",
+    "section": "",
+    "text": "12.1 Function definition\nA function definition follows a specific structure. In Python, functions are defined with the keyword def, and, as for loops, the body of the function is defined by its indentation.\ndef my_function(argument1, argument2):\n    # here I describe what I want to do with my arguments\n    # For example multiply them, assuming that they are numerical.\n\n    my_return_value = argument1 * argument2\n\n    # and using return we tell our function what to return\n    return my_return_value\n\nmy_function(argument1 = 5, argument2 = 7)\n\n35\nThe function can also be called without explicitly naming the arguments, but if you don’t know your code very well, this might lead to difficulties when somebody else or your future self might try to understand the code.\nmy_function(2, 5)\n\n10\nAnother useful feature is the definition of default values for your arguments such that they can be omitted when calling a function.\ndef my_2nd_function(argument1, argument2, greetings = False):\n    my_return_value = argument1 * argument2\n    if greetings == True:\n        print(\"Hello user, the cake is a lie.\")\n    return my_return_value\n\nprint(my_2nd_function(2, 7))\nprint(my_2nd_function(3, 12, True))\n\n14\nHello user, the cake is a lie.\n36",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Functions</span>"
+    ]
+  },
+  {
+    "objectID": "Python-04-Functions.html#recursion",
+    "href": "Python-04-Functions.html#recursion",
+    "title": "12  Functions",
+    "section": "12.2 Recursion",
+    "text": "12.2 Recursion\nIn some settings using a recursive approach instead of loops can create more readable code. In simple terms, recursion in programming is calling a function in its own body. A simple example - even though very inefficient from a computational standpoint - is calculating factorials.\n\ndef factorial(n):\n    if n == 1:\n        return 1\n    else:\n        return n * factorial(n-1)\n\nfactorial(17)\n\n355687428096000\n\n\nOften recursion relies on a principle called “divide and conquer”. We test for a simple base case, like n being equal to one in the case of factorials, and otherwise reducing the problem to a more simple one.\nAnother example is the calculation of Fibonacci numbers using recursion.\n\ndef fibonacci(n):\n    if n == 1 or n == 2:\n        return 1\n    else:\n        return fibonacci(n-1) + fibonacci(n-2)\n\nfibonacci(20)\n\n6765",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Functions</span>"
+    ]
+  },
+  {
+    "objectID": "Python-04-Functions.html#exercises-iv",
+    "href": "Python-04-Functions.html#exercises-iv",
+    "title": "12  Functions",
+    "section": "12.3 Exercises IV",
+    "text": "12.3 Exercises IV\nExercise 1:\nWrite a function that takes 2 integers as inputs and outputs whether or not the first integer is divisible by the second as a boolean.\nExercise 2:\nTry to solve the problem of adding all squares from 1 to n first using loops and then recursion. Think about the underlying way in which the function works. Which approach do you prefer? Why?\nExercise 3:\nWrite a function that receives a single vector of real numbers as its argument and returns an ordered vector with the same entries.\nIf you are interested to see recursion in action look for mergesort, that solves this problem with a cool recursive approach.",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Functions</span>"
+    ]
+  },
+  {
+    "objectID": "Python-05-Plotting.html",
+    "href": "Python-05-Plotting.html",
+    "title": "13  Plotting in Python",
+    "section": "",
+    "text": "13.1 The plot-function\nIn its simplest form, the plt.scatter() function delivers a scatterplot.\nx = np.arange(0, 5.1, 0.1)\ny = rng.normal(size = len(x))\nplt.scatter(x, y)\nplt.show()\nIf we instead want a simple line plot or a combination of both, we can use the plt.plot() function, where the third argument (the format string) specifies this behavior (\"-\" for lines, \"o\" for points, and \"o-\" for both).\nz = 2*x + rng.normal(size = 51)\nplt.plot(x, z, \"-\")\nplt.show()\nplt.plot(x, z, \"o-\")\nplt.show()\nOther arguments to the plot function can be used to specify color, linestyle (dashed etc.), linewidth, title, subtitle and many more. The help file help(plt.plot) and the matplotlib documentation can be very helpful when trying to achieve a specific look for your plot.\nAn example could look a little like this:\nplt.plot(x, y, linestyle = \"-.\", linewidth = 2, color = \"green\")\nplt.title(\"Testplot\")\nplt.show()\nIf we want to show multiple things in one diagram it can be useful to plot multiple objects in one coordinate grid. In matplotlib, all plotting commands before plt.show() are drawn into the same figure. The function plt.axline() can be used to add straight lines.\nplt.scatter(x, y, color = \"green\")\nplt.plot(x, z, linewidth = 2, linestyle = \"-.\", color = \"red\")\nplt.axline((0, 0), slope = 0.5, color = \"blue\")\nplt.show()\nIn contrast to R, matplotlib adjusts the range of the axes automatically to all plotted objects. But we can also manually adjust the range of our axes if we choose to do so. This is done using the functions plt.xlim() and plt.ylim().\nplt.scatter(x, y, color = \"green\")\nplt.plot(x, z, linewidth = 2, linestyle = \"-.\", color = \"red\")\nplt.axline((0, 0), slope = 0.5, color = \"blue\")\nplt.xlim(0, 5)\nplt.ylim(-3, 12)\nplt.show()\nTo plot functions like sin(x) or the standard normal density, we evaluate them on a fine grid of x-values. The standard normal density is provided by the module scipy.stats.\nfrom scipy.stats import norm\n\ngrid = np.linspace(-10, 10, 200)\nplt.plot(grid, np.sin(grid))\nplt.show()\n\ngrid = np.linspace(-4, 4, 200)\nplt.plot(grid, norm.pdf(grid))\nplt.show()\nThere are many other useful plotting functions in matplotlib. We won’t cover all of them here, but instead focus on some of the most frequently needed.",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Plotting in Python</span>"
+    ]
+  },
+  {
+    "objectID": "Python-05-Plotting.html#histograms-and-kernel-densities",
+    "href": "Python-05-Plotting.html#histograms-and-kernel-densities",
+    "title": "13  Plotting in Python",
+    "section": "13.2 Histograms and kernel densities",
+    "text": "13.2 Histograms and kernel densities\nOther useful plotting functions include histograms with the function plt.hist(). With the function gaussian_kde() from scipy.stats we get access to kernel density estimates. A kernel density estimator is a nonparametric estimator of density of random variable based on a sample. Details about the estimator are beyond the scope of these notes. In the settings where we will use them, the default choices of the estimator will yield accurate results. Combining our previous knowledge with these possibilities, we can create plots like the following (note: in plt.hist() the argument density = True leads to relative frequency instead of counts. See help(plt.hist) for more details.):\n\nfrom scipy.stats import gaussian_kde\n\nx = rng.normal(size = 20)\nmy_dens = gaussian_kde(x)\ngrid = np.arange(-4, 4.05, 0.05)\n\nplt.hist(x, density = True, bins = np.arange(-4, 4.5, 0.5),\n         edgecolor = \"black\", color = \"white\")\nplt.xlim(-4, 4)\nplt.plot(grid, my_dens(grid), color = \"green\", linestyle = \"--\", linewidth = 2)\nplt.plot(grid, norm.pdf(grid), color = \"red\", linestyle = \"-\")\nplt.show()\n\n\n\n\n\n\n\n\nFurther functions include barplots:\n\ntemperatures = [17,23,18,30,32,16,4,-3]\nplt.bar(range(1, 9), temperatures)\nplt.ylim(-15, 35)\nplt.title(\"Daily Temperature\")\nplt.ylabel(\"Degree Celsius\")\nplt.show()\n\n\n\n\n\n\n\n\nand piecharts:\n\nslices = [8, 14, 9, 12, 4]\nlabels = [\"Apple\", \"Pumpkin\", \"Pork\", \"3.14\", \"American\"]\nplt.pie(slices, labels = labels)\nplt.title(\"Types of pie\")\nplt.show()\n\n\n\n\n\n\n\n\nAnother important part of plots - like comments in code - is a legible legend. Matplotlib has built-in support for adding a legend to your plots. Going back to our combined plot from above, one can add a legend as shown in the following example. Here, the label arguments specify the contents of the legend and the loc argument of plt.legend() specifies its position in the plot. Since a legend has to be customized for each plot, one should have a look in the documentation help(plt.legend).\n\nx = np.arange(0, 5.1, 0.1)\ny = rng.normal(size = len(x))\nz = 2*x + rng.normal(size = 51)\n\nplt.scatter(x, y, color = \"green\", label = \"My green points\")\nplt.plot(x, z, linewidth = 2, linestyle = \"-.\", color = \"red\", label = \"My red line\")\nplt.xlim(0, 5)\nplt.ylim(-3, 12)\nplt.legend(loc = \"upper left\")\nplt.show()\n\n\n\n\n\n\n\n\nIf one decides to work with data frames, the package seaborn allows for beautiful, heavily customized plots. An example can be seen below:\n\nimport pandas as pd\nimport seaborn as sns\n\nn = 800\nx = rng.uniform(low = -10, high = 10, size = n)\ntreatment = np.where(x &gt; 0, 1, 0)\ny = 0.2*x + treatment*3 + rng.normal(loc = 0, scale = 0.6, size = n)\nvisualise_data = pd.DataFrame({\"x\": x, \"treatment\": treatment, \"y\": y})\n\nax = sns.scatterplot(data = visualise_data, x = \"x\", y = \"y\",\n                     hue = \"treatment\", palette = \"Dark2\", legend = False)\nax.plot([-10, 0], [-2, 0], color = \"red\", linewidth = 3)\nax.plot([0, 10], [3, 5], color = \"red\", linewidth = 3)\nax.text(-6, 1.5, \"x &lt; 0\")\nax.text(4, 1.5, \"x ≥ 0\")\nax.set(title = \"Outcome Variable\",\n       xlabel = \"assignment variable\", ylabel = \"outcome variable\")\nplt.show()\n\n\n\n\n\n\n\n\nThe possibilities of matplotlib and seaborn are vast and can be intimidating, but seaborn offers a consistent plotting experience integrated into a data frame workflow using pandas. (If you like R’s ggplot2, have a look at the Python package plotnine, which implements the “Grammar of Graphics” in Python.)",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Plotting in Python</span>"
+    ]
+  },
+  {
+    "objectID": "Python-05-Plotting.html#exercises-v",
+    "href": "Python-05-Plotting.html#exercises-v",
+    "title": "13  Plotting in Python",
+    "section": "13.3 Exercises V",
+    "text": "13.3 Exercises V\nExercise 1:\nDraw samples of size 1000 from exponential distributions with varying values of the parameter. Use histograms to visualize differences in the distributions.\nExercise 2:\nTake the mtcars dataset (you can load it with import statsmodels.api as sm and mtcars = sm.datasets.get_rdataset(\"mtcars\").data, which requires an internet connection) and plot mpg (miles per gallon) against wt (weight) as a scatterplot. Add a red line with plt.axline by eyeballing the parameters that could come out of a regression.\nExercise 3:\nWrite a function that takes as its arguments a sample size n and a boolean that indicates, if plotting should take place. Let this function return a sample of size n drawn from a standard normal. If the plotting argument was true, let it also plot your sample in a way that seems sensible to you.",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Plotting in Python</span>"
+    ]
+  },
+  {
+    "objectID": "Python-06-Monte-Carlo-Simulations.html",
+    "href": "Python-06-Monte-Carlo-Simulations.html",
+    "title": "14  Monte Carlo simulations",
+    "section": "",
+    "text": "14.1 Some important concepts\nWe will spend a lot of time learning about statistical properties of estimators. To be precise, let \\(\\hat{\\theta}_n\\) be an estimator of a parameter \\(\\theta\\). The estimator is a functions of the sample, say \\(\\{X_1, X_2, \\ldots, X_n\\}\\). The sample consists of random variables and any function of the sample, including \\(\\hat{\\theta}_n\\), is a random variable as well. That is, for different realizations of the data, we get different realizations of the estimator.\nThese arguments can be confusing because in practice we typically only have one data set and therefore only one realization of the estimator. But we could also think of all the other realizations of the data we could have obtained. For example, consider your starting salary after graduation. Let \\(\\theta\\) be the expected starting salary, which is a fixed number that we do not know. After everyone started working and we see your actual starting salaries, we can calculate the sample average as an estimate of the expected value, but this estimate is just one potential realization. If things had turned out slightly different, your starting salaries might have been different and we would have seen a different realization of the estimator.\nSince an estimator is a random variable, it has a distribution and (typically) a mean and a variance. We call an estimator unbiased if \\[E\\left(\\hat{\\theta}_n\\right) = \\theta\\] That is, the average value of the estimator over all the hypothetical data sets we could have obtained is equal to \\(\\theta\\). Unbiasedness can hold for any sample size \\(n\\) and is therefore called a small-sample property. Unbiasedness does not imply that \\(\\hat{\\theta}_n\\) is necessarily close to \\(\\theta\\).\nWe will define what it means for an estimator to be consistent: \\[\\hat{\\theta}_n \\rightarrow_P  \\theta\\] and asymptotically normally distributed: \\[\\sqrt{n}\\left(\\hat{\\theta}_n  - \\theta \\right) \\rightarrow_D N(0,V_{\\theta}^2) \\] These properties only hold in the limit and are called large-sample properties. Knowing the large-sample distribution is particularly useful because it allows us to test hypotheses and obtain confidence intervals. For example, let \\(\\hat{V}_{\\theta}\\) be a consistent estimator of \\(V_{\\theta}\\). Then \\[P\\left( \\theta \\in \\left[ \\hat{\\theta}_n - 1.96\\frac{\\hat{V}_{\\theta}}{\\sqrt{n}} , \\, \\hat{\\theta}_n + 1.96\\frac{\\hat{V}_{\\theta}}{\\sqrt{n}} \\right] \\right) \\rightarrow 0.95\\] and the interval \\[\\left[ \\hat{\\theta}_n - 1.96\\frac{\\hat{V}_{\\theta}}{\\sqrt{n}} , \\, \\hat{\\theta}_n + 1.96\\frac{\\hat{V}_{\\theta}}{\\sqrt{n}} \\right]\\] is a \\(95\\%\\) confidence interval for \\(\\theta\\). That is, looking at all hypothetical data sets, \\(\\theta\\) is in \\(95\\%\\) of the confidence intervals. Notice that in different data sets, we get different intervals, but the parameter \\(\\theta\\) does not change.\nThe \\(95\\%\\) coverage probability only holds in the limit, but for any fixed sample size \\[P\\left( \\theta \\in \\left[ \\hat{\\theta}_n - 1.96\\frac{\\hat{V}_{\\theta}}{\\sqrt{n}} , \\, \\hat{\\theta}_n + 1.96\\frac{\\hat{V}_{\\theta}}{\\sqrt{n}} \\right] \\right) \\] could be much smaller than \\(95\\%\\). This actual coverage probability is unknown in applications.\nThe goal of Monte Carlo simulations is typically to investigate small sample properties of estimators, such as the actual coverage probability of confidence intervals for fixed \\(n\\). To do so, we can simulate many random samples from an underlying distribution and obtain the realization of the estimator for each sample. We can then use the realizations to approximate the actual small sample distribution of the estimator and check properties, such as coverage probabilities of confidence intervals. Of course, the properties of the estimator depend on which underlying distribution we sample from.",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Monte Carlo simulations</span>"
+    ]
+  },
+  {
+    "objectID": "Python-06-Monte-Carlo-Simulations.html#simple-simulation-example",
+    "href": "Python-06-Monte-Carlo-Simulations.html#simple-simulation-example",
+    "title": "14  Monte Carlo simulations",
+    "section": "14.2 Simple simulation example",
+    "text": "14.2 Simple simulation example\nAs a simple example, let \\(\\{X_1, X_2, \\ldots, X_n\\}\\) be a random sample from some distribution \\(F_X\\). Define \\(\\theta = E(X)\\) and let \\[\\hat{\\theta}_n = \\bar{X}_n = \\frac1n \\sum_{i=1}^n X_i\\] and \\[s_n = \\sqrt{\\frac{1}{n-1} \\sum_{i=1}^n \\left(X_i - \\bar{X}_n\\right)^2} \\] Applications of a Law of Large Numbers and a Central Limit Theorem for iid data imply that \\[\\hat{\\theta}_n  \\rightarrow_P \\theta,\\] \\[s_n  \\rightarrow_P sd(X),\\] and \\[\\sqrt{n}\\left(\\hat{\\theta}_n  - \\theta \\right) \\rightarrow_D N(0,Var(X)) \\] The previously discussed confidence interval for \\(E(X)\\) is \\[\\left[ \\bar{X}_n - 1.96\\frac{s_n}{\\sqrt{n}} , \\, \\bar{X}_n + 1.96\\frac{s_n}{\\sqrt{n}} \\right]\\]",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Monte Carlo simulations</span>"
+    ]
+  },
+  {
+    "objectID": "Python-06-Monte-Carlo-Simulations.html#consistency",
+    "href": "Python-06-Monte-Carlo-Simulations.html#consistency",
+    "title": "14  Monte Carlo simulations",
+    "section": "14.3 Consistency",
+    "text": "14.3 Consistency\nThe estimator \\(\\hat{\\theta}_n\\) is weakly consistent if for any \\(\\varepsilon &gt; 0\\) \\[P\\left( \\left|\\hat{\\theta}_n - \\theta \\right| &gt; \\varepsilon  \\right) \\rightarrow 0\\] or \\[P\\left( \\left|\\hat{\\theta}_n - \\theta \\right| \\leq \\varepsilon  \\right) \\rightarrow 1\\] That is, as long as \\(n\\) is large enough, \\(\\hat{\\theta}_n\\) is in an arbitrarily small neighborhood around \\(\\theta\\) with arbitrarily large probability.\nTo illustrate this property, let’s return to the example with sample averages and expectations. Let \\(\\{X_1, X_2, \\ldots, X_n\\}\\) be a random sample from the Bernoulli distribution with \\(p = P(X_i = 1) = 0.7\\). Let \\(\\theta = E(X) = p\\) and let \\(\\hat{\\theta}_n\\) be the sample average. We start with a sample size of 20 and set the parameters:\n\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom scipy.stats import norm\n\nn = 20\np = 0.7\ntheta = p\n\nWe now want to take \\(S\\) random samples and obtain \\(S\\) corresponding sample averages, where \\(S\\) is ideally a large number. The larger \\(S\\), the more precise our results will be. It is also useful to set a seed. We store the \\(S\\) samples as the columns of an \\(n \\times S\\) matrix and compute the column means with mean(axis = 0).\n\nrng = np.random.default_rng(seed = 4519)\nS = 10000\nX = rng.binomial(n = 1, p = p, size = (n, S))\ntheta_hat = X.mean(axis = 0)\n\nNow for some \\(\\varepsilon &gt; 0\\), we can check \\(P\\left( \\left|\\hat{\\theta}_n - \\theta \\right| \\leq \\varepsilon  \\right)\\):\n\neps = 0.1\nnp.mean(np.abs(theta_hat - p) &lt;= eps)\n\nnp.float64(0.6431)\n\n\nWe can also calculate this probability for different values of \\(\\varepsilon &gt; 0\\). I use a loop here for readability, but you can try using matrices on your own. Since I want to repeat the following steps for different sample sizes, it is useful to first define a functions that performs all operations:\n\ndef calc_probs_consistency(n, S, p, all_eps):\n    n_eps = len(all_eps)\n    X = rng.binomial(n = 1, p = p, size = (n, S))\n    theta_hat = X.mean(axis = 0)\n    probs = np.zeros(n_eps)\n    for i in range(n_eps):\n        probs[i] = np.mean(np.abs(theta_hat - p) &lt;= all_eps[i])\n    return probs\n\nWe can now call the function for any \\(n\\), \\(S\\), \\(p\\), and a vector containing different values for \\(\\varepsilon\\). For each of these values, the function then returns a probability.\n\nall_eps = np.arange(0.01, 0.505, 0.01)\nprobs = calc_probs_consistency(n = 20, S = 1000, p = 0.7, all_eps = all_eps)\n\nNext, we can plot all probabilities:\n\nplt.scatter(all_eps, probs, color = \"blue\", facecolors = \"none\")\nplt.ylim(0, 1)\nplt.xlabel(\"epsilon\")\nplt.ylabel(\"Probability\")\nplt.show()\n\n\n\n\n\n\n\n\nWe can see from the plot that \\(P\\left( \\left|\\hat{\\theta}_n - \\theta \\right| \\leq \\varepsilon  \\right)\\) is quite small for small values of \\(\\varepsilon\\). Consistency means that for any \\(\\varepsilon &gt; 0\\), the probability approaches \\(1\\) as \\(n \\rightarrow \\infty\\). We can now easily change the sample size and see how the results change. For example, take \\(n=200\\):\n\nprobs = calc_probs_consistency(n = 200, S = 10000, p = 0.7, all_eps = all_eps)\nplt.scatter(all_eps, probs, color = \"blue\", facecolors = \"none\")\nplt.ylim(0, 1)\nplt.xlabel(\"epsilon\")\nplt.ylabel(\"Probability\")\nplt.show()",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Monte Carlo simulations</span>"
+    ]
+  },
+  {
+    "objectID": "Python-06-Monte-Carlo-Simulations.html#asymptotic-normality",
+    "href": "Python-06-Monte-Carlo-Simulations.html#asymptotic-normality",
+    "title": "14  Monte Carlo simulations",
+    "section": "14.4 Asymptotic normality",
+    "text": "14.4 Asymptotic normality\nWe know from the Central Limit Theorem that \\[\\frac{\\sqrt{n}(\\bar{X}_n - E(X))}{s_n} \\rightarrow_D N(0,1)\\] where \\(s_n\\) is the sample standard deviation. Convergence in distribution means that the distribution of the normalized sample average converges to the distribution function of a standard normal random variable.\nAgain, we can use the previous simulation setup to illustrate this property. To do so, we calculate \\[P\\left(\\frac{\\sqrt{n}(\\bar{X}_n - E(X))}{s_n} \\leq z\\right)\\] and compare it to the standard normal cdf evaluated at \\(z\\). We then plot the results as a function of \\(z\\). Just as before, we define a function that calculates the probabilities:\n\ndef calc_probs_asymp_normal(n, S, p, z):\n    n_z = len(z)\n    X = rng.binomial(n = 1, p = p, size = (n, S))\n    theta_hat = X.mean(axis = 0)\n    stds = X.std(axis = 0, ddof = 1)\n    probs = np.zeros(n_z)\n    for i in range(n_z):\n        probs[i] = np.mean(np.sqrt(n)*(theta_hat - p)/stds &lt;= z[i])\n    return probs\n\nWe can now plot the results for different sample sizes such as\n\nz = np.arange(-3, 3.005, 0.01)\nprobs = calc_probs_asymp_normal(n = 20, S = 10000, p = 0.7, z = z)\nplt.scatter(z, probs, color = \"blue\", facecolors = \"none\")\nplt.plot(z, norm.cdf(z, 0, 1), color = \"red\", linewidth = 2)\nplt.ylim(0, 1)\nplt.xlabel(\"z\")\nplt.ylabel(\"Probability\")\nplt.show()\n\n\n\n\n\n\n\n\nor\n\nprobs = calc_probs_asymp_normal(n = 2000, S = 10000, p = 0.7, z = z)\nplt.scatter(z, probs, color = \"blue\", facecolors = \"none\")\nplt.plot(z, norm.cdf(z, 0, 1), color = \"red\", linewidth = 2)\nplt.ylim(0, 1)\nplt.xlabel(\"z\")\nplt.ylabel(\"Probability\")\nplt.show()",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Monte Carlo simulations</span>"
+    ]
+  },
+  {
+    "objectID": "Python-06-Monte-Carlo-Simulations.html#testing",
+    "href": "Python-06-Monte-Carlo-Simulations.html#testing",
+    "title": "14  Monte Carlo simulations",
+    "section": "14.5 Testing",
+    "text": "14.5 Testing\nLet \\(\\{X_1, X_2, \\dots, X_n\\}\\) be a random sample and define \\(\\mu = E(X)\\). Suppose we want to test \\(H_0: \\mu = \\mu_0\\) where \\(\\mu_0\\) is a fixed number. To do so, define \\[t = \\frac{\\sqrt{n}(\\bar{X}_n - \\mu_0)}{s_n} \\] An immediate consequence of the Central Limit Theorem is that if \\(H_0\\) is true then \\[t = \\frac{\\sqrt{n}(\\bar{X}_n - \\mu_0)}{s_n} = \\frac{\\sqrt{n}(\\bar{X}_n - \\mu)}{s_n} \\rightarrow_D N(0,1) \\] and therefore \\[P\\left(|t| &gt; 1.96 \\mid \\mu = \\mu_0\\right) \\rightarrow 0.05\\] Hence, if we reject when \\(|t|&gt;1.96\\), we only reject a true null hypothesis with probability approaching 5%.\nIf the null hypothesis is false, we can write \\[t = \\frac{\\sqrt{n}(\\bar{X}_n - \\mu_0)}{s_n} = \\frac{\\sqrt{n}(\\bar{X}_n - \\mu)}{s_n} + \\frac{\\sqrt{n}(\\mu - \\mu_0)}{s_n} \\rightarrow_D N(0,1) \\] Since in this case \\(\\sqrt{n}|\\mu - \\mu_0| \\rightarrow \\infty\\), it follows that \\[P\\left(|t| &gt; 1.96  \\mid \\mu \\neq \\mu_0\\right) \\rightarrow 1\\] That is, we reject a false null hypothesis with probability approaching \\(1\\). However, for a small sample size, the rejection probability is typically much smaller when \\(\\mu_0\\) is close to \\(\\mu\\).\nWe now want to calculate the small sample rejection probabilities using Monte Carlo simulations. We could either vary \\(\\mu_0\\) (the value we test) or \\(\\mu\\) (the true mean). We take the latter because we can then plot the power functions you have seen in the theoretical part of the class to illustrate the results.\nWe work with the Bernoulli distribution again and define a function that calculates certain rejection probabilities.\n\ndef calc_rej_probs(n, S, mus, mu0, alpha):\n    n_mus = len(mus)\n    probs = np.zeros(n_mus)\n    for i in range(n_mus):\n        X = rng.binomial(n = 1, p = mus[i], size = (n, S))\n        theta_hat = X.mean(axis = 0)\n        stds = X.std(axis = 0, ddof = 1)\n        probs[i] = np.mean(np.abs(np.sqrt(n)*(theta_hat - mu0)/stds) &gt; norm.ppf(1-alpha/2))\n    return probs\n\nWe can now call the function for different values of \\(\\mu\\) and plot the rejection probabilities\n\nmus = np.arange(0.5, 0.905, 0.01)\nprobs = calc_rej_probs(n = 200, S = 10000, mus = mus, mu0 = 0.7, alpha = 0.05)\nplt.scatter(mus, probs, color = \"blue\", facecolors = \"none\")\nplt.axhline(0.05, color = \"red\", linewidth = 2)\nplt.ylim(0, 1)\nplt.xlabel(\"True mean\")\nplt.ylabel(\"Rejection Probability\")\nplt.show()\n\n\n\n\n\n\n\n\nThink about how the figure changes as the sample size increases.",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Monte Carlo simulations</span>"
+    ]
+  },
+  {
+    "objectID": "Python-06-Monte-Carlo-Simulations.html#exercises-vi",
+    "href": "Python-06-Monte-Carlo-Simulations.html#exercises-vi",
+    "title": "14  Monte Carlo simulations",
+    "section": "14.6 Exercises VI",
+    "text": "14.6 Exercises VI\nExercise 1:\nSuppose \\(X \\sim U[0,2]\\) where \\(U[0,2]\\) denotes the uniform distribution on the interval \\([0,2]\\). It is easy to show (make sure to verify this!) that \\(E(X) = 1\\). Now repeat the following two steps at least \\(1,000\\) times:\n\nTake a random sample from the distribution of \\(X\\) with sample size \\(n = 20\\).\nCalculate the sample average and a \\(95\\%\\) confidence interval for \\(E(X)\\) using the sample from (1).\n\nYou should now have \\(1,000\\) sample averages and \\(1,000\\) confidence intervals, which you can use to answer the following questions:\n\nWhat is average of your \\(1,000\\) sample averages?\nWhat is the standard deviation of your \\(1,000\\) sample averages?\nHow many times is \\(E(X)\\) in the \\(95\\%\\) confidence interval?\n\nExercise 2:\nIn this exercise, we use the Monte-Carlo method to approximate the number pi. To do so, randomly choose n points from a square and count how many of those draws lie inside the square’s incircle. Based on this results and the formula for the area of a circle, calculate an approximation of pi.",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Monte Carlo simulations</span>"
+    ]
+  },
+  {
+    "objectID": "Python-07-Regression.html",
+    "href": "Python-07-Regression.html",
+    "title": "15  Regression analysis",
+    "section": "",
+    "text": "15.1 Basic linear model\nYou have probably all learnt about the linear regression model in a previous econometrics class where \\[Y =  \\beta_1 X_1 + \\beta_2 X_2 + \\ldots + \\beta_{k} X_{k} + \\beta_{k+1} + e \\] and \\[E(e \\mid X_1, X_2, \\ldots, X_{k}) = 0.\\] That is, the conditional mean of the outcome variable \\(Y\\) is a linear function of the regressors \\(X_1, X_2, \\ldots, X_{k}\\).\nWhen we have a random sample of size \\(n\\), we can also write \\[Y_i = \\beta_1 X_{i1} + \\beta_2 X_{i2} + \\ldots + \\beta_k X_{ik} + \\beta_{k+1} +  e_i, \\qquad i = 1, 2, \\ldots, n.\\] Our goal is to estimate the coefficients \\(\\beta_1, \\ldots, \\beta_{k+1}\\) using the data \\(\\{Y_i, X_{i1},X_{i2},\\ldots, X_{ik}\\}^n_{i=1}\\).",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Regression analysis</span>"
+    ]
+  },
+  {
+    "objectID": "Python-07-Regression.html#empirical-example",
+    "href": "Python-07-Regression.html#empirical-example",
+    "title": "15  Regression analysis",
+    "section": "15.2 Empirical example",
+    "text": "15.2 Empirical example\nWe will now see how to run regressions in Python using the movie data set and the package statsmodels. Again, you can load the data using\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport statsmodels.formula.api as smf\n\ndata_set = pd.read_csv(\"tmdb_5000_movies.csv\")\n\nSuppose we are interested in studying how the budget of a movie is related to its revenue and we model the relationship as: \\[revenue_i = \\beta_1 budget_{i} +  \\beta_2 + e_i\\] Before we run a regression, let’s look at a scatter plot of the relevant variables:\n\nplt.scatter(data_set[\"budget\"], data_set[\"revenue\"], facecolors = \"none\", edgecolors = \"black\")\nplt.xlabel(\"Budget\")\nplt.ylabel(\"Revenue\")\nplt.show()\n\n\n\n\n\n\n\n\nClearly, movies with higher budgets tend to have higher revenues. To estimate the regression coefficients, you can use the smf.ols() command, where the model is specified by a formula as in R, and the method fit() estimates the model:\n\nlm_result = smf.ols(formula = \"revenue ~ budget\", data = data_set).fit()\nprint(lm_result.summary())\n\n                            OLS Regression Results                            \n==============================================================================\nDep. Variable:                revenue   R-squared:                       0.534\nModel:                            OLS   Adj. R-squared:                  0.534\nMethod:                 Least Squares   F-statistic:                     5504.\nDate:                Wed, 23 Sep 2026   Prob (F-statistic):               0.00\nTime:                        16:55:01   Log-Likelihood:                -95797.\nNo. Observations:                4803   AIC:                         1.916e+05\nDf Residuals:                    4801   BIC:                         1.916e+05\nDf Model:                           1                                         \nCovariance Type:            nonrobust                                         \n==============================================================================\n                 coef    std err          t      P&gt;|t|      [0.025      0.975]\n------------------------------------------------------------------------------\nIntercept   -2.63e+06   1.97e+06     -1.335      0.182   -6.49e+06    1.23e+06\nbudget         2.9227      0.039     74.188      0.000       2.845       3.000\n==============================================================================\nOmnibus:                     4260.045   Durbin-Watson:                   1.513\nProb(Omnibus):                  0.000   Jarque-Bera (JB):           381126.754\nSkew:                           3.828   Prob(JB):                         0.00\nKurtosis:                      45.963   Cond. No.                     6.14e+07\n==============================================================================\n\nNotes:\n[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.\n[2] The condition number is large, 6.14e+07. This might indicate that there are\nstrong multicollinearity or other numerical problems.\n\n\nThink about how you can interpret the estimated slope coefficient.\nWe can also plot the regression line in the scatter plot:\n\nb0 = lm_result.params[\"Intercept\"]\nb1 = lm_result.params[\"budget\"]\n\n## Plot all:\nplt.scatter(data_set[\"budget\"], data_set[\"revenue\"], facecolors = \"none\", edgecolors = \"black\")\nplt.axline((0, b0), slope = b1, color = \"red\")\nplt.xlabel(\"Budget\")\nplt.ylabel(\"Revenue\")\nplt.title(\"Scatter plot and regression line\")\nplt.show()\n\n\n\n\n\n\n\n\nLet’s now see if a higher budget also implies a higher rating:\n\nlm_result_rating = smf.ols(formula = \"vote_average ~ budget\", data = data_set).fit()\nprint(lm_result_rating.summary())\n\n                            OLS Regression Results                            \n==============================================================================\nDep. Variable:           vote_average   R-squared:                       0.009\nModel:                            OLS   Adj. R-squared:                  0.008\nMethod:                 Least Squares   F-statistic:                     42.02\nDate:                Wed, 23 Sep 2026   Prob (F-statistic):           9.95e-11\nTime:                        16:55:01   Log-Likelihood:                -7647.8\nNo. Observations:                4803   AIC:                         1.530e+04\nDf Residuals:                    4801   BIC:                         1.531e+04\nDf Model:                           1                                         \nCovariance Type:            nonrobust                                         \n==============================================================================\n                 coef    std err          t      P&gt;|t|      [0.025      0.975]\n------------------------------------------------------------------------------\nIntercept      6.0128      0.021    285.190      0.000       5.971       6.054\nbudget      2.732e-09   4.22e-10      6.482      0.000    1.91e-09    3.56e-09\n==============================================================================\nOmnibus:                     2034.362   Durbin-Watson:                   1.890\nProb(Omnibus):                  0.000   Jarque-Bera (JB):            13977.313\nSkew:                          -1.882   Prob(JB):                         0.00\nKurtosis:                      10.462   Cond. No.                     6.14e+07\n==============================================================================\n\nNotes:\n[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.\n[2] The condition number is large, 6.14e+07. This might indicate that there are\nstrong multicollinearity or other numerical problems.\n\n\nNotice that the estimated slope coefficient is tiny. Does that mean that the rating is unrelated to the budget?\nThe budget is often huge. For a better interpretation of the coefficients, define the budget in millions as\n\ndata_set[\"budget_mil\"] = data_set[\"budget\"]/1000000\n\nlook at summary statistics of the variables\n\ndata_set[[\"vote_average\", \"budget_mil\"]].describe()\n\n\n\n\n\n\n\n\nvote_average\nbudget_mil\n\n\n\n\ncount\n4803.000000\n4803.000000\n\n\nmean\n6.092172\n29.045040\n\n\nstd\n1.194612\n40.722391\n\n\nmin\n0.000000\n0.000000\n\n\n25%\n5.600000\n0.790000\n\n\n50%\n6.200000\n15.000000\n\n\n75%\n6.800000\n40.000000\n\n\nmax\n10.000000\n380.000000\n\n\n\n\n\n\n\nand redo the analysis:\n\nlm_result_rating = smf.ols(formula = \"vote_average ~ budget_mil\", data = data_set).fit()\nprint(lm_result_rating.summary())\n\n                            OLS Regression Results                            \n==============================================================================\nDep. Variable:           vote_average   R-squared:                       0.009\nModel:                            OLS   Adj. R-squared:                  0.008\nMethod:                 Least Squares   F-statistic:                     42.02\nDate:                Wed, 23 Sep 2026   Prob (F-statistic):           9.95e-11\nTime:                        16:55:02   Log-Likelihood:                -7647.8\nNo. Observations:                4803   AIC:                         1.530e+04\nDf Residuals:                    4801   BIC:                         1.531e+04\nDf Model:                           1                                         \nCovariance Type:            nonrobust                                         \n==============================================================================\n                 coef    std err          t      P&gt;|t|      [0.025      0.975]\n------------------------------------------------------------------------------\nIntercept      6.0128      0.021    285.190      0.000       5.971       6.054\nbudget_mil     0.0027      0.000      6.482      0.000       0.002       0.004\n==============================================================================\nOmnibus:                     2034.362   Durbin-Watson:                   1.890\nProb(Omnibus):                  0.000   Jarque-Bera (JB):            13977.313\nSkew:                          -1.882   Prob(JB):                         0.00\nKurtosis:                      10.462   Cond. No.                         61.4\n==============================================================================\n\nNotes:\n[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.\n\n\nDo think that the budget has a large impact on the rating?\nOf course, we are not limited to one regressors. To include three regressors, can use smf.ols(formula = \"Y ~ X1 + X2 + X3\", data = ...). We will return to regression analysis later in the semester.",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Regression analysis</span>"
+    ]
+  },
+  {
+    "objectID": "Python-07-Regression.html#exercises-vii",
+    "href": "Python-07-Regression.html#exercises-vii",
+    "title": "15  Regression analysis",
+    "section": "15.3 Exercises VII",
+    "text": "15.3 Exercises VII\nExercise 1:\nIn the previous section, we looked at Monte Carlo simulations in a very simple setting. We can analyze analogous issues in other settings, such as the linear regression model. Also in this case, we have parameters (the regression coefficients) and estimators (the OLS estimators). The parameters are random and have certain known small and large sample properties that you discussed in the theoretical part of the class. Many other small sample properties, such as actual coverage rates of confidence intervals are unknown, but can be studies in Monte Carlo simulations.\nLet \\[Y_i = \\beta_1 X_{i1} + \\beta_2 X_{i2}+  \\beta_3 + e_i, \\qquad i = 1, 2, \\ldots, n.\\] where \\[\\begin{pmatrix}X_{i1}\\\\X_{i2}\\\\\\end{pmatrix} \\sim N\\left( \\begin{pmatrix}2\\\\-3 \\end{pmatrix}, \\begin{pmatrix}1& \\rho  \\\\ \\rho &1 \\end{pmatrix} \\right)\\] and \\((\\beta_1, \\beta_2, \\beta_3) = (2,1,-1)\\). Let \\(e_i \\sim U[-2,2]\\) and assume that \\(e_i\\) is independent of \\((X_{i1},X_{i2})\\). Assume that the data is a random sample. Let \\((\\hat{\\beta}_1, \\hat{\\beta}_2, \\hat{\\beta}_3 )\\) be the OLS estimator of \\((\\beta_1, \\beta_2, \\beta_3)\\).\nFor different values of \\(n\\) and \\(\\rho\\) use simulations to calculate\n\n\\(E(\\hat{\\beta}_1)\\),\n\\(Var(\\hat{\\beta}_1)\\),\nthe probability that \\(\\beta_1\\) is in a \\(95\\%\\) confidence interval,\nthe expected length of the confidence interval,\nthe probability that we reject \\(H_0: \\beta_1 = 2\\) using a two-sided t-test and a \\(1\\%\\) significance level, and\nthe probability that we reject \\(H_0: \\beta_1 = 1.8\\) using a two-sided t-test and a \\(1\\%\\) significance level.\n\nDiscuss the results.\nHow do you think the results will change if \\(X_{i1}\\) and \\(e_i\\) are correlated?\nExercise 2:\nStart with the help files help(smf.ols) and help(lm_result) of the linear model - one of the models most often used in statistics - and try to answer these questions:\n\nHow do you estimate a model without a constant? (Hint: the formula syntax is the same as in R.)\nIn what setting could missing = \"raise\" be more useful to you than the function’s default value missing = \"drop\"?\nFor a fitted model, what does the method summary() do? Which other methods and attributes (e.g., params, bse, conf_int(), resid) are available?\n\nExercise 3:\nAssume that \\(X \\sim U[0,1]\\) and \\(Y \\sim U[0,1]\\) are independent random variables. For different sample sizes (\\(n \\in\\{ 2, 5, 10, 100, 1000\\}\\)) draw two i.i.d. samples of \\(X\\) and \\(Y\\) and regress \\(Y\\) on \\(X\\) for both samples. Using a Monte-Carlo simulation, approximate the probability that the two corresponding regression lines intersect on \\([0,1]\\times  [0,1]\\). Do the results depend on the sample size?",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Regression analysis</span>"
+    ]
+  },
+  {
+    "objectID": "Python-08-Notes-on-useful-packages.html",
+    "href": "Python-08-Notes-on-useful-packages.html",
+    "title": "16  Some notes on useful packages",
+    "section": "",
+    "text": "16.1 The PyData family\nNumPy, pandas, matplotlib, and seaborn, which we used throughout this tutorial, form the core of the so-called PyData ecosystem. Together, they provide a comprehensive framework for many useful tools we need: from reading in data with pandas [csv, Stata, SPSS, SAS, Excel etc.], wrangling it into the shape one desires with pandas to visualization with matplotlib and seaborn. A comprehensive guide is provided in Wes McKinney’s (the creator of pandas) book Python for Data Analysis. A fast, modern alternative to pandas is the package polars.",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Some notes on useful packages</span>"
+    ]
+  },
+  {
+    "objectID": "Python-08-Notes-on-useful-packages.html#scikit-learn",
+    "href": "Python-08-Notes-on-useful-packages.html#scikit-learn",
+    "title": "16  Some notes on useful packages",
+    "section": "16.2 scikit-learn",
+    "text": "16.2 scikit-learn\n\"Simple and efficient tools for predictive data analysis.\" The standard package for machine learning in Python that can be used for a multitude of tasks, such as regression, classification, clustering, and model selection. https://scikit-learn.org/",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Some notes on useful packages</span>"
+    ]
+  },
+  {
+    "objectID": "Python-08-Notes-on-useful-packages.html#statsmodels",
+    "href": "Python-08-Notes-on-useful-packages.html#statsmodels",
+    "title": "16  Some notes on useful packages",
+    "section": "16.3 statsmodels",
+    "text": "16.3 statsmodels\n\"statsmodels is a Python module that provides classes and functions for the estimation of many different statistical models, as well as for conducting statistical tests, and statistical data exploration.\"\nBesides the linear regression model, statsmodels provides, e.g., generalized linear models, time series models, and diagnostic tests. It can also calculate many different robust covariance matrix estimators. A simple application for heteroskedasticity consistent covariance estimation in an OLS setting is given below.\n\nimport numpy as np\nimport pandas as pd\nimport statsmodels.formula.api as smf\n\nrng = np.random.default_rng()\n\nx = rng.uniform(low = 0, high = 10, size = 1000)\neps = rng.normal(loc = 0, scale = np.sqrt(x), size = 1000)\ny = 1.2*x + eps\nmy_data = pd.DataFrame({\"x\": x, \"y\": y})\n\nmy_model = smf.ols(\"y ~ x\", data = my_data).fit()\nmy_model_hc = smf.ols(\"y ~ x\", data = my_data).fit(cov_type = \"HC1\")\n\nThe first table describes our estimates when we assume homoskedastic error terms, while the second one correctly assumes heteroskedasticity.\n\nprint(my_model.summary().tables[1])\nprint(my_model_hc.summary().tables[1])\n\n==============================================================================\n                 coef    std err          t      P&gt;|t|      [0.025      0.975]\n------------------------------------------------------------------------------\nIntercept     -0.1061      0.145     -0.734      0.463      -0.390       0.177\nx              1.2254      0.025     49.857      0.000       1.177       1.274\n==============================================================================\n==============================================================================\n                 coef    std err          z      P&gt;|z|      [0.025      0.975]\n------------------------------------------------------------------------------\nIntercept     -0.1061      0.097     -1.089      0.276      -0.297       0.085\nx              1.2254      0.025     49.636      0.000       1.177       1.274\n==============================================================================",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Some notes on useful packages</span>"
+    ]
+  },
+  {
+    "objectID": "Python-08-Notes-on-useful-packages.html#scipy",
+    "href": "Python-08-Notes-on-useful-packages.html#scipy",
+    "title": "16  Some notes on useful packages",
+    "section": "16.4 SciPy",
+    "text": "16.4 SciPy\nCollection of many useful functions for scientific computing, such as optimization, integration, linear algebra, and statistics. Its module scipy.stats provides densities, distribution functions, quantile functions, and random number generators for a large number of distributions. For drawing from a multivariate normal with a given mean vector and covariance matrix, one can also directly use NumPy’s random number generator.\n\nmy_sample = rng.multivariate_normal(mean = [0,0], cov = [[1,0.5],[0.5,1]], size = 100)\nmy_sample[0:6,:]\n\narray([[-0.39967536,  0.83031356],\n       [ 0.38733536, -1.63753935],\n       [-1.19846056, -0.22020416],\n       [-1.1427646 , -0.51621486],\n       [ 0.88432749, -0.37341921],\n       [ 2.86034159,  1.62392543]])",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Some notes on useful packages</span>"
+    ]
+  },
+  {
+    "objectID": "Python-08-Notes-on-useful-packages.html#linearmodels",
+    "href": "Python-08-Notes-on-useful-packages.html#linearmodels",
+    "title": "16  Some notes on useful packages",
+    "section": "16.5 linearmodels",
+    "text": "16.5 linearmodels\nProvides many useful functions in the context of applied Econometrics, such as panel data models and system estimators. One prominent example is the class IV2SLS used for IV-estimation. https://bashtage.github.io/linearmodels/",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Some notes on useful packages</span>"
+    ]
+  },
+  {
+    "objectID": "Python-08-Notes-on-useful-packages.html#jupyter-and-quarto",
+    "href": "Python-08-Notes-on-useful-packages.html#jupyter-and-quarto",
+    "title": "16  Some notes on useful packages",
+    "section": "16.6 Jupyter and Quarto",
+    "text": "16.6 Jupyter and Quarto\nJupyter notebooks allow you to use Python interactively, intermingling code and text freely. Quarto can be especially useful in your studies, if you want to use Python (or R) in conjunction with markdown and output to different files. For example, this introduction is created from a bunch of qmd files [Quarto Markdown].",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Some notes on useful packages</span>"
+    ]
+  },
+  {
+    "objectID": "Python-08-Notes-on-useful-packages.html#streamlit-and-shiny-for-python",
+    "href": "Python-08-Notes-on-useful-packages.html#streamlit-and-shiny-for-python",
+    "title": "16  Some notes on useful packages",
+    "section": "16.7 Streamlit and Shiny for Python",
+    "text": "16.7 Streamlit and Shiny for Python\nUsed to build interactive web-apps with Python. Somewhat more advanced, but very cool. https://streamlit.io/ and https://shiny.posit.co/py/",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Some notes on useful packages</span>"
+    ]
+  },
+  {
+    "objectID": "Python-08-Notes-on-useful-packages.html#faster-code",
+    "href": "Python-08-Notes-on-useful-packages.html#faster-code",
+    "title": "16  Some notes on useful packages",
+    "section": "16.8 Faster Code",
+    "text": "16.8 Faster Code\nYou might want to look at these packages:\n\nnumba\nmultiprocessing & joblib\npolars\nJAX\n\nThese can get complicated very quickly, so beware.",
+    "crumbs": [
+      "Introduction to Python",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Some notes on useful packages</span>"
     ]
   }
 ]

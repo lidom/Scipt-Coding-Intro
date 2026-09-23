@@ -1,0 +1,163 @@
+---
+jupyter: python3
+---
+
+# Simple programming
+
+We often want to repeat specific operations several times. For example, we might want to repeat an operation  for different elements of a given data structure, such as columns of a matrix, or perform an operation until a satisfactory result is reached, such as running an algorithm until the value converges to a prespecified level. In addition, we often need to check whether certain conditions are fulfilled, such as whether elements of a vector are equal to 0, and perform an operation depending on the result.
+
+**Attention:** In Python, blocks of code (e.g., the body of a loop) are not enclosed by curly brackets `{}` as in R, but are defined by their *indentation*. By convention, one uses four spaces per level of indentation.
+
+## The for-loop
+
+A for-loop is a procedure in which a particular routine is repeated and only an index variable is changed.
+```{python}
+x = 0
+for i in range(1, 4):
+    x = x + i
+    print(x)
+```
+Note that `range(1, 4)` generates the numbers 1, 2, and 3, i.e., the `stop` value 4 is not included.
+
+We can also use it to study the behavior of the arithmetic mean
+```{python}
+import numpy as np
+
+rng = np.random.default_rng()
+
+out = np.zeros(100)
+n = 20
+for i in range(100):
+    x = rng.normal(loc = 0, scale = 1, size = n)
+    out[i] = np.mean(x)
+
+print(np.mean(out))
+print(np.std(out, ddof = 1))
+
+
+
+out = np.zeros(100)
+n = 200
+for i in range(100):
+    x = rng.normal(loc = 0, scale = 1, size = n)
+    out[i] = np.mean(x)
+
+print(np.mean(out))
+print(np.std(out, ddof = 1))
+```
+
+
+
+
+## The if-condition
+
+Within a for-loop, it may be useful to perform arithmetic operations only under certain conditions. The basic syntax for this is
+```{python}
+#| eval: false
+if condition:
+    statement
+else:
+    alternative
+```
+where else can remain unspecified. Further conditions can be checked with `elif condition:`.
+
+```{python}
+###If-condition###
+y = np.array([1,4,5,2,7,8,2,4])
+N = len(y)
+
+y_sq = np.zeros(N)  # creates a numeric vector of zeros of length N
+
+for i in range(N):  # initializing the for-loop
+    y_sq[i] = y[i]**2  # every element of y_sq is replaced by the respective squared value.
+    if i == N-1:  # only when this condition is met, i.e. in the last iteration of the loop
+        print(y_sq)  # is the vector printed
+```
+
+
+In shorter form the `np.where()` command is an alternative, which works element-wise on vectors.
+```{python}
+#| eval: false
+np.where(test, yes, no)
+```
+
+
+
+
+## The while-loop
+
+The while-loop performs a program ("statement") as long as certain data conditions ("test expression") are met. The basic syntax is
+
+```{python}
+#| eval: false
+while test_expression:
+    # increment (i+1);
+    statement
+```
+
+Here, test_expression is evaluated and the body of the loop is entered if the result is True.
+
+
+```{python}
+i = 1
+
+while i < 6:
+    print(i)
+    i = i + 1
+```
+
+## Time saving and loops
+
+One easy way to make your loops faster is to preallocate space for your results instead of appending them to a vector. NumPy arrays have a fixed size. Appending a value with `np.append()` therefore creates a new array and copies the whole data from one place in memory to another, when you simply wanted to append another value to your vector.
+
+If you look at the following code fragments, the second one is much faster! (We use only 20000 iterations here, since the first version takes very long otherwise.)
+
+
+```{python}
+import time
+
+# The slow but simple way
+start = time.perf_counter()
+results = np.array([])  # empty vector
+for i in range(20000):
+    results = np.append(results, rng.normal())
+time1 = time.perf_counter() - start
+print(time1)
+```
+```{python}
+# The right way to do it
+start = time.perf_counter()
+results2 = np.zeros(20000)
+for i in range(20000):
+    results2[i] = rng.normal()
+time2 = time.perf_counter() - start
+print(time2)
+```
+
+If you can avoid a loop altogether and use vector operations instead, your code will will be even faster.
+
+```{python}
+# The right way to do it
+start = time.perf_counter()
+results3 = rng.normal(size = 20000)
+time3 = time.perf_counter() - start
+print(time3)
+```
+
+Try to keep this in mind when designing your own code. In Python this is one of the most frequent and easily avoidable reasons for why code is slow. (Note: Python's built-in `list` objects are an exception. Appending to a list with `my_list.append(value)` is fast.)
+
+## Exercises III
+
+**Exercise 1:**
+
+Write a for-loop that iterates over the numbers 6 to 14 and prints the cube of each number using `print()`
+
+
+**Exercise 2:**
+
+Write a while-loop that prints out standard random normal numbers (use `rng.normal()`) but stops (breaks) if you get a number bigger than 1.
+
+
+**Exercise 3:**
+
+Using a for-loop simulate the flip a coin twenty times, keeping track of the individual outcomes (1 = heads, 0 = tails) in a vector that you preallocated.

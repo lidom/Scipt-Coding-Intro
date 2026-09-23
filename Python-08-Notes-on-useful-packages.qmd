@@ -1,0 +1,64 @@
+---
+jupyter: python3
+---
+
+# Some notes on useful packages
+
+## The PyData family
+NumPy, pandas, matplotlib, and seaborn, which we used throughout this tutorial, form the core of the so-called PyData ecosystem. Together, they provide a comprehensive framework for many useful tools we need: from reading in data with pandas [csv, Stata, SPSS, SAS, Excel etc.], wrangling it into the shape one desires with pandas to visualization with matplotlib and seaborn. A comprehensive guide is provided in Wes McKinney's (the creator of pandas) book [Python for Data Analysis](https://wesmckinney.com/book/). A fast, modern alternative to pandas is the package [polars](https://pola.rs/).
+
+## scikit-learn
+```"Simple and efficient tools for predictive data analysis."```
+The standard package for machine learning in Python that can be used for a multitude of tasks, such as regression, classification, clustering, and model selection. https://scikit-learn.org/
+
+## statsmodels
+```"statsmodels is a Python module that provides classes and functions for the estimation of many different statistical models, as well as for conducting statistical tests, and statistical data exploration."```
+
+Besides the linear regression model, statsmodels provides, e.g., generalized linear models, time series models, and diagnostic tests. It can also calculate many different robust covariance matrix estimators. A simple application for heteroskedasticity consistent covariance estimation in an OLS setting is given below.
+```{python}
+import numpy as np
+import pandas as pd
+import statsmodels.formula.api as smf
+
+rng = np.random.default_rng()
+
+x = rng.uniform(low = 0, high = 10, size = 1000)
+eps = rng.normal(loc = 0, scale = np.sqrt(x), size = 1000)
+y = 1.2*x + eps
+my_data = pd.DataFrame({"x": x, "y": y})
+
+my_model = smf.ols("y ~ x", data = my_data).fit()
+my_model_hc = smf.ols("y ~ x", data = my_data).fit(cov_type = "HC1")
+```
+The first table describes our estimates when we assume homoskedastic error terms, while the second one correctly assumes heteroskedasticity.
+```{python}
+print(my_model.summary().tables[1])
+print(my_model_hc.summary().tables[1])
+```
+
+## SciPy
+Collection of many useful functions for scientific computing, such as optimization, integration, linear algebra, and statistics. Its module `scipy.stats` provides densities, distribution functions, quantile functions, and random number generators for a large number of distributions. For drawing from a multivariate normal with a given mean vector and covariance matrix, one can also directly use NumPy's random number generator.
+```{python}
+my_sample = rng.multivariate_normal(mean = [0,0], cov = [[1,0.5],[0.5,1]], size = 100)
+my_sample[0:6,:]
+```
+
+## linearmodels
+Provides many useful functions in the context of applied Econometrics, such as panel data models and system estimators. One prominent example is the class `IV2SLS` used for IV-estimation. https://bashtage.github.io/linearmodels/
+
+
+## Jupyter and Quarto
+[Jupyter notebooks](https://jupyter.org/) allow you to use Python interactively, intermingling code and text freely. [Quarto](https://quarto.org/) can be especially useful in your studies, if you want to use Python (or R) in conjunction with markdown and output to different files. For example, this introduction is created from a bunch of qmd files [Quarto Markdown].
+
+## Streamlit and Shiny for Python
+Used to build interactive web-apps with Python. Somewhat more advanced, but very cool. https://streamlit.io/ and https://shiny.posit.co/py/
+
+## Faster Code
+You might want to look at these packages:
+
+* numba
+* multiprocessing & joblib
+* polars
+* JAX
+
+These can get complicated very quickly, so beware.

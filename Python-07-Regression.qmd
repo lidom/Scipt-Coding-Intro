@@ -1,0 +1,114 @@
+---
+jupyter: python3
+---
+
+# Regression analysis
+
+
+{{< include _regression-model.qmd >}}
+
+## Empirical example
+
+We will now see how to run regressions in Python using the movie data set and the package **statsmodels**. Again, you can load the data using
+```{python}
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import statsmodels.formula.api as smf
+
+data_set = pd.read_csv("tmdb_5000_movies.csv")
+```
+
+Suppose we are interested in studying how the budget of a movie is related to its revenue and we model the relationship as:
+$$revenue_i = \beta_1 budget_{i} +  \beta_2 + e_i$$
+Before we run a regression, let's look at a scatter plot of the relevant variables:
+```{python}
+plt.scatter(data_set["budget"], data_set["revenue"], facecolors = "none", edgecolors = "black")
+plt.xlabel("Budget")
+plt.ylabel("Revenue")
+plt.show()
+```
+
+Clearly, movies with higher budgets tend to have higher revenues. To estimate the regression coefficients, you can use the `smf.ols()` command, where the model is specified by a formula as in R, and the method `fit()` estimates the model:
+```{python}
+lm_result = smf.ols(formula = "revenue ~ budget", data = data_set).fit()
+print(lm_result.summary())
+```
+Think about how you can interpret the estimated slope coefficient.
+
+We can also plot the regression line in the scatter plot:
+```{python}
+b0 = lm_result.params["Intercept"]
+b1 = lm_result.params["budget"]
+
+## Plot all:
+plt.scatter(data_set["budget"], data_set["revenue"], facecolors = "none", edgecolors = "black")
+plt.axline((0, b0), slope = b1, color = "red")
+plt.xlabel("Budget")
+plt.ylabel("Revenue")
+plt.title("Scatter plot and regression line")
+plt.show()
+```
+
+Let's now see if a higher budget also implies a higher rating:
+```{python}
+lm_result_rating = smf.ols(formula = "vote_average ~ budget", data = data_set).fit()
+print(lm_result_rating.summary())
+```
+Notice that the estimated slope coefficient is tiny. Does that mean that the rating is unrelated to the budget?
+
+The budget is often huge. For a better interpretation of the coefficients, define the budget in millions as
+```{python}
+data_set["budget_mil"] = data_set["budget"]/1000000
+```
+look at summary statistics of the variables
+```{python}
+data_set[["vote_average", "budget_mil"]].describe()
+```
+and redo the analysis:
+```{python}
+lm_result_rating = smf.ols(formula = "vote_average ~ budget_mil", data = data_set).fit()
+print(lm_result_rating.summary())
+```
+Do think that the budget has a large impact on the rating?
+
+Of course, we are not limited to one regressors. To include three regressors, can use `smf.ols(formula = "Y ~ X1 + X2 + X3", data = ...)`. We will return to regression analysis later in the semester.
+
+
+## Exercises VII
+
+**Exercise 1:**
+
+In the previous section, we looked at Monte Carlo simulations in a very simple setting. We can analyze analogous issues in other settings, such as the linear regression model. Also in this case, we have parameters (the regression coefficients) and estimators (the OLS estimators). The parameters are random and have certain known small and large sample properties that you discussed in the theoretical part of the class. Many other small sample properties, such as actual coverage rates of confidence intervals are unknown, but can be studies in Monte Carlo simulations.
+
+Let
+$$Y_i = \beta_1 X_{i1} + \beta_2 X_{i2}+  \beta_3 + e_i, \qquad i = 1, 2, \ldots, n.$$
+where
+$$\begin{pmatrix}X_{i1}\\X_{i2}\\\end{pmatrix} \sim N\left( \begin{pmatrix}2\\-3 \end{pmatrix}, \begin{pmatrix}1& \rho  \\ \rho &1 \end{pmatrix} \right)$$
+and $(\beta_1, \beta_2, \beta_3) = (2,1,-1)$. Let $e_i \sim U[-2,2]$ and assume that $e_i$ is independent of $(X_{i1},X_{i2})$.  Assume that the data is a random sample. Let $(\hat{\beta}_1, \hat{\beta}_2, \hat{\beta}_3 )$ be the OLS estimator of $(\beta_1, \beta_2, \beta_3)$.
+
+For different values of $n$ and $\rho$ use simulations to calculate
+
+* $E(\hat{\beta}_1)$,
+* $Var(\hat{\beta}_1)$,
+* the probability that $\beta_1$ is in a $95\%$ confidence interval,
+* the expected length of the confidence interval,
+* the probability that we reject $H_0: \beta_1 = 2$ using a two-sided t-test and a $1\%$ significance level, and
+* the probability that we reject $H_0: \beta_1 = 1.8$ using a two-sided t-test and a $1\%$ significance level.
+
+
+Discuss the results.
+
+How do you think the results will change if $X_{i1}$ and $e_i$ are correlated?
+
+**Exercise 2:**
+
+Start with the help files `help(smf.ols)` and `help(lm_result)` of the linear model - one of the models most often used in statistics - and try to answer these questions:
+
+ * How do you estimate a model without a constant? (Hint: the formula syntax is the same as in R.)
+ * In what setting could `missing = "raise"` be more useful to you than the function's default value `missing = "drop"`?
+ * For a fitted model, what does the method `summary()` do? Which other methods and attributes (e.g., `params`, `bse`, `conf_int()`, `resid`) are available?
+
+**Exercise 3:**
+
+Assume that $X \sim U[0,1]$ and $Y \sim U[0,1]$ are independent random variables. For different sample sizes ($n \in\{ 2, 5, 10, 100, 1000\}$) draw two i.i.d. samples of $X$ and $Y$ and regress $Y$ on $X$ for both samples. Using a Monte-Carlo simulation, approximate the probability that the two corresponding regression lines intersect on $[0,1]\times  [0,1]$. Do the results depend on the sample size?

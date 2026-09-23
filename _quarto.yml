@@ -2,6 +2,9 @@ project:
   type: book
   output-dir: docs
 
+execute:
+  freeze: auto
+
 book:
   title: Coding Intro
   author: Prof. Dr. Dominik Liebl
@@ -13,14 +16,26 @@ book:
   search: true
   chapters:
     - index.qmd
-    - 01-Getting-Started.qmd
-    - 02-Datasets.qmd
-    - 03-Programming.qmd
-    - 04-Functions.qmd
-    - 05-Plotting.qmd
-    - 06-Monte-Carlo-Simulations.qmd
-    - 07-Regression.qmd
-    - 08-Notes-on-useful-packages.qmd
+    - part: "Introduction to R"
+      chapters:
+        - R-01-Getting-Started.qmd
+        - R-02-Datasets.qmd
+        - R-03-Programming.qmd
+        - R-04-Functions.qmd
+        - R-05-Plotting.qmd
+        - R-06-Monte-Carlo-Simulations.qmd
+        - R-07-Regression.qmd
+        - R-08-Notes-on-useful-packages.qmd
+    - part: "Introduction to Python"
+      chapters:
+        - Python-01-Getting-Started.qmd
+        - Python-02-Datasets.qmd
+        - Python-03-Programming.qmd
+        - Python-04-Functions.qmd
+        - Python-05-Plotting.qmd
+        - Python-06-Monte-Carlo-Simulations.qmd
+        - Python-07-Regression.qmd
+        - Python-08-Notes-on-useful-packages.qmd
 
 bibliography: book.bib
 
