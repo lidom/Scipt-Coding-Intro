@@ -6,7 +6,7 @@ execute:
   freeze: auto
 
 book:
-  title: Coding Intro
+  title: Coding Intros
   author: Prof. Dr. Dominik Liebl
   date: last-modified
   date-format: "[Last Updated on] MMMM DD, YYYY"
@@ -14,6 +14,7 @@ book:
     logo: images/KU_Logo_2.png
     number-depth: 2
   search: true
+  downloads: [pdf]
   chapters:
     - index.qmd
     - part: "Introduction to R"
@@ -55,3 +56,13 @@ format:
       opts_chunk:
         fig.align: center
         fig-align: center
+  pdf:
+    documentclass: scrreprt
+    papersize: a4
+    toc: true
+    number-sections: true
+    colorlinks: true
+    keep-tex: false
+    include-in-header: pdf-header.tex
+    filters:
+      - strip-ansi.lua
