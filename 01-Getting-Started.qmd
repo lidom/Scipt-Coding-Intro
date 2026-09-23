@@ -1,20 +1,19 @@
 # The first steps in R
 
-## RStudio for the first time
+## Positron for the first time
 
-I highly recommend to install RStudio. For installation just follow the instructions on  
-[https://rstudio.com/products/rstudio/download/#download](https://rstudio.com/products/rstudio/download/#download) 
+I highly recommend to install Positron. For installation just follow the instructions on  
+[https://positron.posit.co/download.html](https://positron.posit.co/download.html) 
 
-When you open RStudio, it is typically split in 4 panels as you can see in the figure below:
+When you open Positron, its window is typically split into the following areas:
 
-![Illustration of RStudio](images/rstudio.jpg)
+<!-- TODO: add a screenshot of Positron, e.g. ![Illustration of Positron](images/positron.png) -->
 
-These panels show:
-
-1. Your script file, which is an ordinary text file with suffix ".R". For instance, yourFavoritFileName.R. This file contains your code.
-2. All objects we have defined in the environment.
-3. Help files and plots.
-4. The console, which allows you to type commands and display results.
+1. The editor (center) showing your script file, which is an ordinary text file with suffix ".R". For instance, yourFavoritFileName.R. This file contains your code.
+2. The *Session* pane (right) showing all objects (variables) we have defined in the environment.
+3. The *Plots* and *Help* panes (right) showing plots and help files.
+4. The *Console* (bottom), which allows you to type commands and display results.
+5. The *Explorer* (left) showing the files in your current project folder.
 
 Some other terms that will be useful:
 

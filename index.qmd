@@ -23,9 +23,9 @@ Here are also links to more advanced tutorials:
 
 Why do we use R?
 
--    R is free of charge and can be downloaded from [https://cran.rstudio.com/](https://cran.rstudio.com/) 
--    The IDE RStudio for R is also free of charge and can be downloaded from  
-     [https://rstudio.com/products/rstudio/download/#download](https://rstudio.com/products/rstudio/download/#download) 
+-    R is free of charge and can be downloaded from [https://cran.r-project.org/](https://cran.r-project.org/) 
+-    The IDE Positron for R is also free of charge and can be downloaded from  
+     [https://positron.posit.co/download.html](https://positron.posit.co/download.html) 
 -    R is equipped with one of the most flexible and powerful graphic routines available anywhere. For instance, check out one of the following repositories:
       - [Clean Graphs](http://shinyapps.org/apps/RGraphCompendium/index.php) 
       - [Publication ready plots](https://rpkgs.datanovia.com/ggpubr/index.html) 
