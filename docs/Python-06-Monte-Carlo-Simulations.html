@@ -359,7 +359,7 @@ window.Quarto = {
 <h2 data-number="14.3" class="anchored" data-anchor-id="consistency"><span class="header-section-number">14.3</span> Consistency</h2>
 <p>The estimator <span class="math inline">\(\hat{\theta}_n\)</span> is weakly consistent if for any <span class="math inline">\(\varepsilon &gt; 0\)</span> <span class="math display">\[P\left( \left|\hat{\theta}_n - \theta \right| &gt; \varepsilon  \right) \rightarrow 0\]</span> or <span class="math display">\[P\left( \left|\hat{\theta}_n - \theta \right| \leq \varepsilon  \right) \rightarrow 1\]</span> That is, as long as <span class="math inline">\(n\)</span> is large enough, <span class="math inline">\(\hat{\theta}_n\)</span> is in an arbitrarily small neighborhood around <span class="math inline">\(\theta\)</span> with arbitrarily large probability.</p>
 <p>To illustrate this property, let’s return to the example with sample averages and expectations. Let <span class="math inline">\(\{X_1, X_2, \ldots, X_n\}\)</span> be a random sample from the Bernoulli distribution with <span class="math inline">\(p = P(X_i = 1) = 0.7\)</span>. Let <span class="math inline">\(\theta = E(X) = p\)</span> and let <span class="math inline">\(\hat{\theta}_n\)</span> be the sample average. We start with a sample size of 20 and set the parameters:</p>
-<div id="5db68b24" class="cell" data-execution_count="1">
+<div id="805ccad3" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
@@ -369,14 +369,14 @@ window.Quarto = {
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We now want to take <span class="math inline">\(S\)</span> random samples and obtain <span class="math inline">\(S\)</span> corresponding sample averages, where <span class="math inline">\(S\)</span> is ideally a large number. The larger <span class="math inline">\(S\)</span>, the more precise our results will be. It is also useful to set a seed. We store the <span class="math inline">\(S\)</span> samples as the columns of an <span class="math inline">\(n \times S\)</span> matrix and compute the column means with <code>mean(axis = 0)</code>.</p>
-<div id="a2d50fab" class="cell" data-execution_count="2">
+<div id="3cf1c04b" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed <span class="op">=</span> <span class="dv">4519</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> <span class="dv">10000</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> rng.binomial(n <span class="op">=</span> <span class="dv">1</span>, p <span class="op">=</span> p, size <span class="op">=</span> (n, S))</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>theta_hat <span class="op">=</span> X.mean(axis <span class="op">=</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now for some <span class="math inline">\(\varepsilon &gt; 0\)</span>, we can check <span class="math inline">\(P\left( \left|\hat{\theta}_n - \theta \right| \leq \varepsilon  \right)\)</span>:</p>
-<div id="831ed1cb" class="cell" data-execution_count="3">
+<div id="fbde77c3" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>eps <span class="op">=</span> <span class="fl">0.1</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>np.mean(np.<span class="bu">abs</span>(theta_hat <span class="op">-</span> p) <span class="op">&lt;=</span> eps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -384,7 +384,7 @@ window.Quarto = {
 </div>
 </div>
 <p>We can also calculate this probability for different values of <span class="math inline">\(\varepsilon &gt; 0\)</span>. I use a loop here for readability, but you can try using matrices on your own. Since I want to repeat the following steps for different sample sizes, it is useful to first define a functions that performs all operations:</p>
-<div id="a0ada0e4" class="cell" data-execution_count="4">
+<div id="ab27a729" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calc_probs_consistency(n, S, p, all_eps):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    n_eps <span class="op">=</span> <span class="bu">len</span>(all_eps)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> rng.binomial(n <span class="op">=</span> <span class="dv">1</span>, p <span class="op">=</span> p, size <span class="op">=</span> (n, S))</span>
@@ -395,13 +395,13 @@ window.Quarto = {
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> probs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can now call the function for any <span class="math inline">\(n\)</span>, <span class="math inline">\(S\)</span>, <span class="math inline">\(p\)</span>, and a vector containing different values for <span class="math inline">\(\varepsilon\)</span>. For each of these values, the function then returns a probability.</p>
-<div id="74ab4417" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>all_eps <span class="op">=</span> np.arange(<span class="fl">0.01</span>, <span class="fl">0.505</span>, <span class="fl">0.01</span>)</span>
+<div id="d19593f3" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>all_eps <span class="op">=</span> np.linspace(<span class="fl">0.01</span>, <span class="fl">0.5</span>, <span class="dv">50</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>probs <span class="op">=</span> calc_probs_consistency(n <span class="op">=</span> <span class="dv">20</span>, S <span class="op">=</span> <span class="dv">1000</span>, p <span class="op">=</span> <span class="fl">0.7</span>, all_eps <span class="op">=</span> all_eps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Next, we can plot all probabilities:</p>
-<div id="f9adfc37" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(all_eps, probs, color <span class="op">=</span> <span class="st">"blue"</span>, facecolors <span class="op">=</span> <span class="st">"none"</span>)</span>
+<div id="b2b43ddd" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(all_eps, probs, edgecolors <span class="op">=</span> <span class="st">"blue"</span>, facecolors <span class="op">=</span> <span class="st">"none"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"epsilon"</span>)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Probability"</span>)</span>
@@ -415,9 +415,9 @@ window.Quarto = {
 </div>
 </div>
 <p>We can see from the plot that <span class="math inline">\(P\left( \left|\hat{\theta}_n - \theta \right| \leq \varepsilon  \right)\)</span> is quite small for small values of <span class="math inline">\(\varepsilon\)</span>. Consistency means that for any <span class="math inline">\(\varepsilon &gt; 0\)</span>, the probability approaches <span class="math inline">\(1\)</span> as <span class="math inline">\(n \rightarrow \infty\)</span>. We can now easily change the sample size and see how the results change. For example, take <span class="math inline">\(n=200\)</span>:</p>
-<div id="103fac62" class="cell" data-execution_count="7">
+<div id="18ef3c88" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>probs <span class="op">=</span> calc_probs_consistency(n <span class="op">=</span> <span class="dv">200</span>, S <span class="op">=</span> <span class="dv">10000</span>, p <span class="op">=</span> <span class="fl">0.7</span>, all_eps <span class="op">=</span> all_eps)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(all_eps, probs, color <span class="op">=</span> <span class="st">"blue"</span>, facecolors <span class="op">=</span> <span class="st">"none"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(all_eps, probs, edgecolors <span class="op">=</span> <span class="st">"blue"</span>, facecolors <span class="op">=</span> <span class="st">"none"</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"epsilon"</span>)</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Probability"</span>)</span>
@@ -435,7 +435,7 @@ window.Quarto = {
 <h2 data-number="14.4" class="anchored" data-anchor-id="asymptotic-normality"><span class="header-section-number">14.4</span> Asymptotic normality</h2>
 <p>We know from the Central Limit Theorem that <span class="math display">\[\frac{\sqrt{n}(\bar{X}_n - E(X))}{s_n} \rightarrow_D N(0,1)\]</span> where <span class="math inline">\(s_n\)</span> is the sample standard deviation. Convergence in distribution means that the distribution of the normalized sample average converges to the distribution function of a standard normal random variable.</p>
 <p>Again, we can use the previous simulation setup to illustrate this property. To do so, we calculate <span class="math display">\[P\left(\frac{\sqrt{n}(\bar{X}_n - E(X))}{s_n} \leq z\right)\]</span> and compare it to the standard normal cdf evaluated at <span class="math inline">\(z\)</span>. We then plot the results as a function of <span class="math inline">\(z\)</span>. Just as before, we define a function that calculates the probabilities:</p>
-<div id="b9aa0d1f" class="cell" data-execution_count="8">
+<div id="f6627d77" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calc_probs_asymp_normal(n, S, p, z):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    n_z <span class="op">=</span> <span class="bu">len</span>(z)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> rng.binomial(n <span class="op">=</span> <span class="dv">1</span>, p <span class="op">=</span> p, size <span class="op">=</span> (n, S))</span>
@@ -446,11 +446,12 @@ window.Quarto = {
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        probs[i] <span class="op">=</span> np.mean(np.sqrt(n)<span class="op">*</span>(theta_hat <span class="op">-</span> p)<span class="op">/</span>stds <span class="op">&lt;=</span> z[i])</span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> probs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Note: If all observations in a sample are equal (e.g., all ones), the sample standard deviation is zero and the division yields <code>inf</code>. NumPy then shows a <code>RuntimeWarning</code>, which you can ignore here. (We have hidden these warnings in this script.)</p>
 <p>We can now plot the results for different sample sizes such as</p>
-<div id="5453bc7e" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">3</span>, <span class="fl">3.005</span>, <span class="fl">0.01</span>)</span>
+<div id="cdcc817b" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">601</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>probs <span class="op">=</span> calc_probs_asymp_normal(n <span class="op">=</span> <span class="dv">20</span>, S <span class="op">=</span> <span class="dv">10000</span>, p <span class="op">=</span> <span class="fl">0.7</span>, z <span class="op">=</span> z)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(z, probs, color <span class="op">=</span> <span class="st">"blue"</span>, facecolors <span class="op">=</span> <span class="st">"none"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(z, probs, edgecolors <span class="op">=</span> <span class="st">"blue"</span>, facecolors <span class="op">=</span> <span class="st">"none"</span>)</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>plt.plot(z, norm.cdf(z, <span class="dv">0</span>, <span class="dv">1</span>), color <span class="op">=</span> <span class="st">"red"</span>, linewidth <span class="op">=</span> <span class="dv">2</span>)</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"z"</span>)</span>
@@ -465,9 +466,9 @@ window.Quarto = {
 </div>
 </div>
 <p>or</p>
-<div id="d3ec4a05" class="cell" data-execution_count="10">
+<div id="a4a2a3af" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>probs <span class="op">=</span> calc_probs_asymp_normal(n <span class="op">=</span> <span class="dv">2000</span>, S <span class="op">=</span> <span class="dv">10000</span>, p <span class="op">=</span> <span class="fl">0.7</span>, z <span class="op">=</span> z)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(z, probs, color <span class="op">=</span> <span class="st">"blue"</span>, facecolors <span class="op">=</span> <span class="st">"none"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(z, probs, edgecolors <span class="op">=</span> <span class="st">"blue"</span>, facecolors <span class="op">=</span> <span class="st">"none"</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>plt.plot(z, norm.cdf(z, <span class="dv">0</span>, <span class="dv">1</span>), color <span class="op">=</span> <span class="st">"red"</span>, linewidth <span class="op">=</span> <span class="dv">2</span>)</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"z"</span>)</span>
@@ -488,7 +489,7 @@ window.Quarto = {
 <p>If the null hypothesis is false, we can write <span class="math display">\[t = \frac{\sqrt{n}(\bar{X}_n - \mu_0)}{s_n} = \frac{\sqrt{n}(\bar{X}_n - \mu)}{s_n} + \frac{\sqrt{n}(\mu - \mu_0)}{s_n} \rightarrow_D N(0,1) \]</span> Since in this case <span class="math inline">\(\sqrt{n}|\mu - \mu_0| \rightarrow \infty\)</span>, it follows that <span class="math display">\[P\left(|t| &gt; 1.96  \mid \mu \neq \mu_0\right) \rightarrow 1\]</span> That is, we reject a false null hypothesis with probability approaching <span class="math inline">\(1\)</span>. However, for a small sample size, the rejection probability is typically much smaller when <span class="math inline">\(\mu_0\)</span> is close to <span class="math inline">\(\mu\)</span>.</p>
 <p>We now want to calculate the small sample rejection probabilities using Monte Carlo simulations. We could either vary <span class="math inline">\(\mu_0\)</span> (the value we test) or <span class="math inline">\(\mu\)</span> (the true mean). We take the latter because we can then plot the power functions you have seen in the theoretical part of the class to illustrate the results.</p>
 <p>We work with the Bernoulli distribution again and define a function that calculates certain rejection probabilities.</p>
-<div id="79715588" class="cell" data-execution_count="11">
+<div id="81a0c44f" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calc_rej_probs(n, S, mus, mu0, alpha):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    n_mus <span class="op">=</span> <span class="bu">len</span>(mus)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    probs <span class="op">=</span> np.zeros(n_mus)</span>
@@ -500,10 +501,10 @@ window.Quarto = {
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> probs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can now call the function for different values of <span class="math inline">\(\mu\)</span> and plot the rejection probabilities</p>
-<div id="14af1533" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mus <span class="op">=</span> np.arange(<span class="fl">0.5</span>, <span class="fl">0.905</span>, <span class="fl">0.01</span>)</span>
+<div id="ff57b2ae" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mus <span class="op">=</span> np.linspace(<span class="fl">0.5</span>, <span class="fl">0.9</span>, <span class="dv">41</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>probs <span class="op">=</span> calc_rej_probs(n <span class="op">=</span> <span class="dv">200</span>, S <span class="op">=</span> <span class="dv">10000</span>, mus <span class="op">=</span> mus, mu0 <span class="op">=</span> <span class="fl">0.7</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(mus, probs, color <span class="op">=</span> <span class="st">"blue"</span>, facecolors <span class="op">=</span> <span class="st">"none"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(mus, probs, edgecolors <span class="op">=</span> <span class="st">"blue"</span>, facecolors <span class="op">=</span> <span class="st">"none"</span>)</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="fl">0.05</span>, color <span class="op">=</span> <span class="st">"red"</span>, linewidth <span class="op">=</span> <span class="dv">2</span>)</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"True mean"</span>)</span>

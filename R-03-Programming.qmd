@@ -51,7 +51,7 @@ else{
   alternative
   }
 ```
-where else can remain unspecified. 
+where `else` can remain unspecified. 
  
 ```{r, error = TRUE,eval=F }
 ###If-condition###
@@ -90,7 +90,7 @@ while (testexpression)
 }
 ```
 
-Here, test_expression is evaluated and the body of the loop is entered if the result is TRUE.
+Here, `testexpression` is evaluated and the body of the loop is entered if the result is `TRUE`.
 
 
 ```{r, error = TRUE}

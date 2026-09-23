@@ -76,10 +76,10 @@ Used to build interactive web-aps with R. Somewhat more advanced, but very cool.
 ## Faster Code
 You might want to look at these packages:
 
-* Rcpp
-* parallel
-* data.table
-* future & future.apply
+* `Rcpp`
+* `parallel`
+* `data.table`
+* `future` & `future.apply`
 
 These can get complicated very quickly, so beware.
 

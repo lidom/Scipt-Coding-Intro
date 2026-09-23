@@ -317,7 +317,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="the-for-loop" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="the-for-loop"><span class="header-section-number">11.1</span> The for-loop</h2>
 <p>A for-loop is a procedure in which a particular routine is repeated and only an index variable is changed.</p>
-<div id="4c2b3570" class="cell" data-execution_count="1">
+<div id="6c205586" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">4</span>):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> x <span class="op">+</span> i</span>
@@ -330,7 +330,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Note that <code>range(1, 4)</code> generates the numbers 1, 2, and 3, i.e., the <code>stop</code> value 4 is not included.</p>
 <p>We can also use it to study the behavior of the arithmetic mean</p>
-<div id="74c029b8" class="cell" data-execution_count="2">
+<div id="00beb414" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng()</span>
@@ -355,24 +355,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.mean(out))</span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.std(out, ddof <span class="op">=</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.007125522473819944
-0.21330791833054472
-0.006756688323036323
-0.07625566922261619</code></pre>
+<pre><code>-0.047602294047039494
+0.21434743786883612
+-0.005776425106060026
+0.06451858754442705</code></pre>
 </div>
 </div>
 </section>
 <section id="the-if-condition" class="level2" data-number="11.2">
 <h2 data-number="11.2" class="anchored" data-anchor-id="the-if-condition"><span class="header-section-number">11.2</span> The if-condition</h2>
 <p>Within a for-loop, it may be useful to perform arithmetic operations only under certain conditions. The basic syntax for this is</p>
-<div id="43f9898d" class="cell" data-execution_count="3">
+<div id="dbaf1def" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> condition:</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    statement</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    alternative</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>where else can remain unspecified. Further conditions can be checked with <code>elif condition:</code>.</p>
-<div id="68e63730" class="cell" data-execution_count="4">
+<p>where <code>else</code> can remain unspecified. Further conditions can be checked with <code>elif condition:</code>.</p>
+<div id="9eabe324" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">###If-condition###</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">4</span>])</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="bu">len</span>(y)</span>
@@ -388,20 +388,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>In shorter form the <code>np.where()</code> command is an alternative, which works element-wise on vectors.</p>
-<div id="c5b5f23f" class="cell" data-execution_count="5">
+<div id="8afd6357" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>np.where(test, yes, no)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="the-while-loop" class="level2" data-number="11.3">
 <h2 data-number="11.3" class="anchored" data-anchor-id="the-while-loop"><span class="header-section-number">11.3</span> The while-loop</h2>
 <p>The while-loop performs a program (“statement”) as long as certain data conditions (“test expression”) are met. The basic syntax is</p>
-<div id="75c7fde5" class="cell" data-execution_count="6">
+<div id="2b8de755" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> test_expression:</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># increment (i+1);</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    statement</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Here, test_expression is evaluated and the body of the loop is entered if the result is True.</p>
-<div id="3fc2443d" class="cell" data-execution_count="7">
+<p>Here, <code>test_expression</code> is evaluated and the body of the loop is entered if the result is <code>True</code>.</p>
+<div id="fb5e17b2" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&lt;</span> <span class="dv">6</span>:</span>
@@ -420,7 +420,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="11.4" class="anchored" data-anchor-id="time-saving-and-loops"><span class="header-section-number">11.4</span> Time saving and loops</h2>
 <p>One easy way to make your loops faster is to preallocate space for your results instead of appending them to a vector. NumPy arrays have a fixed size. Appending a value with <code>np.append()</code> therefore creates a new array and copies the whole data from one place in memory to another, when you simply wanted to append another value to your vector.</p>
 <p>If you look at the following code fragments, the second one is much faster! (We use only 20000 iterations here, since the first version takes very long otherwise.)</p>
-<div id="b3b8d326" class="cell" data-execution_count="8">
+<div id="a017f8b0" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The slow but simple way</span></span>
@@ -431,10 +431,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>time1 <span class="op">=</span> time.perf_counter() <span class="op">-</span> start</span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(time1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.10582784799771616</code></pre>
+<pre><code>0.22834948599847849</code></pre>
 </div>
 </div>
-<div id="86dc5514" class="cell" data-execution_count="9">
+<div id="b95f44fb" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The right way to do it</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> time.perf_counter()</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>results2 <span class="op">=</span> np.zeros(<span class="dv">20000</span>)</span>
@@ -443,18 +443,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>time2 <span class="op">=</span> time.perf_counter() <span class="op">-</span> start</span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(time2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.016221781999774976</code></pre>
+<pre><code>0.04415532799976063</code></pre>
 </div>
 </div>
 <p>If you can avoid a loop altogether and use vector operations instead, your code will will be even faster.</p>
-<div id="df570e58" class="cell" data-execution_count="10">
+<div id="0e14e6b3" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The right way to do it</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> time.perf_counter()</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>results3 <span class="op">=</span> rng.normal(size <span class="op">=</span> <span class="dv">20000</span>)</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>time3 <span class="op">=</span> time.perf_counter() <span class="op">-</span> start</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(time3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.0003787609966821037</code></pre>
+<pre><code>0.0008500580006511882</code></pre>
 </div>
 </div>
 <p>Try to keep this in mind when designing your own code. In Python this is one of the most frequent and easily avoidable reasons for why code is slow. (Note: Python’s built-in <code>list</code> objects are an exception. Appending to a list with <code>my_list.append(value)</code> is fast.)</p>

@@ -324,7 +324,7 @@ window.Quarto = {
 <p>When you open Positron, its window is typically split into the following areas:</p>
 <!-- TODO: add a screenshot of Positron, e.g. ![Illustration of Positron](images/positron.png) -->
 <ol type="1">
-<li>The editor (center) showing your script file, which is an ordinary text file with suffix “.R”. For instance, yourFavoritFileName.R. This file contains your code.</li>
+<li>The editor (center) showing your script file, which is an ordinary text file with suffix <code>.R</code>. For instance, <code>yourFavoritFileName.R</code>. This file contains your code.</li>
 <li>The <em>Session</em> pane (right) showing all objects (variables) we have defined in the environment.</li>
 <li>The <em>Plots</em> and <em>Help</em> panes (right) showing plots and help files.</li>
 <li>The <em>Console</em> (bottom), which allows you to type commands and display results.</li>
@@ -332,11 +332,11 @@ window.Quarto = {
 </ol>
 <p>Some other terms that will be useful:</p>
 <ul>
-<li>Working directory: The file-directory you are working in. Useful commands: with <em>getwd()</em> you get the location of your current working directory and <em>setwd()</em> allows you to set a new location for it. This is very useful when you would like to load or save several files. You can just set your working directory globally and all files can be loaded or will be saved into this directory.</li>
-<li>Workspace: This is a hidden file (stored in the working directory), where all objects you use (e.g., data, matrices, vectors, variables, functions, etc.) are stored. Useful commands: <em>ls()</em> shows all elements in our current workspace and <em>rm(list=ls())</em> deletes all elements in our current workspace. It is also possible to remove only some objects with <em>rm(object1, object2)</em>.</li>
+<li>Working directory: The file-directory you are working in. Useful commands: with <code><a href="https://rdrr.io/r/base/getwd.html">getwd()</a></code> you get the location of your current working directory and <code><a href="https://rdrr.io/r/base/getwd.html">setwd()</a></code> allows you to set a new location for it. This is very useful when you would like to load or save several files. You can just set your working directory globally and all files can be loaded or will be saved into this directory.</li>
+<li>Workspace: This is a hidden file (stored in the working directory), where all objects you use (e.g., data, matrices, vectors, variables, functions, etc.) are stored. Useful commands: <code><a href="https://rdrr.io/r/base/ls.html">ls()</a></code> shows all elements in our current workspace and <code>rm(list=ls())</code> deletes all elements in our current workspace. It is also possible to remove only some objects with <code>rm(object1, object2)</code>.</li>
 </ul></section><section id="simple-calculations" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="simple-calculations">
 <span class="header-section-number">1.2</span> Simple calculations</h2>
-<p>We start with a very basic calculation. Let’s type <em>1+1</em> into the console window and press enter. We get</p>
+<p>We start with a very basic calculation. Let’s type <code>1+1</code> into the console window and press enter. We get</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span> <span class="fl">1</span><span class="op">+</span><span class="fl">1</span> <span class="co"># first calculation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -370,7 +370,7 @@ window.Quarto = {
    ^</code></pre>
 </div>
 </div>
-<p>It will be helpful to use a script file, such as yourFavoritFileName.R, to store your R commands. Otherwise, you would have to type your code again when an error occurred. You can send single lines or marked regions of your R-code to the console by pressing the keys <strong>STRG+ENTER</strong>.</p>
+<p>It will be helpful to use a script file, such as <code>yourFavoritFileName.R</code>, to store your R commands. Otherwise, you would have to type your code again when an error occurred. You can send single lines or marked regions of your R-code to the console by pressing the keys <strong>STRG+ENTER</strong>.</p>
 </section><section id="assigments-and-matrix-algebra" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="assigments-and-matrix-algebra">
 <span class="header-section-number">1.3</span> Assigments and matrix algebra</h2>
 <p>The <strong>assignment</strong> operator will be your most often used tool. Here is an example where a <strong>scalar</strong> variable is created:</p>
@@ -693,7 +693,7 @@ window.Quarto = {
 </div>
 </section><section id="r-help" class="level2" data-number="1.6"><h2 data-number="1.6" class="anchored" data-anchor-id="r-help">
 <span class="header-section-number">1.6</span> R help</h2>
-<p>There exist help files for all commands in R. For example consider the help file of the function <em>sum()</em>. You can access the help file with</p>
+<p>There exist help files for all commands in R. For example consider the help file of the function <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>. You can access the help file with</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb81"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="va">sum</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -717,7 +717,7 @@ window.Quarto = {
 <p>Details describes the exact calculation (trivial in this case), and some command specific characteristics. Value describes what is returned, in the case of <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> it is obviously a sum of numbers, given that numeric data was used as an input.</p>
 </section><section id="r-packages" class="level2" data-number="1.7"><h2 data-number="1.7" class="anchored" data-anchor-id="r-packages">
 <span class="header-section-number">1.7</span> R packages</h2>
-<p>There are tons of R packages that are useful for different aspects of data analysis. Some packages that can help you make beautiful plots and that you might want check out are the package <em>ggplot2</em> and the collection of packages <em>tidyverse</em>. You can install the packages with <em>install.package(packagename)</em>. In order to use the package type <em>library(package)</em>. The package has to be installed only once, but you have to load the package with <em>library(package)</em> every time you want to use it.</p>
+<p>There are tons of R packages that are useful for different aspects of data analysis. Some packages that can help you make beautiful plots and that you might want check out are the package <code>ggplot2</code> and the collection of packages <code>tidyverse</code>. You can install the packages with <code>install.packages(packagename)</code>. In order to use the package type <code><a href="https://rdrr.io/r/base/library.html">library(package)</a></code>. The package has to be installed only once, but you have to load the package with <code><a href="https://rdrr.io/r/base/library.html">library(package)</a></code> every time you want to use it.</p>
 </section><section id="exercises-i" class="level2" data-number="1.8"><h2 data-number="1.8" class="anchored" data-anchor-id="exercises-i">
 <span class="header-section-number">1.8</span> Exercises I</h2>
 <p><strong>Exercise 1:</strong></p>

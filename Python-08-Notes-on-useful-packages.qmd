@@ -56,9 +56,9 @@ Used to build interactive web-apps with Python. Somewhat more advanced, but very
 ## Faster Code
 You might want to look at these packages:
 
-* numba
-* multiprocessing & joblib
-* polars
-* JAX
+* `numba`
+* `multiprocessing` & `joblib`
+* `polars`
+* `jax`
 
 These can get complicated very quickly, so beware.

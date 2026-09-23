@@ -18,7 +18,7 @@ rng = np.random.default_rng()
 ## The plot-function
 In its simplest form, the `plt.scatter()` function delivers a scatterplot.
 ```{python}
-x = np.arange(0, 5.1, 0.1)
+x = np.linspace(0, 5, 51)   # 51 equally spaced values from 0 to 5
 y = rng.normal(size = len(x))
 plt.scatter(x, y)
 plt.show()
@@ -35,7 +35,7 @@ plt.plot(x, z, "o-")
 plt.show()
 ```
 
-Other arguments to the plot function can be used to specify color, linestyle (dashed etc.), linewidth, title, subtitle and many more. The help file `help(plt.plot)` and the [matplotlib documentation](https://matplotlib.org/stable/) can be very helpful when trying to achieve a specific look for your plot.
+Other arguments to the `plt.plot()` function can be used to specify color, linestyle (dashed etc.), linewidth, title, subtitle and many more. The help file `help(plt.plot)` and the [matplotlib documentation](https://matplotlib.org/stable/) can be very helpful when trying to achieve a specific look for your plot.
 
 An example could look a little like this:
 ```{python}
@@ -63,7 +63,7 @@ plt.ylim(-3, 12)
 plt.show()
 ```
 
-To plot functions like sin(x) or the standard normal density, we evaluate them on a fine grid of x-values. The standard normal density is provided by the module `scipy.stats`.
+To plot functions like $\sin(x)$ or the standard normal density, we evaluate them on a fine grid of x-values. The standard normal density is provided by the module `scipy.stats`.
 ```{python}
 from scipy.stats import norm
 
@@ -86,9 +86,9 @@ from scipy.stats import gaussian_kde
 
 x = rng.normal(size = 20)
 my_dens = gaussian_kde(x)
-grid = np.arange(-4, 4.05, 0.05)
+grid = np.linspace(-4, 4, 161)
 
-plt.hist(x, density = True, bins = np.arange(-4, 4.5, 0.5),
+plt.hist(x, density = True, bins = np.linspace(-4, 4, 17),
          edgecolor = "black", color = "white")
 plt.xlim(-4, 4)
 plt.plot(grid, my_dens(grid), color = "green", linestyle = "--", linewidth = 2)
@@ -118,7 +118,7 @@ plt.show()
 Another important part of plots - like comments in code - is a legible legend. Matplotlib has built-in support for adding a legend to your plots. Going back to our combined plot from above, one can add a legend as shown in the following example.
 Here, the `label` arguments specify the contents of the legend and the `loc` argument of `plt.legend()` specifies its position in the plot. Since a legend has to be customized for each plot, one should have a look in the documentation `help(plt.legend)`.
 ```{python}
-x = np.arange(0, 5.1, 0.1)
+x = np.linspace(0, 5, 51)   # 51 equally spaced values from 0 to 5
 y = rng.normal(size = len(x))
 z = 2*x + rng.normal(size = 51)
 
@@ -162,7 +162,7 @@ Draw samples of size 1000 from exponential distributions with varying values of 
 
 **Exercise 2:**
 
-Take the mtcars dataset (you can load it with `import statsmodels.api as sm` and `mtcars = sm.datasets.get_rdataset("mtcars").data`, which requires an internet connection) and plot mpg (miles per gallon) against wt (weight) as a scatterplot.
+Take the `mtcars` dataset (you can load it with `import statsmodels.api as sm` and `mtcars = sm.datasets.get_rdataset("mtcars").data`, which requires an internet connection) and plot `mpg` (miles per gallon) against `wt` (weight) as a scatterplot.
 Add a red line with `plt.axline` by eyeballing the parameters that could come out of a regression.
 
 **Exercise 3:**

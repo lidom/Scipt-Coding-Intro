@@ -376,8 +376,8 @@ print(coeftest(my_model))
 t test of coefficients:
 
              Estimate Std. Error t value Pr(>|t|)    
-(Intercept) -0.012915   0.141248 -0.0914   0.9272    
-x            1.191441   0.024424 48.7822   <2e-16 ***
+(Intercept) -0.041836   0.137400 -0.3045   0.7608    
+x            1.190226   0.023683 50.2576   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -396,8 +396,8 @@ print(coeftest(my_model, vcov. = my_hc_vcov))
 t test of coefficients:
 
              Estimate Std. Error t value Pr(>|t|)    
-(Intercept) -0.012915   0.096581 -0.1337   0.8937    
-x            1.191441   0.024227 49.1787   <2e-16 ***
+(Intercept) -0.041836   0.097714 -0.4282   0.6686    
+x            1.190226   0.023618 50.3943   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -418,13 +418,13 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 <span><span class="va">my_sample</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">mvrnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">100</span>, mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>, Sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="fl">1</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           [,1]       [,2]
-[1,] -0.4682363 -0.3163684
-[2,] -0.5777006 -0.3109616
-[3,]  1.4137128  2.4320826
-[4,]  0.8685785  0.8295793
-[5,]  0.3581463 -0.2002019
-[6,]  0.9076160 -0.1322555</code></pre>
+<pre><code>             [,1]       [,2]
+[1,] -0.253467221 -0.6353386
+[2,] -0.002806009  0.5365062
+[3,]  0.794493627 -0.8022652
+[4,]  0.489077571 -0.4806961
+[5,]  2.252847378  0.9979122
+[6,]  0.008696179 -0.4486159</code></pre>
 </div>
 </div>
 </section><section id="aer---applied-econometrics-with-r" class="level2" data-number="8.5"><h2 data-number="8.5" class="anchored" data-anchor-id="aer---applied-econometrics-with-r">
@@ -493,18 +493,18 @@ ivreg(formula = y ~ x | z)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--2.96317 -0.79637 -0.02985  0.83874  2.52578 
+-3.12131 -0.71075  0.03933  0.75423  3.06411 
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)    
-(Intercept)  0.27767    0.12147   2.286   0.0233 *  
-x            1.85650    0.06841  27.138   <2e-16 ***
+(Intercept) -0.01142    0.11496  -0.099    0.921    
+x            1.99289    0.06631  30.055   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 1.133 on 198 degrees of freedom
-Multiple R-Squared: 0.9067, Adjusted R-squared: 0.9062 
-Wald test: 736.5 on 1 and 198 DF,  p-value: < 2.2e-16 
+Residual standard error: 1.108 on 198 degrees of freedom
+Multiple R-Squared: 0.9229, Adjusted R-squared: 0.9225 
+Wald test: 903.3 on 1 and 198 DF,  p-value: < 2.2e-16 
 ```
 
 
@@ -524,10 +524,12 @@ Wald test: 736.5 on 1 and 198 DF,  p-value: < 2.2e-16
 <span class="header-section-number">8.8</span> Faster Code</h2>
 <p>You might want to look at these packages:</p>
 <ul>
-<li>Rcpp</li>
-<li>parallel</li>
-<li>data.table</li>
-<li>future &amp; future.apply</li>
+<li><code>Rcpp</code></li>
+<li><code>parallel</code></li>
+<li><code>data.table</code></li>
+<li>
+<code>future</code> &amp; <code>future.apply</code>
+</li>
 </ul>
 <p>These can get complicated very quickly, so beware.</p>
 

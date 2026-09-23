@@ -59,7 +59,7 @@ While `read.csv` can be used to read in data from a csv file, its counterpart `w
 write.csv(data_set, <my_path>)
 ```
 
-Similarly the function `saveRDS` allows you to save a generic R object to storage. One advantage of this function compared to `write.csv` is that it preserves properties of your object that might be lost when saved as a csv file. For example, conversions from factors to strings might occur when saving a data.frame as a csv file.
+Similarly the function `saveRDS` allows you to save a generic R object to storage. One advantage of this function compared to `write.csv` is that it preserves properties of your object that might be lost when saved as a csv file. For example, conversions from factors to strings might occur when saving a `data.frame` as a csv file.
 
 The package `readxl` and `openxlsx` from the tidyverse family can be used to read in and write to excel files, respectively. This format is usually not be the best option to store your data. 
 

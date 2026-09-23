@@ -326,7 +326,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="16.3" class="anchored" data-anchor-id="statsmodels"><span class="header-section-number">16.3</span> statsmodels</h2>
 <p><code>"statsmodels is a Python module that provides classes and functions for the estimation of many different statistical models, as well as for conducting statistical tests, and statistical data exploration."</code></p>
 <p>Besides the linear regression model, statsmodels provides, e.g., generalized linear models, time series models, and diagnostic tests. It can also calculate many different robust covariance matrix estimators. A simple application for heteroskedasticity consistent covariance estimation in an OLS setting is given below.</p>
-<div id="6a5436a8" class="cell" data-execution_count="1">
+<div id="2f2e88a2" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
@@ -342,21 +342,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>my_model_hc <span class="op">=</span> smf.ols(<span class="st">"y ~ x"</span>, data <span class="op">=</span> my_data).fit(cov_type <span class="op">=</span> <span class="st">"HC1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The first table describes our estimates when we assume homoskedastic error terms, while the second one correctly assumes heteroskedasticity.</p>
-<div id="07660c72" class="cell" data-execution_count="2">
+<div id="d329daeb" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_model.summary().tables[<span class="dv">1</span>])</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_model_hc.summary().tables[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>==============================================================================
                  coef    std err          t      P&gt;|t|      [0.025      0.975]
 ------------------------------------------------------------------------------
-Intercept     -0.1061      0.145     -0.734      0.463      -0.390       0.177
-x              1.2254      0.025     49.857      0.000       1.177       1.274
+Intercept      0.0705      0.142      0.495      0.620      -0.209       0.350
+x              1.1777      0.024     48.303      0.000       1.130       1.226
 ==============================================================================
 ==============================================================================
                  coef    std err          z      P&gt;|z|      [0.025      0.975]
 ------------------------------------------------------------------------------
-Intercept     -0.1061      0.097     -1.089      0.276      -0.297       0.085
-x              1.2254      0.025     49.636      0.000       1.177       1.274
+Intercept      0.0705      0.098      0.721      0.471      -0.121       0.262
+x              1.1777      0.025     46.967      0.000       1.129       1.227
 ==============================================================================</code></pre>
 </div>
 </div>
@@ -364,16 +364,16 @@ x              1.2254      0.025     49.636      0.000       1.177       1.274
 <section id="scipy" class="level2" data-number="16.4">
 <h2 data-number="16.4" class="anchored" data-anchor-id="scipy"><span class="header-section-number">16.4</span> SciPy</h2>
 <p>Collection of many useful functions for scientific computing, such as optimization, integration, linear algebra, and statistics. Its module <code>scipy.stats</code> provides densities, distribution functions, quantile functions, and random number generators for a large number of distributions. For drawing from a multivariate normal with a given mean vector and covariance matrix, one can also directly use NumPy’s random number generator.</p>
-<div id="6905e259" class="cell" data-execution_count="3">
+<div id="e23541c9" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>my_sample <span class="op">=</span> rng.multivariate_normal(mean <span class="op">=</span> [<span class="dv">0</span>,<span class="dv">0</span>], cov <span class="op">=</span> [[<span class="dv">1</span>,<span class="fl">0.5</span>],[<span class="fl">0.5</span>,<span class="dv">1</span>]], size <span class="op">=</span> <span class="dv">100</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>my_sample[<span class="dv">0</span>:<span class="dv">6</span>,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>array([[-0.39967536,  0.83031356],
-       [ 0.38733536, -1.63753935],
-       [-1.19846056, -0.22020416],
-       [-1.1427646 , -0.51621486],
-       [ 0.88432749, -0.37341921],
-       [ 2.86034159,  1.62392543]])</code></pre>
+<pre><code>array([[-0.96993998, -1.34288517],
+       [-0.44965252, -0.58808143],
+       [-0.0591122 , -0.24775658],
+       [ 0.20162113, -1.4019452 ],
+       [-0.73750063, -0.68276251],
+       [ 0.30386127,  1.20923998]])</code></pre>
 </div>
 </div>
 </section>
@@ -393,10 +393,10 @@ x              1.2254      0.025     49.636      0.000       1.177       1.274
 <h2 data-number="16.8" class="anchored" data-anchor-id="faster-code"><span class="header-section-number">16.8</span> Faster Code</h2>
 <p>You might want to look at these packages:</p>
 <ul>
-<li>numba</li>
-<li>multiprocessing &amp; joblib</li>
-<li>polars</li>
-<li>JAX</li>
+<li><code>numba</code></li>
+<li><code>multiprocessing</code> &amp; <code>joblib</code></li>
+<li><code>polars</code></li>
+<li><code>jax</code></li>
 </ul>
 <p>These can get complicated very quickly, so beware.</p>
 

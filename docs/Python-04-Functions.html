@@ -314,7 +314,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="function-definition" class="level2" data-number="12.1">
 <h2 data-number="12.1" class="anchored" data-anchor-id="function-definition"><span class="header-section-number">12.1</span> Function definition</h2>
 <p>A function definition follows a specific structure. In Python, functions are defined with the keyword <code>def</code>, and, as for loops, the body of the function is defined by its indentation.</p>
-<div id="9194a726" class="cell" data-execution_count="1">
+<div id="6b51813c" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_function(argument1, argument2):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># here I describe what I want to do with my arguments</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># For example multiply them, assuming that they are numerical.</span></span>
@@ -330,17 +330,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The function can also be called without explicitly naming the arguments, but if you don’t know your code very well, this might lead to difficulties when somebody else or your future self might try to understand the code.</p>
-<div id="3794e5d7" class="cell" data-execution_count="2">
+<div id="bcc5eb17" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>my_function(<span class="dv">2</span>, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>10</code></pre>
 </div>
 </div>
 <p>Another useful feature is the definition of default values for your arguments such that they can be omitted when calling a function.</p>
-<div id="de11ddc4" class="cell" data-execution_count="3">
+<div id="b970715e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_2nd_function(argument1, argument2, greetings <span class="op">=</span> <span class="va">False</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    my_return_value <span class="op">=</span> argument1 <span class="op">*</span> argument2</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> greetings <span class="op">==</span> <span class="va">True</span>:</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> greetings:  <span class="co"># the same as: if greetings == True:</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Hello user, the cake is a lie."</span>)</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> my_return_value</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
@@ -356,7 +356,7 @@ Hello user, the cake is a lie.
 <section id="recursion" class="level2" data-number="12.2">
 <h2 data-number="12.2" class="anchored" data-anchor-id="recursion"><span class="header-section-number">12.2</span> Recursion</h2>
 <p>In some settings using a recursive approach instead of loops can create more readable code. In simple terms, recursion in programming is calling a function in its own body. A simple example - even though very inefficient from a computational standpoint - is calculating factorials.</p>
-<div id="b13a7360" class="cell" data-execution_count="4">
+<div id="51c8c663" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> factorial(n):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">1</span>:</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
@@ -368,9 +368,10 @@ Hello user, the cake is a lie.
 <pre><code>355687428096000</code></pre>
 </div>
 </div>
+<p>Note: Python limits the depth of recursion (by default to about 1000 nested calls), so <code>factorial(5000)</code> would end with a <code>RecursionError</code>.</p>
 <p>Often recursion relies on a principle called “divide and conquer”. We test for a simple base case, like n being equal to one in the case of factorials, and otherwise reducing the problem to a more simple one.</p>
 <p>Another example is the calculation of Fibonacci numbers using recursion.</p>
-<div id="d88c69aa" class="cell" data-execution_count="5">
+<div id="eaade9c5" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fibonacci(n):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">1</span> <span class="kw">or</span> n <span class="op">==</span> <span class="dv">2</span>:</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>

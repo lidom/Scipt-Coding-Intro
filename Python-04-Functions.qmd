@@ -30,7 +30,7 @@ Another useful feature is the definition of default values for your arguments su
 ```{python}
 def my_2nd_function(argument1, argument2, greetings = False):
     my_return_value = argument1 * argument2
-    if greetings == True:
+    if greetings:  # the same as: if greetings == True:
         print("Hello user, the cake is a lie.")
     return my_return_value
 
@@ -50,6 +50,8 @@ def factorial(n):
 
 factorial(17)
 ```
+Note: Python limits the depth of recursion (by default to about 1000 nested calls), so `factorial(5000)` would end with a `RecursionError`.
+
 Often recursion relies on a principle called "divide and conquer". We test for a simple base case, like n being equal to one in the case of factorials, and otherwise reducing the problem to a more simple one.
 
 Another example is the calculation of Fibonacci numbers using recursion.

@@ -49,12 +49,12 @@ def calc_probs_consistency(n, S, p, all_eps):
 ```
 We can now call the function for any $n$, $S$, $p$, and a vector containing different values for $\varepsilon$. For each of these values, the function then returns a probability.
 ```{python}
-all_eps = np.arange(0.01, 0.505, 0.01)
+all_eps = np.linspace(0.01, 0.5, 50)
 probs = calc_probs_consistency(n = 20, S = 1000, p = 0.7, all_eps = all_eps)
 ```
 Next, we can plot all probabilities:
 ```{python}
-plt.scatter(all_eps, probs, color = "blue", facecolors = "none")
+plt.scatter(all_eps, probs, edgecolors = "blue", facecolors = "none")
 plt.ylim(0, 1)
 plt.xlabel("epsilon")
 plt.ylabel("Probability")
@@ -64,7 +64,7 @@ plt.show()
 We can see from the plot that $P\left( \left|\hat{\theta}_n - \theta \right| \leq \varepsilon  \right)$ is quite small for small values of $\varepsilon$. Consistency means that for any $\varepsilon > 0$, the probability approaches $1$ as $n \rightarrow \infty$. We can now easily change the sample size and see how the results change. For example, take $n=200$:
 ```{python}
 probs = calc_probs_consistency(n = 200, S = 10000, p = 0.7, all_eps = all_eps)
-plt.scatter(all_eps, probs, color = "blue", facecolors = "none")
+plt.scatter(all_eps, probs, edgecolors = "blue", facecolors = "none")
 plt.ylim(0, 1)
 plt.xlabel("epsilon")
 plt.ylabel("Probability")
@@ -91,12 +91,14 @@ def calc_probs_asymp_normal(n, S, p, z):
         probs[i] = np.mean(np.sqrt(n)*(theta_hat - p)/stds <= z[i])
     return probs
 ```
+Note: If all observations in a sample are equal (e.g., all ones), the sample standard deviation is zero and the division yields `inf`. NumPy then shows a `RuntimeWarning`, which you can ignore here. (We have hidden these warnings in this script.)
+
 We can now plot the results for different sample sizes such as
 ```{python}
 #| warning: false
-z = np.arange(-3, 3.005, 0.01)
+z = np.linspace(-3, 3, 601)
 probs = calc_probs_asymp_normal(n = 20, S = 10000, p = 0.7, z = z)
-plt.scatter(z, probs, color = "blue", facecolors = "none")
+plt.scatter(z, probs, edgecolors = "blue", facecolors = "none")
 plt.plot(z, norm.cdf(z, 0, 1), color = "red", linewidth = 2)
 plt.ylim(0, 1)
 plt.xlabel("z")
@@ -107,7 +109,7 @@ plt.show()
 or
 ```{python}
 probs = calc_probs_asymp_normal(n = 2000, S = 10000, p = 0.7, z = z)
-plt.scatter(z, probs, color = "blue", facecolors = "none")
+plt.scatter(z, probs, edgecolors = "blue", facecolors = "none")
 plt.plot(z, norm.cdf(z, 0, 1), color = "red", linewidth = 2)
 plt.ylim(0, 1)
 plt.xlabel("z")
@@ -149,9 +151,9 @@ def calc_rej_probs(n, S, mus, mu0, alpha):
 We can now call the function for different values of $\mu$ and plot the rejection probabilities
 ```{python}
 #| warning: false
-mus = np.arange(0.5, 0.905, 0.01)
+mus = np.linspace(0.5, 0.9, 41)
 probs = calc_rej_probs(n = 200, S = 10000, mus = mus, mu0 = 0.7, alpha = 0.05)
-plt.scatter(mus, probs, color = "blue", facecolors = "none")
+plt.scatter(mus, probs, edgecolors = "blue", facecolors = "none")
 plt.axhline(0.05, color = "red", linewidth = 2)
 plt.ylim(0, 1)
 plt.xlabel("True mean")

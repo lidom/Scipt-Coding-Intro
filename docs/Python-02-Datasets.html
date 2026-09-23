@@ -344,7 +344,7 @@ window.Quarto = {
 <section id="simulated-data" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="simulated-data"><span class="header-section-number">10.1</span> Simulated data</h2>
 <p>We start by considering data that is simulated by the user. In NumPy, random numbers are drawn from a <em>random number generator</em>, which we create with <code>np.random.default_rng()</code>. We can then create data sets by using its methods like <code>normal()</code>, <code>exponential()</code> or <code>uniform()</code>. After the data is created we can work with it as shown in the following example:</p>
-<div id="fc88cc97" class="cell" data-execution_count="1">
+<div id="d7d8ea88" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng()  <span class="co"># random number generator</span></span>
@@ -364,12 +364,12 @@ window.Quarto = {
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.mean(U))</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.std(U, ddof <span class="op">=</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>4.727542252622904
-3.0507640765975745
-0.35800237462669815
-0.3538934334052337
-3.9839858554963423
-0.6254176725296046</code></pre>
+<pre><code>5.396117378575643
+3.0781346330269765
+0.37139291619409465
+0.3745982469539909
+4.001333487007003
+0.5696899572197283</code></pre>
 </div>
 </div>
 <p>Note that NumPy parametrizes the exponential distribution by its scale, i.e., by <span class="math inline">\(1/\text{rate}\)</span>.</p>
@@ -379,14 +379,14 @@ window.Quarto = {
 <h2 data-number="10.2" class="anchored" data-anchor-id="load-datasets"><span class="header-section-number">10.2</span> Load datasets</h2>
 <p>It is also possible to work with observed data, which will be loaded into Python. Here, we will use some real data, namely a movie database from IMDB that you can download <a href="https://www.kaggle.com/tmdb/tmdb-movie-metadata#">here</a>. The data set contains, among others, the budget, the revenue, and the average rating of movies.</p>
 <p>Once the data is saved in your working directory, you can load it with the pandas function <code>pd.read_csv()</code></p>
-<div id="c1b13635" class="cell" data-execution_count="2">
+<div id="fbb4b060" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data_set <span class="op">=</span> pd.read_csv(<span class="st">"tmdb_5000_movies.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>which stores the data in a data frame. You can use <code>data_set.head()</code> or the <em>Session</em> pane in Positron (click on the table symbol next to <code>data_set</code>) to look at the data.</p>
 <p>After the file is loaded, we can work with the data using <code>data_set["column_name"]</code> (or <code>data_set.column_name</code>) to access certain parts of the data set such as</p>
-<div id="621b939d" class="cell" data-execution_count="3">
+<div id="e129ded2" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data_set[<span class="st">"original_title"</span>][<span class="dv">0</span>:<span class="dv">5</span>])</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data_set[<span class="st">"budget"</span>][<span class="dv">0</span>:<span class="dv">5</span>])</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data_set[<span class="st">"budget"</span>][<span class="dv">0</span>:<span class="dv">5</span>].mean())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -408,7 +408,7 @@ Name: budget, dtype: int64
 </div>
 <p>We will return to this data set when we talk about regression analysis later.</p>
 <p>Apart from <code>pd.read_csv</code> there exist also <code>pd.read_stata</code>, <code>pd.read_excel</code> and many more to load suitable data sets.</p>
-<p>Another important function is <code>pd.read_pickle</code> that is used to read in a data set that was saved using the method <code>to_pickle</code>. These functions can be useful in case properties of your Python object are not preserved when saved in other formats, such as a csv file.</p>
+<p>Another important function is <code>pd.read_pickle</code> that is used to read in a data set that was saved using the method <code>to_pickle</code>. These functions can be useful in case properties of your Python object are not preserved when saved in other formats, such as a csv file. (Only read pickle files from sources you trust, since they can contain executable code.)</p>
 </section>
 <section id="save-datasets" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="save-datasets"><span class="header-section-number">10.3</span> Save datasets</h2>

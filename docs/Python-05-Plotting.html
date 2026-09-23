@@ -105,6 +105,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -312,7 +341,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>It is often useful to visualize data by using plots. Python offers many different possibilities to create plots, ranging from simple scatterplots to animated plots, that you can export as gifs or even interactive webapps. The standard plotting package in Python is <strong>matplotlib</strong>, which offers many tools to quickly generate plots. Packages like <strong>seaborn</strong>, which is built on top of matplotlib, offer a more convenient interface for statistical plots based on data frames.</p>
 <p>We load matplotlib’s plotting module under its usual short name <code>plt</code>:</p>
-<div id="bab7e0c3" class="cell" data-execution_count="1">
+<div id="a418ed6d" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -321,8 +350,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="the-plot-function" class="level2" data-number="13.1">
 <h2 data-number="13.1" class="anchored" data-anchor-id="the-plot-function"><span class="header-section-number">13.1</span> The plot-function</h2>
 <p>In its simplest form, the <code>plt.scatter()</code> function delivers a scatterplot.</p>
-<div id="b84be964" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="fl">5.1</span>, <span class="fl">0.1</span>)</span>
+<div id="2084b902" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">51</span>)   <span class="co"># 51 equally spaced values from 0 to 5</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> rng.normal(size <span class="op">=</span> <span class="bu">len</span>(x))</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -335,7 +364,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>If we instead want a simple line plot or a combination of both, we can use the <code>plt.plot()</code> function, where the third argument (the <em>format string</em>) specifies this behavior (<code>"-"</code> for lines, <code>"o"</code> for points, and <code>"o-"</code> for both).</p>
-<div id="cb4f936e" class="cell" data-execution_count="3">
+<div id="e47d53fe" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>x <span class="op">+</span> rng.normal(size <span class="op">=</span> <span class="dv">51</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x, z, <span class="st">"-"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -347,7 +376,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="4a46e080" class="cell" data-execution_count="4">
+<div id="3e949ca2" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plt.plot(x, z, <span class="st">"o-"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -358,9 +387,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Other arguments to the plot function can be used to specify color, linestyle (dashed etc.), linewidth, title, subtitle and many more. The help file <code>help(plt.plot)</code> and the <a href="https://matplotlib.org/stable/">matplotlib documentation</a> can be very helpful when trying to achieve a specific look for your plot.</p>
+<p>Other arguments to the <code>plt.plot()</code> function can be used to specify color, linestyle (dashed etc.), linewidth, title, subtitle and many more. The help file <code>help(plt.plot)</code> and the <a href="https://matplotlib.org/stable/">matplotlib documentation</a> can be very helpful when trying to achieve a specific look for your plot.</p>
 <p>An example could look a little like this:</p>
-<div id="b70e5311" class="cell" data-execution_count="5">
+<div id="01a860c7" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, linestyle <span class="op">=</span> <span class="st">"-."</span>, linewidth <span class="op">=</span> <span class="dv">2</span>, color <span class="op">=</span> <span class="st">"green"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Testplot"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -373,7 +402,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>If we want to show multiple things in one diagram it can be useful to plot multiple objects in one coordinate grid. In matplotlib, all plotting commands before <code>plt.show()</code> are drawn into the same figure. The function <code>plt.axline()</code> can be used to add straight lines.</p>
-<div id="b28b90b4" class="cell" data-execution_count="6">
+<div id="ae8d6419" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, color <span class="op">=</span> <span class="st">"green"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x, z, linewidth <span class="op">=</span> <span class="dv">2</span>, linestyle <span class="op">=</span> <span class="st">"-."</span>, color <span class="op">=</span> <span class="st">"red"</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.axline((<span class="dv">0</span>, <span class="dv">0</span>), slope <span class="op">=</span> <span class="fl">0.5</span>, color <span class="op">=</span> <span class="st">"blue"</span>)</span>
@@ -387,7 +416,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>In contrast to R, matplotlib adjusts the range of the axes automatically to all plotted objects. But we can also manually adjust the range of our axes if we choose to do so. This is done using the functions <code>plt.xlim()</code> and <code>plt.ylim()</code>.</p>
-<div id="35e93d3c" class="cell" data-execution_count="7">
+<div id="d7c6ceec" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, color <span class="op">=</span> <span class="st">"green"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x, z, linewidth <span class="op">=</span> <span class="dv">2</span>, linestyle <span class="op">=</span> <span class="st">"-."</span>, color <span class="op">=</span> <span class="st">"red"</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.axline((<span class="dv">0</span>, <span class="dv">0</span>), slope <span class="op">=</span> <span class="fl">0.5</span>, color <span class="op">=</span> <span class="st">"blue"</span>)</span>
@@ -402,8 +431,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>To plot functions like sin(x) or the standard normal density, we evaluate them on a fine grid of x-values. The standard normal density is provided by the module <code>scipy.stats</code>.</p>
-<div id="b81c9c46" class="cell" data-execution_count="8">
+<p>To plot functions like <span class="math inline">\(\sin(x)\)</span> or the standard normal density, we evaluate them on a fine grid of x-values. The standard normal density is provided by the module <code>scipy.stats</code>.</p>
+<div id="ba723c93" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">200</span>)</span>
@@ -433,14 +462,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="histograms-and-kernel-densities" class="level2" data-number="13.2">
 <h2 data-number="13.2" class="anchored" data-anchor-id="histograms-and-kernel-densities"><span class="header-section-number">13.2</span> Histograms and kernel densities</h2>
 <p>Other useful plotting functions include histograms with the function <code>plt.hist()</code>. With the function <code>gaussian_kde()</code> from <code>scipy.stats</code> we get access to kernel density estimates. A kernel density estimator is a nonparametric estimator of density of random variable based on a sample. Details about the estimator are beyond the scope of these notes. In the settings where we will use them, the default choices of the estimator will yield accurate results. Combining our previous knowledge with these possibilities, we can create plots like the following (note: in <code>plt.hist()</code> the argument <code>density = True</code> leads to relative frequency instead of counts. See <code>help(plt.hist)</code> for more details.):</p>
-<div id="b59c48cc" class="cell" data-execution_count="9">
+<div id="2a038817" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> gaussian_kde</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> rng.normal(size <span class="op">=</span> <span class="dv">20</span>)</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>my_dens <span class="op">=</span> gaussian_kde(x)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">4</span>, <span class="fl">4.05</span>, <span class="fl">0.05</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">161</span>)</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>plt.hist(x, density <span class="op">=</span> <span class="va">True</span>, bins <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">4</span>, <span class="fl">4.5</span>, <span class="fl">0.5</span>),</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>plt.hist(x, density <span class="op">=</span> <span class="va">True</span>, bins <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">17</span>),</span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>         edgecolor <span class="op">=</span> <span class="st">"black"</span>, color <span class="op">=</span> <span class="st">"white"</span>)</span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>)</span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>plt.plot(grid, my_dens(grid), color <span class="op">=</span> <span class="st">"green"</span>, linestyle <span class="op">=</span> <span class="st">"--"</span>, linewidth <span class="op">=</span> <span class="dv">2</span>)</span>
@@ -455,7 +484,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Further functions include barplots:</p>
-<div id="78636cef" class="cell" data-execution_count="10">
+<div id="ff59f9b1" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>temperatures <span class="op">=</span> [<span class="dv">17</span>,<span class="dv">23</span>,<span class="dv">18</span>,<span class="dv">30</span>,<span class="dv">32</span>,<span class="dv">16</span>,<span class="dv">4</span>,<span class="op">-</span><span class="dv">3</span>]</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plt.bar(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">9</span>), temperatures)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">15</span>, <span class="dv">35</span>)</span>
@@ -471,7 +500,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>and piecharts:</p>
-<div id="c4182c34" class="cell" data-execution_count="11">
+<div id="0d7f67f2" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>slices <span class="op">=</span> [<span class="dv">8</span>, <span class="dv">14</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">4</span>]</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [<span class="st">"Apple"</span>, <span class="st">"Pumpkin"</span>, <span class="st">"Pork"</span>, <span class="st">"3.14"</span>, <span class="st">"American"</span>]</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>plt.pie(slices, labels <span class="op">=</span> labels)</span>
@@ -486,8 +515,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Another important part of plots - like comments in code - is a legible legend. Matplotlib has built-in support for adding a legend to your plots. Going back to our combined plot from above, one can add a legend as shown in the following example. Here, the <code>label</code> arguments specify the contents of the legend and the <code>loc</code> argument of <code>plt.legend()</code> specifies its position in the plot. Since a legend has to be customized for each plot, one should have a look in the documentation <code>help(plt.legend)</code>.</p>
-<div id="ee9911fe" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="fl">5.1</span>, <span class="fl">0.1</span>)</span>
+<div id="66af5211" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">51</span>)   <span class="co"># 51 equally spaced values from 0 to 5</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> rng.normal(size <span class="op">=</span> <span class="bu">len</span>(x))</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>x <span class="op">+</span> rng.normal(size <span class="op">=</span> <span class="dv">51</span>)</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -506,7 +535,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>If one decides to work with data frames, the package seaborn allows for beautiful, heavily customized plots. An example can be seen below:</p>
-<div id="4dbda10c" class="cell" data-execution_count="13">
+<div id="38f94abc" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -540,7 +569,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Exercise 1:</strong></p>
 <p>Draw samples of size 1000 from exponential distributions with varying values of the parameter. Use histograms to visualize differences in the distributions.</p>
 <p><strong>Exercise 2:</strong></p>
-<p>Take the mtcars dataset (you can load it with <code>import statsmodels.api as sm</code> and <code>mtcars = sm.datasets.get_rdataset("mtcars").data</code>, which requires an internet connection) and plot mpg (miles per gallon) against wt (weight) as a scatterplot. Add a red line with <code>plt.axline</code> by eyeballing the parameters that could come out of a regression.</p>
+<p>Take the <code>mtcars</code> dataset (you can load it with <code>import statsmodels.api as sm</code> and <code>mtcars = sm.datasets.get_rdataset("mtcars").data</code>, which requires an internet connection) and plot <code>mpg</code> (miles per gallon) against <code>wt</code> (weight) as a scatterplot. Add a red line with <code>plt.axline</code> by eyeballing the parameters that could come out of a regression.</p>
 <p><strong>Exercise 3:</strong></p>
 <p>Write a function that takes as its arguments a sample size n and a boolean that indicates, if plotting should take place. Let this function return a sample of size n drawn from a standard normal. If the plotting argument was true, let it also plot your sample in a way that seems sensible to you.</p>
 

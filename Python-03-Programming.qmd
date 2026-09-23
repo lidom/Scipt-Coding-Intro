@@ -59,7 +59,7 @@ if condition:
 else:
     alternative
 ```
-where else can remain unspecified. Further conditions can be checked with `elif condition:`.
+where `else` can remain unspecified. Further conditions can be checked with `elif condition:`.
 
 ```{python}
 ###If-condition###
@@ -95,7 +95,7 @@ while test_expression:
     statement
 ```
 
-Here, test_expression is evaluated and the body of the loop is entered if the result is True.
+Here, `test_expression` is evaluated and the body of the loop is entered if the result is `True`.
 
 
 ```{python}

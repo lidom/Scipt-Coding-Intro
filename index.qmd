@@ -1,3 +1,4 @@
+<!-- LTeX: language=en-US -->
 # Preface {.unnumbered}
 
 
@@ -7,21 +8,20 @@ The purpose of this tutorial is to introduce the programming languages R and Pyt
 -   **Part II: Introduction to Python** 
 
 Both parts have the same structure: each chapter of the R part has a counterpart in the Python part that covers the same topics with the same examples and exercises. So you can work through the part of your preferred language, or compare how the same task is done in both languages.
- The pdf version of these lecture notes is on the [class website](https://ecampus.uni-bonn.de/). The html version is better formatted and can be found [here](https://bookdown.org/joachimfreyberger/r_tutorial_phd_econometrics/_book/). 
 
-Some additional references and tutorials for R you might find helpful are:
+### Some additional references and tutorials for R {-}
 
 -   The online textbook [Introduction to Econometrics with R](https://www.econometrics-with-r.org/) 
 -   [Reference card for R commands](https://cran.r-project.org/doc/contrib/refcard.pdf)  
--   [Matlab/R reference ](https://cran.r-project.org/doc/contrib/Hiebeler-matlabR.pdf)   
 -   [The official introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf)   
 -   [www.r-project.org](https://www.r-project.org/other-docs.html)  
 -   An R-package for learning R: [www.swirl.com](https://swirlstats.com/)   
 -   A book project which covers also advanced issues such as "writing performant code" and "package development": [adv-r.had.co.nz](http://adv-r.had.co.nz/)    
 -   Another excellent book: [R for Data Science](https://r4ds.had.co.nz/)    
+-  [Creating dynamic graphics](https://gganimate.com/)  
 -   [An introduction to statistical learning with R](https://www.statlearning.com/)   
 
-Some additional references and tutorials for Python you might find helpful are:
+### Some additional references and tutorials for Python {-}
 
 -   [The official Python tutorial](https://docs.python.org/3/tutorial/)  
 -   The online lectures [Python Programming for Economics and Finance](https://python-programming.quantecon.org/) by QuantEcon  
@@ -30,13 +30,13 @@ Some additional references and tutorials for Python you might find helpful are:
 -   [Comparison of pandas with R](https://pandas.pydata.org/docs/getting_started/comparison/comparison_with_r.html)  
 -   [An introduction to statistical learning with Python](https://www.statlearning.com/)   
 
-Here are also links to more advanced tutorials:
 
--  [Introduction to data science](https://idc9.github.io/stor390/) 
--  [Creating dynamic graphics](https://gganimate.com/)  
--  [ChatGPT](https://openai.com/chatgpt/)
+### LLMs {-}
 
-Why do we use R and Python?
+Of course, you can also ask large language models (LLMs) such as [ChatGPT](https://openai.com/chatgpt/) or [Claude](https://claude.com/). **But:** Don't fool yourself! Getting an answer from an LLM is usually not the same as learning and understanding.
+
+
+### Why do we use R and Python? {-}
 
 -    R is free of charge and can be downloaded from [https://cran.r-project.org/](https://cran.r-project.org/) 
 -    Python is free of charge and can be downloaded from [https://www.python.org/downloads/](https://www.python.org/downloads/) 

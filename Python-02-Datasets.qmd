@@ -58,7 +58,7 @@ We will return to this data set when we talk about regression analysis later.
 
 Apart from `pd.read_csv` there exist also `pd.read_stata`, `pd.read_excel` and many more to load suitable data sets.
 
-Another important function is `pd.read_pickle` that is used to read in a data set that was saved using the method `to_pickle`. These functions can be useful in case properties of your Python object are not preserved when saved in other formats, such as a csv file.
+Another important function is `pd.read_pickle` that is used to read in a data set that was saved using the method `to_pickle`. These functions can be useful in case properties of your Python object are not preserved when saved in other formats, such as a csv file. (Only read pickle files from sources you trust, since they can contain executable code.)
 
 ## Save datasets
 

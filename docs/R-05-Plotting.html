@@ -98,7 +98,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar floating">
 
@@ -291,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header><p>It is often useful to visualize data by using plots. R offers many different possibilities to create plots, ranging from simple scatterplots to animated plots, that you can export as gifs or even interactive webapps. The built-in capabilities of R offer many tools, to quickly generate plots and packages like ggplot2 from the tidyverse family offer a full plotting experience built on the so called “Grammar of Graphics”.</p>
 <section id="the-plot-function" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="the-plot-function">
 <span class="header-section-number">5.1</span> The plot-function</h2>
-<p>In its simplest form, the plot function in R delivers a scatterplot. In the call below,<code>type = "p"</code> could be omitted as it is the default value if the argument is not provided in the call.</p>
+<p>In its simplest form, the <code>plot</code> function in R delivers a scatterplot. In the call below, <code>type = "p"</code> could be omitted as it is the default value if the argument is not provided in the call.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5</span>, <span class="fl">0.1</span><span class="op">)</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
@@ -303,7 +328,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>If we instead want a simple line plot or a combination of both, we can specify this behavior using the type argument.</p>
+<p>If we instead want a simple line plot or a combination of both, we can specify this behavior using the <code>type</code> argument.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fl">2</span><span class="op">*</span><span class="va">x</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">51</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">z</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -323,7 +348,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Other arguments to the plot function can be used to specify color, linetype (dashed etc.), linewidth, title, subtitle and many more. The help files <code><a href="https://rdrr.io/r/graphics/plot.default.html">?plot</a></code> and <code><a href="https://rdrr.io/r/graphics/par.html">?par</a></code> can be very helpful when trying to achieve a specific look for your plot.</p>
+<p>Other arguments to the <code>plot</code> function can be used to specify color, linetype (dashed etc.), linewidth, title, subtitle and many more. The help files <code><a href="https://rdrr.io/r/graphics/plot.default.html">?plot</a></code> and <code><a href="https://rdrr.io/r/graphics/par.html">?par</a></code> can be very helpful when trying to achieve a specific look for your plot.</p>
 <p>An example could look a little like this:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, type <span class="op">=</span> <span class="st">"l"</span>, lty <span class="op">=</span> <span class="fl">4</span>, lwd <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="st">"green"</span>, main <span class="op">=</span> <span class="st">"Testplot"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -334,7 +359,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>If we want to show multiple things in one diagram it can be useful to plot multiple objects in one coordinate grid. R provides some ways to do so, the most simple ones being the <code>lines</code> function that works similar to the plot function and the <code>abline</code> function which can be used to add straight lines.</p>
+<p>If we want to show multiple things in one diagram it can be useful to plot multiple objects in one coordinate grid. R provides some ways to do so, the most simple ones being the <code>lines</code> function that works similar to the <code>plot</code> function and the <code>abline</code> function which can be used to add straight lines.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, type <span class="op">=</span> <span class="st">"p"</span>, col <span class="op">=</span> <span class="st">"green"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">z</span>, type <span class="op">=</span> <span class="st">"l"</span>, lwd <span class="op">=</span> <span class="fl">2</span>, lty <span class="op">=</span> <span class="fl">4</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span>
@@ -346,7 +371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>As you may see from this plot, our y-axis is not adjusted to our newly added line. But we have a possibility to manually adjust the range of our axes if we choose to do so. This is done using the xlim and ylim arguments in the original plot function.</p>
+<p>As you may see from this plot, our y-axis is not adjusted to our newly added line. But we have a possibility to manually adjust the range of our axes if we choose to do so. This is done using the <code>xlim</code> and <code>ylim</code> arguments in the original <code>plot</code> function.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, type <span class="op">=</span> <span class="st">"p"</span>, col <span class="op">=</span> <span class="st">"green"</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">5</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>, <span class="fl">12</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">z</span>, type <span class="op">=</span> <span class="st">"l"</span>, lwd <span class="op">=</span> <span class="fl">2</span>, lty <span class="op">=</span> <span class="fl">4</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span>
@@ -358,7 +383,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>It is also possible to plot functions like sin(x) or the standard normal density.</p>
+<p>It is also possible to plot functions like <span class="math inline">\(\sin(x)\)</span> or the standard normal density.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">sin</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">10</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -419,7 +444,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Another important part of plots - like comments in code - is a legible legend. R has built-in support for adding a legend to your plots. Going back to our combined plot from above, one can add a legend as shown in the following example. Here the x and y arguments specify the position of the legend in the plot and the other arguments specify its contents. Since a legend has to be customized for each plot, one should have a look in the documentation <code><a href="https://rdrr.io/r/graphics/legend.html">?legend</a></code>.</p>
+<p>Another important part of plots - like comments in code - is a legible legend. R has built-in support for adding a legend to your plots. Going back to our combined plot from above, one can add a legend as shown in the following example. Here the <code>x</code> and <code>y</code> arguments specify the position of the legend in the plot and the other arguments specify its contents. Since a legend has to be customized for each plot, one should have a look in the documentation <code><a href="https://rdrr.io/r/graphics/legend.html">?legend</a></code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5</span>, <span class="fl">0.1</span><span class="op">)</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
@@ -479,7 +504,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Exercise 1:</strong></p>
 <p>Draw samples of size 1000 from exponential distributions with varying values of the parameter. Use histograms to visualize differences in the distributions.</p>
 <p><strong>Exercise 2:</strong></p>
-<p>Take the mtcars dataset that is included in base R and plot mpg (miles per gallon) against wt (weight) as a scatterplot. Add a red line with <code>abline</code> by eyeballing the parameters that could come out of a regression.</p>
+<p>Take the <code>mtcars</code> dataset that is included in base R and plot <code>mpg</code> (miles per gallon) against <code>wt</code> (weight) as a scatterplot. Add a red line with <code>abline</code> by eyeballing the parameters that could come out of a regression.</p>
 <p><strong>Exercise 3:</strong></p>
 <p>Write a function that takes as its arguments a sample size n and a boolean that indicates, if plotting should take place. Let this function return a sample of size n drawn from a standard normal. If the plotting argument was true, let it also plot your sample in a way that seems sensible to you.</p>
 
