@@ -1,0 +1,85 @@
+# Some notes on useful packages
+
+## The tidyverse family
+```"The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures."```
+The tidyverse family of R packages provides a comprehensive framework for many useful tools we need: from reading in data with readr [csv, tsv etc.] and haven [SPSS, Stata, SAS], wrangling it into the shape one desires with dplyr (mostly so called tidy-data) to visualization with ggplot2. These packages are not necessary to use R efficiently, but have a large following in the R community and often provide a more comfortable way to perform tedious tasks. A comprehensive guide to the tidyverse is provided in Hadley Wickham's book [R for Data Science](https://r4ds.had.co.nz/).
+
+## Tidymodels
+A set of modeling packages built on the tidyverse architecture that can be used for a multitude of tasks. https://www.tidymodels.org/
+
+
+## lmtest
+```"A collection of tests, data sets, and examples for diagnostic checking in linear regression models. Furthermore, some generic tools for inference in parametric models are provided."```
+
+
+<!-- Needed as a dependency for some of the next packages or for examples. (Makes the function `coeftest`available.)
+```{r, warning=FALSE}
+library(lmtest)
+```
+
+## Sandwich
+A package used to calculate many different robust covariance matrix estimators. A simple application for heteroskedasticity consistent covariance estimation in an OLS setting is given below.
+```{r}
+library(sandwich)
+x <- runif(1000, min = 0, max = 10)
+eps <- rnorm(1000, mean = 0, sd = sqrt(x))
+y <- 1.2*x + eps
+my_model <- lm(y ~ x)
+my_hc_vcov <- vcovHC(x = my_model, type = "HC1")
+```
+The first table describes our estimates when we assume homoskedastic error terms, while the second one correctly assumes heteroskedasticity.
+```{r} 
+print(coeftest(my_model))
+print(coeftest(my_model, vcov. = my_hc_vcov))
+```
+
+--> 
+
+## MASS 
+Collection of many useful functions that originated as a support package for a book on applied statistics with S (the predecessor language of R). One example is its function `mvrnorm` that enables its user to draw from a multivariate normal with a given mean vector and covariance matrix.
+```{r, warning=FALSE}
+library(MASS)
+my_sample <-mvrnorm(n = 100, mu = c(0,0), Sigma = matrix(data = c(1,0.5,0.5,1), nrow = 2, byrow = T))
+head(my_sample)
+```
+
+## AER - "Applied Econometrics with R"
+Provides many useful function in the context of applied Econometrics. One prominent example is the function `ivreg` used for IV-estimation.
+
+<!--
+```{r, warning=FALSE}
+library(AER)
+sample <- mvrnorm(n = 200, mu = c(1,0,0),
+                  Sigma = matrix(data = c(1, 0,   0,
+                                          0, 1,   0.8,
+                                          0, 0.8, 1), 
+                                 nrow = 3, byrow = T))
+z <- sample[,1] 
+e <- sample[,2]
+v <- sample[,3] 
+
+x <- 1.3*z + v
+y <- 2*x + e
+
+my_iv_model <- ivreg(formula = y ~ x | z)
+summary(my_iv_model)
+```
+--> 
+
+
+## knitr
+Formally an engine for dynamic report generation, knitr can be especially useful in your studies, if you want to use R in conjunction with markdown and output to different files. For example. this introduction is created from a bunch of Rmd files [R Markdown]. It can also be used to utilize R in a similar way to a Jupyter notebook, intermingling code and text freely.
+
+## Shiny
+Used to build interactive web-aps with R. Somewhat more advanced, but very cool.
+
+## Faster Code
+You might want to look at these packages:
+
+* Rcpp
+* parallel
+* data.table
+* future & future.apply
+
+These can get complicated very quickly, so beware.
+

@@ -1,0 +1,13 @@
+name: r_econometrics
+title: R Econometrics
+username: joachimfreyberger
+account: joachimfreyberger
+server: bookdown.org
+hostUrl: https://bookdown.org/__api__
+appId: 14642
+bundleId: 108178
+url: https://bookdown.org/joachimfreyberger/r_econometrics/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: 01-Getting-Started.Rmd|02-Datasets.Rmd|03-Programming.Rmd|04-Functions.Rmd|05-Plotting.Rmd|06-Monte-Carlo-Simulations.Rmd|07-Regression.Rmd|08-Notes-on-useful-packages.Rmd|book.bib|build_bookdown_script.R|index.Rmd|rstudio.jpg|tmdb_5000_movies.csv|_main_files|old

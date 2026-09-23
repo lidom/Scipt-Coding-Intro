@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8 Some notes on useful packages | Introduction to R</title>
+  <meta name="description" content="R script for Econometrics I" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8 Some notes on useful packages | Introduction to R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="R script for Econometrics I" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8 Some notes on useful packages | Introduction to R" />
+  
+  <meta name="twitter:description" content="R script for Econometrics I" />
+  
+
+<meta name="author" content="Institute of Finance and Statistics" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="regression-analysis.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="the-first-steps-in-r.html"><a href="the-first-steps-in-r.html"><i class="fa fa-check"></i><b>1</b> The first steps in R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="the-first-steps-in-r.html"><a href="the-first-steps-in-r.html#rstudio-for-the-first-time"><i class="fa fa-check"></i><b>1.1</b> RStudio for the first time</a></li>
+<li class="chapter" data-level="1.2" data-path="the-first-steps-in-r.html"><a href="the-first-steps-in-r.html#simple-calculations"><i class="fa fa-check"></i><b>1.2</b> Simple calculations</a></li>
+<li class="chapter" data-level="1.3" data-path="the-first-steps-in-r.html"><a href="the-first-steps-in-r.html#assigments-and-matrix-algebra"><i class="fa fa-check"></i><b>1.3</b> Assigments and matrix algebra</a></li>
+<li class="chapter" data-level="1.4" data-path="the-first-steps-in-r.html"><a href="the-first-steps-in-r.html#operators"><i class="fa fa-check"></i><b>1.4</b> Operators</a></li>
+<li class="chapter" data-level="1.5" data-path="the-first-steps-in-r.html"><a href="the-first-steps-in-r.html#further-data-objects"><i class="fa fa-check"></i><b>1.5</b> Further data objects</a></li>
+<li class="chapter" data-level="1.6" data-path="the-first-steps-in-r.html"><a href="the-first-steps-in-r.html#r-help"><i class="fa fa-check"></i><b>1.6</b> R help</a></li>
+<li class="chapter" data-level="1.7" data-path="the-first-steps-in-r.html"><a href="the-first-steps-in-r.html#r-packages"><i class="fa fa-check"></i><b>1.7</b> R packages</a></li>
+<li class="chapter" data-level="1.8" data-path="the-first-steps-in-r.html"><a href="the-first-steps-in-r.html#exercises-i"><i class="fa fa-check"></i><b>1.8</b> Exercises I</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="create-and-load-data-sets.html"><a href="create-and-load-data-sets.html"><i class="fa fa-check"></i><b>2</b> Create and load data sets</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="create-and-load-data-sets.html"><a href="create-and-load-data-sets.html#simulated-data"><i class="fa fa-check"></i><b>2.1</b> Simulated data</a></li>
+<li class="chapter" data-level="2.2" data-path="create-and-load-data-sets.html"><a href="create-and-load-data-sets.html#load-datasets"><i class="fa fa-check"></i><b>2.2</b> Load datasets</a></li>
+<li class="chapter" data-level="2.3" data-path="create-and-load-data-sets.html"><a href="create-and-load-data-sets.html#save-datasets"><i class="fa fa-check"></i><b>2.3</b> Save datasets</a></li>
+<li class="chapter" data-level="2.4" data-path="create-and-load-data-sets.html"><a href="create-and-load-data-sets.html#exercises-ii"><i class="fa fa-check"></i><b>2.4</b> Exercises II</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="simple-programming.html"><a href="simple-programming.html"><i class="fa fa-check"></i><b>3</b> Simple programming</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="simple-programming.html"><a href="simple-programming.html#the-for-loop"><i class="fa fa-check"></i><b>3.1</b> The for-loop</a></li>
+<li class="chapter" data-level="3.2" data-path="simple-programming.html"><a href="simple-programming.html#the-if-condition"><i class="fa fa-check"></i><b>3.2</b> The if-condition</a></li>
+<li class="chapter" data-level="3.3" data-path="simple-programming.html"><a href="simple-programming.html#the-while-loop"><i class="fa fa-check"></i><b>3.3</b> The while-loop</a></li>
+<li class="chapter" data-level="3.4" data-path="simple-programming.html"><a href="simple-programming.html#time-saving-and-loops"><i class="fa fa-check"></i><b>3.4</b> Time saving and loops</a></li>
+<li class="chapter" data-level="3.5" data-path="simple-programming.html"><a href="simple-programming.html#exercises-iii"><i class="fa fa-check"></i><b>3.5</b> Exercises III</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>4</b> Functions</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="functions.html"><a href="functions.html#function-definition"><i class="fa fa-check"></i><b>4.1</b> Function definition</a></li>
+<li class="chapter" data-level="4.2" data-path="functions.html"><a href="functions.html#recursion"><i class="fa fa-check"></i><b>4.2</b> Recursion</a></li>
+<li class="chapter" data-level="4.3" data-path="functions.html"><a href="functions.html#exercises-iv"><i class="fa fa-check"></i><b>4.3</b> Exercises IV</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="plotting-in-r.html"><a href="plotting-in-r.html"><i class="fa fa-check"></i><b>5</b> Plotting in R</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="plotting-in-r.html"><a href="plotting-in-r.html#the-plot-function"><i class="fa fa-check"></i><b>5.1</b> The plot-function</a></li>
+<li class="chapter" data-level="5.2" data-path="plotting-in-r.html"><a href="plotting-in-r.html#histograms-and-kernel-densities"><i class="fa fa-check"></i><b>5.2</b> Histograms and kernel densities</a></li>
+<li class="chapter" data-level="5.3" data-path="plotting-in-r.html"><a href="plotting-in-r.html#exercises-v"><i class="fa fa-check"></i><b>5.3</b> Exercises V</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="monte-carlo-simulations.html"><a href="monte-carlo-simulations.html"><i class="fa fa-check"></i><b>6</b> Monte Carlo simulations</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="monte-carlo-simulations.html"><a href="monte-carlo-simulations.html#some-important-concepts"><i class="fa fa-check"></i><b>6.1</b> Some important concepts</a></li>
+<li class="chapter" data-level="6.2" data-path="monte-carlo-simulations.html"><a href="monte-carlo-simulations.html#simple-simulation-example"><i class="fa fa-check"></i><b>6.2</b> Simple simulation example</a></li>
+<li class="chapter" data-level="6.3" data-path="monte-carlo-simulations.html"><a href="monte-carlo-simulations.html#consistency"><i class="fa fa-check"></i><b>6.3</b> Consistency</a></li>
+<li class="chapter" data-level="6.4" data-path="monte-carlo-simulations.html"><a href="monte-carlo-simulations.html#asymptotic-normality"><i class="fa fa-check"></i><b>6.4</b> Asymptotic normality</a></li>
+<li class="chapter" data-level="6.5" data-path="monte-carlo-simulations.html"><a href="monte-carlo-simulations.html#testing"><i class="fa fa-check"></i><b>6.5</b> Testing</a></li>
+<li class="chapter" data-level="6.6" data-path="monte-carlo-simulations.html"><a href="monte-carlo-simulations.html#exercises-vi"><i class="fa fa-check"></i><b>6.6</b> Exercises VI</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="regression-analysis.html"><a href="regression-analysis.html"><i class="fa fa-check"></i><b>7</b> Regression analysis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="regression-analysis.html"><a href="regression-analysis.html#basic-linear-model"><i class="fa fa-check"></i><b>7.1</b> Basic linear model</a></li>
+<li class="chapter" data-level="7.2" data-path="regression-analysis.html"><a href="regression-analysis.html#empirical-example"><i class="fa fa-check"></i><b>7.2</b> Empirical example</a></li>
+<li class="chapter" data-level="7.3" data-path="regression-analysis.html"><a href="regression-analysis.html#exercises-vii"><i class="fa fa-check"></i><b>7.3</b> Exercises VII</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="some-notes-on-useful-packages.html"><a href="some-notes-on-useful-packages.html"><i class="fa fa-check"></i><b>8</b> Some notes on useful packages</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="some-notes-on-useful-packages.html"><a href="some-notes-on-useful-packages.html#the-tidyverse-family"><i class="fa fa-check"></i><b>8.1</b> The tidyverse family</a></li>
+<li class="chapter" data-level="8.2" data-path="some-notes-on-useful-packages.html"><a href="some-notes-on-useful-packages.html#tidymodels"><i class="fa fa-check"></i><b>8.2</b> Tidymodels</a></li>
+<li class="chapter" data-level="8.3" data-path="some-notes-on-useful-packages.html"><a href="some-notes-on-useful-packages.html#lmtest"><i class="fa fa-check"></i><b>8.3</b> lmtest</a></li>
+<li class="chapter" data-level="8.4" data-path="some-notes-on-useful-packages.html"><a href="some-notes-on-useful-packages.html#mass"><i class="fa fa-check"></i><b>8.4</b> MASS</a></li>
+<li class="chapter" data-level="8.5" data-path="some-notes-on-useful-packages.html"><a href="some-notes-on-useful-packages.html#aer---applied-econometrics-with-r"><i class="fa fa-check"></i><b>8.5</b> AER - “Applied Econometrics with R”</a></li>
+<li class="chapter" data-level="8.6" data-path="some-notes-on-useful-packages.html"><a href="some-notes-on-useful-packages.html#knitr"><i class="fa fa-check"></i><b>8.6</b> knitr</a></li>
+<li class="chapter" data-level="8.7" data-path="some-notes-on-useful-packages.html"><a href="some-notes-on-useful-packages.html#shiny"><i class="fa fa-check"></i><b>8.7</b> Shiny</a></li>
+<li class="chapter" data-level="8.8" data-path="some-notes-on-useful-packages.html"><a href="some-notes-on-useful-packages.html#faster-code"><i class="fa fa-check"></i><b>8.8</b> Faster Code</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="some-notes-on-useful-packages" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">8</span> Some notes on useful packages<a href="some-notes-on-useful-packages.html#some-notes-on-useful-packages" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="the-tidyverse-family" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> The tidyverse family<a href="some-notes-on-useful-packages.html#the-tidyverse-family" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>"The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures."</code>
+The tidyverse family of R packages provides a comprehensive framework for many useful tools we need: from reading in data with readr [csv, tsv etc.] and haven [SPSS, Stata, SAS], wrangling it into the shape one desires with dplyr (mostly so called tidy-data) to visualization with ggplot2. These packages are not necessary to use R efficiently, but have a large following in the R community and often provide a more comfortable way to perform tedious tasks. A comprehensive guide to the tidyverse is provided in Hadley Wickham’s book <a href="https://r4ds.had.co.nz/">R for Data Science</a>.</p>
+</div>
+<div id="tidymodels" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Tidymodels<a href="some-notes-on-useful-packages.html#tidymodels" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A set of modeling packages built on the tidyverse architecture that can be used for a multitude of tasks. <a href="https://www.tidymodels.org/" class="uri">https://www.tidymodels.org/</a></p>
+</div>
+<div id="lmtest" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> lmtest<a href="some-notes-on-useful-packages.html#lmtest" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>"A collection of tests, data sets, and examples for diagnostic checking in linear regression models. Furthermore, some generic tools for inference in parametric models are provided."</code></p>
+<!-- Needed as a dependency for some of the next packages or for examples. (Makes the function `coeftest`available.)
+
+``` r
+library(lmtest)
+```
+
+## Sandwich
+A package used to calculate many different robust covariance matrix estimators. A simple application for heteroskedasticity consistent covariance estimation in an OLS setting is given below.
+
+``` r
+library(sandwich)
+x <- runif(1000, min = 0, max = 10)
+eps <- rnorm(1000, mean = 0, sd = sqrt(x))
+y <- 1.2*x + eps
+my_model <- lm(y ~ x)
+my_hc_vcov <- vcovHC(x = my_model, type = "HC1")
+```
+The first table describes our estimates when we assume homoskedastic error terms, while the second one correctly assumes heteroskedasticity.
+
+``` r
+print(coeftest(my_model))
+```
+
+```
+## 
+## t test of coefficients:
+## 
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 0.057997   0.140215  0.4136   0.6792    
+## x           1.187016   0.023782 49.9126   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+``` r
+print(coeftest(my_model, vcov. = my_hc_vcov))
+```
+
+```
+## 
+## t test of coefficients:
+## 
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 0.057997   0.103713  0.5592   0.5761    
+## x           1.187016   0.023817 49.8395   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+-->
+</div>
+<div id="mass" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> MASS<a href="some-notes-on-useful-packages.html#mass" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Collection of many useful functions that originated as a support package for a book on applied statistics with S (the predecessor language of R). One example is its function <code>mvrnorm</code> that enables its user to draw from a multivariate normal with a given mean vector and covariance matrix.</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="some-notes-on-useful-packages.html#cb183-1" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb183-2"><a href="some-notes-on-useful-packages.html#cb183-2" tabindex="-1"></a>my_sample <span class="ot">&lt;-</span><span class="fu">mvrnorm</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">mu =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">Sigma =</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="dv">1</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">byrow =</span> T))</span>
+<span id="cb183-3"><a href="some-notes-on-useful-packages.html#cb183-3" tabindex="-1"></a><span class="fu">head</span>(my_sample)</span></code></pre></div>
+<pre><code>##             [,1]       [,2]
+## [1,] -1.04001110 -1.1489202
+## [2,] -1.16540797 -1.8931664
+## [3,]  1.57256382  1.2056979
+## [4,]  1.09718163 -0.8066595
+## [5,] -0.02958764  0.5466597
+## [6,]  0.96342122  0.2601426</code></pre>
+</div>
+<div id="aer---applied-econometrics-with-r" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> AER - “Applied Econometrics with R”<a href="some-notes-on-useful-packages.html#aer---applied-econometrics-with-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Provides many useful function in the context of applied Econometrics. One prominent example is the function <code>ivreg</code> used for IV-estimation.</p>
+<!--
+
+``` r
+library(AER)
+sample <- mvrnorm(n = 200, mu = c(1,0,0),
+                  Sigma = matrix(data = c(1, 0,   0,
+                                          0, 1,   0.8,
+                                          0, 0.8, 1), 
+                                 nrow = 3, byrow = T))
+z <- sample[,1] 
+e <- sample[,2]
+v <- sample[,3] 
+
+x <- 1.3*z + v
+y <- 2*x + e
+
+my_iv_model <- ivreg(formula = y ~ x | z)
+summary(my_iv_model)
+```
+
+```
+## 
+## Call:
+## ivreg(formula = y ~ x | z)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -3.760830 -0.609804 -0.002113  0.679540  2.747643 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.03613    0.10536   0.343    0.732    
+## x            1.96662    0.06208  31.680   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.023 on 198 degrees of freedom
+## Multiple R-Squared: 0.9237,  Adjusted R-squared: 0.9233 
+## Wald test:  1004 on 1 and 198 DF,  p-value: < 2.2e-16
+```
+-->
+</div>
+<div id="knitr" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> knitr<a href="some-notes-on-useful-packages.html#knitr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Formally an engine for dynamic report generation, knitr can be especially useful in your studies, if you want to use R in conjunction with markdown and output to different files. For example. this introduction is created from a bunch of Rmd files [R Markdown]. It can also be used to utilize R in a similar way to a Jupyter notebook, intermingling code and text freely.</p>
+</div>
+<div id="shiny" class="section level2 hasAnchor" number="8.7">
+<h2><span class="header-section-number">8.7</span> Shiny<a href="some-notes-on-useful-packages.html#shiny" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Used to build interactive web-aps with R. Somewhat more advanced, but very cool.</p>
+</div>
+<div id="faster-code" class="section level2 hasAnchor" number="8.8">
+<h2><span class="header-section-number">8.8</span> Faster Code<a href="some-notes-on-useful-packages.html#faster-code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You might want to look at these packages:</p>
+<ul>
+<li>Rcpp</li>
+<li>parallel</li>
+<li>data.table</li>
+<li>future &amp; future.apply</li>
+</ul>
+<p>These can get complicated very quickly, so beware.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="regression-analysis.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

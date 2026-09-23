@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Monte Carlo simulations | Introduction to R</title>
+  <meta name="description" content="R script for Econometrics I" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Monte Carlo simulations | Introduction to R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="R script for Econometrics I" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Monte Carlo simulations | Introduction to R" />
+  
+  <meta name="twitter:description" content="R script for Econometrics I" />
+  
+
+<meta name="author" content="Institute of Finance and Statistics" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="plotting-in-r.html"/>
+<link rel="next" href="regression-analysis.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="the-first-steps-in-r.html"><a href="the-first-steps-in-r.html"><i class="fa fa-check"></i><b>1</b> The first steps in R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="the-first-steps-in-r.html"><a href="the-first-steps-in-r.html#rstudio-for-the-first-time"><i class="fa fa-check"></i><b>1.1</b> RStudio for the first time</a></li>
+<li class="chapter" data-level="1.2" data-path="the-first-steps-in-r.html"><a href="the-first-steps-in-r.html#simple-calculations"><i class="fa fa-check"></i><b>1.2</b> Simple calculations</a></li>
+<li class="chapter" data-level="1.3" data-path="the-first-steps-in-r.html"><a href="the-first-steps-in-r.html#assigments-and-matrix-algebra"><i class="fa fa-check"></i><b>1.3</b> Assigments and matrix algebra</a></li>
+<li class="chapter" data-level="1.4" data-path="the-first-steps-in-r.html"><a href="the-first-steps-in-r.html#operators"><i class="fa fa-check"></i><b>1.4</b> Operators</a></li>
+<li class="chapter" data-level="1.5" data-path="the-first-steps-in-r.html"><a href="the-first-steps-in-r.html#further-data-objects"><i class="fa fa-check"></i><b>1.5</b> Further data objects</a></li>
+<li class="chapter" data-level="1.6" data-path="the-first-steps-in-r.html"><a href="the-first-steps-in-r.html#r-help"><i class="fa fa-check"></i><b>1.6</b> R help</a></li>
+<li class="chapter" data-level="1.7" data-path="the-first-steps-in-r.html"><a href="the-first-steps-in-r.html#r-packages"><i class="fa fa-check"></i><b>1.7</b> R packages</a></li>
+<li class="chapter" data-level="1.8" data-path="the-first-steps-in-r.html"><a href="the-first-steps-in-r.html#exercises-i"><i class="fa fa-check"></i><b>1.8</b> Exercises I</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="create-and-load-data-sets.html"><a href="create-and-load-data-sets.html"><i class="fa fa-check"></i><b>2</b> Create and load data sets</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="create-and-load-data-sets.html"><a href="create-and-load-data-sets.html#simulated-data"><i class="fa fa-check"></i><b>2.1</b> Simulated data</a></li>
+<li class="chapter" data-level="2.2" data-path="create-and-load-data-sets.html"><a href="create-and-load-data-sets.html#load-datasets"><i class="fa fa-check"></i><b>2.2</b> Load datasets</a></li>
+<li class="chapter" data-level="2.3" data-path="create-and-load-data-sets.html"><a href="create-and-load-data-sets.html#save-datasets"><i class="fa fa-check"></i><b>2.3</b> Save datasets</a></li>
+<li class="chapter" data-level="2.4" data-path="create-and-load-data-sets.html"><a href="create-and-load-data-sets.html#exercises-ii"><i class="fa fa-check"></i><b>2.4</b> Exercises II</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="simple-programming.html"><a href="simple-programming.html"><i class="fa fa-check"></i><b>3</b> Simple programming</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="simple-programming.html"><a href="simple-programming.html#the-for-loop"><i class="fa fa-check"></i><b>3.1</b> The for-loop</a></li>
+<li class="chapter" data-level="3.2" data-path="simple-programming.html"><a href="simple-programming.html#the-if-condition"><i class="fa fa-check"></i><b>3.2</b> The if-condition</a></li>
+<li class="chapter" data-level="3.3" data-path="simple-programming.html"><a href="simple-programming.html#the-while-loop"><i class="fa fa-check"></i><b>3.3</b> The while-loop</a></li>
+<li class="chapter" data-level="3.4" data-path="simple-programming.html"><a href="simple-programming.html#time-saving-and-loops"><i class="fa fa-check"></i><b>3.4</b> Time saving and loops</a></li>
+<li class="chapter" data-level="3.5" data-path="simple-programming.html"><a href="simple-programming.html#exercises-iii"><i class="fa fa-check"></i><b>3.5</b> Exercises III</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>4</b> Functions</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="functions.html"><a href="functions.html#function-definition"><i class="fa fa-check"></i><b>4.1</b> Function definition</a></li>
+<li class="chapter" data-level="4.2" data-path="functions.html"><a href="functions.html#recursion"><i class="fa fa-check"></i><b>4.2</b> Recursion</a></li>
+<li class="chapter" data-level="4.3" data-path="functions.html"><a href="functions.html#exercises-iv"><i class="fa fa-check"></i><b>4.3</b> Exercises IV</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="plotting-in-r.html"><a href="plotting-in-r.html"><i class="fa fa-check"></i><b>5</b> Plotting in R</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="plotting-in-r.html"><a href="plotting-in-r.html#the-plot-function"><i class="fa fa-check"></i><b>5.1</b> The plot-function</a></li>
+<li class="chapter" data-level="5.2" data-path="plotting-in-r.html"><a href="plotting-in-r.html#histograms-and-kernel-densities"><i class="fa fa-check"></i><b>5.2</b> Histograms and kernel densities</a></li>
+<li class="chapter" data-level="5.3" data-path="plotting-in-r.html"><a href="plotting-in-r.html#exercises-v"><i class="fa fa-check"></i><b>5.3</b> Exercises V</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="monte-carlo-simulations.html"><a href="monte-carlo-simulations.html"><i class="fa fa-check"></i><b>6</b> Monte Carlo simulations</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="monte-carlo-simulations.html"><a href="monte-carlo-simulations.html#some-important-concepts"><i class="fa fa-check"></i><b>6.1</b> Some important concepts</a></li>
+<li class="chapter" data-level="6.2" data-path="monte-carlo-simulations.html"><a href="monte-carlo-simulations.html#simple-simulation-example"><i class="fa fa-check"></i><b>6.2</b> Simple simulation example</a></li>
+<li class="chapter" data-level="6.3" data-path="monte-carlo-simulations.html"><a href="monte-carlo-simulations.html#consistency"><i class="fa fa-check"></i><b>6.3</b> Consistency</a></li>
+<li class="chapter" data-level="6.4" data-path="monte-carlo-simulations.html"><a href="monte-carlo-simulations.html#asymptotic-normality"><i class="fa fa-check"></i><b>6.4</b> Asymptotic normality</a></li>
+<li class="chapter" data-level="6.5" data-path="monte-carlo-simulations.html"><a href="monte-carlo-simulations.html#testing"><i class="fa fa-check"></i><b>6.5</b> Testing</a></li>
+<li class="chapter" data-level="6.6" data-path="monte-carlo-simulations.html"><a href="monte-carlo-simulations.html#exercises-vi"><i class="fa fa-check"></i><b>6.6</b> Exercises VI</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="regression-analysis.html"><a href="regression-analysis.html"><i class="fa fa-check"></i><b>7</b> Regression analysis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="regression-analysis.html"><a href="regression-analysis.html#basic-linear-model"><i class="fa fa-check"></i><b>7.1</b> Basic linear model</a></li>
+<li class="chapter" data-level="7.2" data-path="regression-analysis.html"><a href="regression-analysis.html#empirical-example"><i class="fa fa-check"></i><b>7.2</b> Empirical example</a></li>
+<li class="chapter" data-level="7.3" data-path="regression-analysis.html"><a href="regression-analysis.html#exercises-vii"><i class="fa fa-check"></i><b>7.3</b> Exercises VII</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="some-notes-on-useful-packages.html"><a href="some-notes-on-useful-packages.html"><i class="fa fa-check"></i><b>8</b> Some notes on useful packages</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="some-notes-on-useful-packages.html"><a href="some-notes-on-useful-packages.html#the-tidyverse-family"><i class="fa fa-check"></i><b>8.1</b> The tidyverse family</a></li>
+<li class="chapter" data-level="8.2" data-path="some-notes-on-useful-packages.html"><a href="some-notes-on-useful-packages.html#tidymodels"><i class="fa fa-check"></i><b>8.2</b> Tidymodels</a></li>
+<li class="chapter" data-level="8.3" data-path="some-notes-on-useful-packages.html"><a href="some-notes-on-useful-packages.html#lmtest"><i class="fa fa-check"></i><b>8.3</b> lmtest</a></li>
+<li class="chapter" data-level="8.4" data-path="some-notes-on-useful-packages.html"><a href="some-notes-on-useful-packages.html#mass"><i class="fa fa-check"></i><b>8.4</b> MASS</a></li>
+<li class="chapter" data-level="8.5" data-path="some-notes-on-useful-packages.html"><a href="some-notes-on-useful-packages.html#aer---applied-econometrics-with-r"><i class="fa fa-check"></i><b>8.5</b> AER - “Applied Econometrics with R”</a></li>
+<li class="chapter" data-level="8.6" data-path="some-notes-on-useful-packages.html"><a href="some-notes-on-useful-packages.html#knitr"><i class="fa fa-check"></i><b>8.6</b> knitr</a></li>
+<li class="chapter" data-level="8.7" data-path="some-notes-on-useful-packages.html"><a href="some-notes-on-useful-packages.html#shiny"><i class="fa fa-check"></i><b>8.7</b> Shiny</a></li>
+<li class="chapter" data-level="8.8" data-path="some-notes-on-useful-packages.html"><a href="some-notes-on-useful-packages.html#faster-code"><i class="fa fa-check"></i><b>8.8</b> Faster Code</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="monte-carlo-simulations" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">6</span> Monte Carlo simulations<a href="monte-carlo-simulations.html#monte-carlo-simulations" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="some-important-concepts" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Some important concepts<a href="monte-carlo-simulations.html#some-important-concepts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We will spend a lot of time learning about statistical properties of estimators. To be precise, let <span class="math inline">\(\hat{\theta}_n\)</span> be an estimator of a parameter <span class="math inline">\(\theta\)</span>. The estimator is a functions of the sample, say <span class="math inline">\(\{X_1, X_2, \ldots, X_n\}\)</span>. The sample consists of random variables and any function of the sample, including <span class="math inline">\(\hat{\theta}_n\)</span>, is a random variable as well. That is, for different realizations of the data, we get different realizations of the estimator.</p>
+<p>These arguments can be confusing because in practice we typically only have one data set and therefore only one realization of the estimator. But we could also think of all the other realizations of the data we could have obtained. For example, consider your starting salary after graduation. Let <span class="math inline">\(\theta\)</span> be the expected starting salary, which is a fixed number that we do not know. After everyone started working and we see your actual starting salaries, we can calculate the sample average as an estimate of the expected value, but this estimate is just one potential realization. If things had turned out slightly different, your starting salaries might have been different and we would have seen a different realization of the estimator.</p>
+<p>Since an estimator is a random variable, it has a distribution and (typically) a mean and a variance. We call an estimator unbiased if
+<span class="math display">\[E\left(\hat{\theta}_n\right) = \theta\]</span>
+That is, the average value of the estimator over all the hypothetical data sets we could have obtained is equal to <span class="math inline">\(\theta\)</span>. Unbiasedness can hold for any sample size <span class="math inline">\(n\)</span> and is therefore called a small-sample property. Unbiasedness does not imply that <span class="math inline">\(\hat{\theta}_n\)</span> is necessarily close to <span class="math inline">\(\theta\)</span>.</p>
+<p>We will define what it means for an estimator to be consistent:
+<span class="math display">\[\hat{\theta}_n \rightarrow_P  \theta\]</span>
+and asymptotically normally distributed:
+<span class="math display">\[\sqrt{n}\left(\hat{\theta}_n  - \theta \right) \rightarrow_D N(0,V_{\theta}^2) \]</span>
+These properties only hold in the limit and are called large-sample properties. Knowing the large-sample distribution is particularly useful because it allows us to test hypotheses and obtain confidence intervals. For example, let <span class="math inline">\(\hat{V}_{\theta}\)</span> be a consistent estimator of <span class="math inline">\(V_{\theta}\)</span>. Then
+<span class="math display">\[P\left( \theta \in \left[ \hat{\theta}_n - 1.96\frac{\hat{V}_{\theta}}{\sqrt{n}} , \, \hat{\theta}_n + 1.96\frac{\hat{V}_{\theta}}{\sqrt{n}} \right] \right) \rightarrow 0.95\]</span>
+and the interval
+<span class="math display">\[\left[ \hat{\theta}_n - 1.96\frac{\hat{V}_{\theta}}{\sqrt{n}} , \, \hat{\theta}_n + 1.96\frac{\hat{V}_{\theta}}{\sqrt{n}} \right]\]</span>
+is a <span class="math inline">\(95\%\)</span> confidence interval for <span class="math inline">\(\theta\)</span>. That is, looking at all hypothetical data sets, <span class="math inline">\(\theta\)</span> is in <span class="math inline">\(95\%\)</span> of the confidence intervals. Notice that in different data sets, we get different intervals, but the parameter <span class="math inline">\(\theta\)</span> does not change.</p>
+<p>The <span class="math inline">\(95\%\)</span> coverage probability only holds in the limit, but for any fixed sample size
+<span class="math display">\[P\left( \theta \in \left[ \hat{\theta}_n - 1.96\frac{\hat{V}_{\theta}}{\sqrt{n}} , \, \hat{\theta}_n + 1.96\frac{\hat{V}_{\theta}}{\sqrt{n}} \right] \right) \]</span>
+could be much smaller than <span class="math inline">\(95\%\)</span>. This actual coverage probability is unknown in applications.</p>
+<p>The goal of Monte Carlo simulations is typically to investigate small sample properties of estimators, such as the actual coverage probability of confidence intervals for fixed <span class="math inline">\(n\)</span>. To do so, we can simulate many random samples from an underlying distribution and obtain the realization of the estimator for each sample. We can then use the realizations to approximate the actual small sample distribution of the estimator and check properties, such as coverage probabilities of confidence intervals. Of course, the properties of the estimator depend on which underlying distribution we sample from.</p>
+</div>
+<div id="simple-simulation-example" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Simple simulation example<a href="monte-carlo-simulations.html#simple-simulation-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As a simple example, let <span class="math inline">\(\{X_1, X_2, \ldots, X_n\}\)</span> be a random sample from some distribution <span class="math inline">\(F_X\)</span>. Define <span class="math inline">\(\theta = E(X)\)</span> and let
+<span class="math display">\[\hat{\theta}_n = \bar{X}_n = \frac1n \sum_{i=1}^n X_i\]</span>
+and
+<span class="math display">\[s_n = \sqrt{\frac{1}{n-1} \sum_{i=1}^n \left(X_i - \bar{X}_n\right)^2} \]</span>
+Applications of a Law of Large Numbers and a Central Limit Theorem for iid data imply that
+<span class="math display">\[\hat{\theta}_n  \rightarrow_P \theta,\]</span>
+<span class="math display">\[s_n  \rightarrow_P sd(X),\]</span>
+and
+<span class="math display">\[\sqrt{n}\left(\hat{\theta}_n  - \theta \right) \rightarrow_D N(0,Var(X)) \]</span>
+The previously discussed confidence interval for <span class="math inline">\(E(X)\)</span> is
+<span class="math display">\[\left[ \bar{X}_n - 1.96\frac{s_n}{\sqrt{n}} , \, \bar{X}_n + 1.96\frac{s_n}{\sqrt{n}} \right]\]</span></p>
+</div>
+<div id="consistency" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Consistency<a href="monte-carlo-simulations.html#consistency" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The estimator <span class="math inline">\(\hat{\theta}_n\)</span> is weakly consistent if for any <span class="math inline">\(\varepsilon &gt; 0\)</span>
+<span class="math display">\[P\left( \left|\hat{\theta}_n - \theta \right| &gt; \varepsilon  \right) \rightarrow 0\]</span>
+or
+<span class="math display">\[P\left( \left|\hat{\theta}_n - \theta \right| \leq \varepsilon  \right) \rightarrow 1\]</span>
+That is, as long as <span class="math inline">\(n\)</span> is large enough, <span class="math inline">\(\hat{\theta}_n\)</span> is in an arbitrarily small neighborhood around <span class="math inline">\(\theta\)</span> with arbitrarily large probability.</p>
+<p>To illustrate this property, let’s return to the example with sample averages and expectations. Let <span class="math inline">\(\{X_1, X_2, \ldots, X_n\}\)</span> be a random sample from the Bernoulli distribution with <span class="math inline">\(p = P(X_i = 1) = 0.7\)</span>. Let <span class="math inline">\(\theta = E(X) = p\)</span> and let <span class="math inline">\(\hat{\theta}_n\)</span> be the sample average. We start with a sample size of 20 and set the parameters:</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="monte-carlo-simulations.html#cb156-1" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb156-2"><a href="monte-carlo-simulations.html#cb156-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.7</span></span>
+<span id="cb156-3"><a href="monte-carlo-simulations.html#cb156-3" tabindex="-1"></a>theta <span class="ot">=</span> p</span></code></pre></div>
+<p>We now want to take <span class="math inline">\(S\)</span> random samples and obtain <span class="math inline">\(S\)</span> corresponding sample averages, where <span class="math inline">\(S\)</span> is ideally a large number. The larger <span class="math inline">\(S\)</span>, the more precise our results will be. It is also useful to set a seed.</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="monte-carlo-simulations.html#cb157-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4519</span>)</span>
+<span id="cb157-2"><a href="monte-carlo-simulations.html#cb157-2" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb157-3"><a href="monte-carlo-simulations.html#cb157-3" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">replicate</span>(S,<span class="fu">rbinom</span>(n,<span class="dv">1</span>,p))</span>
+<span id="cb157-4"><a href="monte-carlo-simulations.html#cb157-4" tabindex="-1"></a>theta_hat <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(X)</span></code></pre></div>
+<p>Now for some <span class="math inline">\(\varepsilon &gt; 0\)</span>, we can check <span class="math inline">\(P\left( \left|\hat{\theta}_n - \theta \right| \leq \varepsilon  \right)\)</span>:</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="monte-carlo-simulations.html#cb158-1" tabindex="-1"></a>eps <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
+<span id="cb158-2"><a href="monte-carlo-simulations.html#cb158-2" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(theta_hat <span class="sc">-</span> p) <span class="sc">&lt;=</span> eps)</span></code></pre></div>
+<pre><code>## [1] 0.647</code></pre>
+<p>We can also calculate this probability for different values of <span class="math inline">\(\varepsilon &gt; 0\)</span>. I use a loop here for readability, but you can try using matrices on your own. Since I want to repeat the following steps for different sample sizes, it is useful to first define a functions that performs all operations:</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="monte-carlo-simulations.html#cb160-1" tabindex="-1"></a>calc_probs_consistency <span class="ot">&lt;-</span> <span class="cf">function</span>(n,S,p,all_eps) {</span>
+<span id="cb160-2"><a href="monte-carlo-simulations.html#cb160-2" tabindex="-1"></a>  n_eps <span class="ot">=</span> <span class="fu">length</span>(all_eps)</span>
+<span id="cb160-3"><a href="monte-carlo-simulations.html#cb160-3" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="fu">replicate</span>(S,<span class="fu">rbinom</span>(n,<span class="dv">1</span>,p))</span>
+<span id="cb160-4"><a href="monte-carlo-simulations.html#cb160-4" tabindex="-1"></a>  theta_hat <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(X)</span>
+<span id="cb160-5"><a href="monte-carlo-simulations.html#cb160-5" tabindex="-1"></a>  probs <span class="ot">=</span> <span class="fu">rep</span>(<span class="dv">0</span>, n_eps)</span>
+<span id="cb160-6"><a href="monte-carlo-simulations.html#cb160-6" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_eps) {</span>
+<span id="cb160-7"><a href="monte-carlo-simulations.html#cb160-7" tabindex="-1"></a>    probs[i] <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">abs</span>(theta_hat <span class="sc">-</span> p) <span class="sc">&lt;=</span> all_eps[i])</span>
+<span id="cb160-8"><a href="monte-carlo-simulations.html#cb160-8" tabindex="-1"></a>  }</span>
+<span id="cb160-9"><a href="monte-carlo-simulations.html#cb160-9" tabindex="-1"></a>  <span class="fu">return</span>(probs)</span>
+<span id="cb160-10"><a href="monte-carlo-simulations.html#cb160-10" tabindex="-1"></a>}</span></code></pre></div>
+<p>We can now call the function for any <span class="math inline">\(n\)</span>, <span class="math inline">\(S\)</span>, <span class="math inline">\(p\)</span>, and a vector containing different values for <span class="math inline">\(\varepsilon\)</span>. For each of these values, the function then returns a probability.</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="monte-carlo-simulations.html#cb161-1" tabindex="-1"></a>all_eps <span class="ot">=</span> <span class="fu">seq</span>(<span class="fl">0.01</span>, <span class="fl">0.5</span>, <span class="at">by=</span> <span class="fl">0.01</span>)</span>
+<span id="cb161-2"><a href="monte-carlo-simulations.html#cb161-2" tabindex="-1"></a>probs <span class="ot">&lt;-</span> <span class="fu">calc_probs_consistency</span>(<span class="at">n =</span> <span class="dv">20</span>, <span class="at">S =</span> <span class="dv">1000</span>, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">all_eps =</span> all_eps)</span></code></pre></div>
+<p>Next, we can plot all probabilities:</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="monte-carlo-simulations.html#cb162-1" tabindex="-1"></a><span class="fu">plot</span>(all_eps,probs,<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">xlab=</span><span class="st">&quot;epsilon&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Probability&quot;</span>, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<p>We can see from the plot that <span class="math inline">\(P\left( \left|\hat{\theta}_n - \theta \right| \leq \varepsilon  \right)\)</span> is quite small for small values of <span class="math inline">\(\varepsilon\)</span>. Consistency means that for any <span class="math inline">\(\varepsilon &gt; 0\)</span>, the probability approaches <span class="math inline">\(1\)</span> as <span class="math inline">\(n \rightarrow \infty\)</span>. We can now easily change the sample size and see how the results change. For example, take <span class="math inline">\(n=200\)</span>:</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="monte-carlo-simulations.html#cb163-1" tabindex="-1"></a>probs <span class="ot">&lt;-</span> <span class="fu">calc_probs_consistency</span>(<span class="at">n =</span> <span class="dv">200</span>, <span class="at">S =</span> <span class="dv">10000</span>, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">all_eps =</span> <span class="fu">seq</span>(<span class="fl">0.01</span>, <span class="fl">0.5</span>, <span class="at">by=</span> <span class="fl">0.01</span>))</span>
+<span id="cb163-2"><a href="monte-carlo-simulations.html#cb163-2" tabindex="-1"></a><span class="fu">plot</span>(all_eps,probs,<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">xlab=</span><span class="st">&quot;epsilon&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Probability&quot;</span>, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+</div>
+<div id="asymptotic-normality" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Asymptotic normality<a href="monte-carlo-simulations.html#asymptotic-normality" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We know from the Central Limit Theorem that
+<span class="math display">\[\frac{\sqrt{n}(\bar{X}_n - E(X))}{s_n} \rightarrow_D N(0,1)\]</span>
+where <span class="math inline">\(s_n\)</span> is the sample standard deviation. Convergence in distribution means that the distribution of the normalized sample average converges to the distribution function of a standard normal random variable.</p>
+<p>Again, we can use the previous simulation setup to illustrate this property. To do so, we calculate
+<span class="math display">\[P\left(\frac{\sqrt{n}(\bar{X}_n - E(X))}{s_n} \leq z\right)\]</span>
+and compare it to the standard normal cdf evaluated at <span class="math inline">\(z\)</span>. We then plot the results as a function of <span class="math inline">\(z\)</span>. Just as before, we define a function that calculates the probabilities:</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="monte-carlo-simulations.html#cb164-1" tabindex="-1"></a>calc_probs_asymp_normal <span class="ot">&lt;-</span> <span class="cf">function</span>(n,S,p,z) {</span>
+<span id="cb164-2"><a href="monte-carlo-simulations.html#cb164-2" tabindex="-1"></a>  n_z <span class="ot">=</span> <span class="fu">length</span>(z)</span>
+<span id="cb164-3"><a href="monte-carlo-simulations.html#cb164-3" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="fu">replicate</span>(S,<span class="fu">rbinom</span>(n,<span class="dv">1</span>,p))</span>
+<span id="cb164-4"><a href="monte-carlo-simulations.html#cb164-4" tabindex="-1"></a>  theta_hat <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(X)</span>
+<span id="cb164-5"><a href="monte-carlo-simulations.html#cb164-5" tabindex="-1"></a>  stds <span class="ot">&lt;-</span> <span class="fu">apply</span>(X, <span class="dv">2</span>, sd)</span>
+<span id="cb164-6"><a href="monte-carlo-simulations.html#cb164-6" tabindex="-1"></a>  probs <span class="ot">=</span> <span class="fu">rep</span>(<span class="dv">0</span>, n_z)</span>
+<span id="cb164-7"><a href="monte-carlo-simulations.html#cb164-7" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_z) {</span>
+<span id="cb164-8"><a href="monte-carlo-simulations.html#cb164-8" tabindex="-1"></a>    probs[i] <span class="ot">=</span> <span class="fu">mean</span>( <span class="fu">sqrt</span>(n)<span class="sc">*</span>(theta_hat <span class="sc">-</span> p)<span class="sc">/</span>stds <span class="sc">&lt;=</span> z[i])</span>
+<span id="cb164-9"><a href="monte-carlo-simulations.html#cb164-9" tabindex="-1"></a>  }</span>
+<span id="cb164-10"><a href="monte-carlo-simulations.html#cb164-10" tabindex="-1"></a>  <span class="fu">return</span>(probs)</span>
+<span id="cb164-11"><a href="monte-carlo-simulations.html#cb164-11" tabindex="-1"></a>}</span></code></pre></div>
+<p>We can now plot the results for different sample sizes such as</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="monte-carlo-simulations.html#cb165-1" tabindex="-1"></a>z <span class="ot">=</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>,<span class="at">by=</span><span class="fl">0.01</span>)</span>
+<span id="cb165-2"><a href="monte-carlo-simulations.html#cb165-2" tabindex="-1"></a>probs <span class="ot">&lt;-</span> <span class="fu">calc_probs_asymp_normal</span>(<span class="at">n =</span> <span class="dv">20</span>, <span class="at">S =</span> <span class="dv">10000</span>, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">z =</span> z)</span>
+<span id="cb165-3"><a href="monte-carlo-simulations.html#cb165-3" tabindex="-1"></a><span class="fu">plot</span>(z,probs,<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">xlab=</span><span class="st">&quot;z&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Probability&quot;</span>, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb165-4"><a href="monte-carlo-simulations.html#cb165-4" tabindex="-1"></a><span class="fu">lines</span>(z, <span class="fu">pnorm</span>(z, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">col =</span> <span class="st">&#39;red&#39;</span>,<span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<p>or</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="monte-carlo-simulations.html#cb166-1" tabindex="-1"></a>probs <span class="ot">&lt;-</span> <span class="fu">calc_probs_asymp_normal</span>(<span class="at">n =</span> <span class="dv">2000</span>, <span class="at">S =</span> <span class="dv">10000</span>, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">z =</span> z)</span>
+<span id="cb166-2"><a href="monte-carlo-simulations.html#cb166-2" tabindex="-1"></a><span class="fu">plot</span>(z,probs,<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">xlab=</span><span class="st">&quot;z&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Probability&quot;</span>, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb166-3"><a href="monte-carlo-simulations.html#cb166-3" tabindex="-1"></a><span class="fu">lines</span>(z, <span class="fu">pnorm</span>(z, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">col =</span> <span class="st">&#39;red&#39;</span>,<span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+</div>
+<div id="testing" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Testing<a href="monte-carlo-simulations.html#testing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let <span class="math inline">\(\{X_1, X_2, \dots, X_n\}\)</span> be a random sample and define <span class="math inline">\(\mu = E(X)\)</span>. Suppose we want to test <span class="math inline">\(H_0: \mu = \mu_0\)</span> where <span class="math inline">\(\mu_0\)</span> is a fixed number. To do so, define
+<span class="math display">\[t = \frac{\sqrt{n}(\bar{X}_n - \mu_0)}{s_n} \]</span>
+An immediate consequence of the Central Limit Theorem is that if <span class="math inline">\(H_0\)</span> is true then
+<span class="math display">\[t = \frac{\sqrt{n}(\bar{X}_n - \mu_0)}{s_n} = \frac{\sqrt{n}(\bar{X}_n - \mu)}{s_n} \rightarrow_D N(0,1) \]</span>
+and therefore
+<span class="math display">\[P\left(|t| &gt; 1.96 \mid \mu = \mu_0\right) \rightarrow 0.05\]</span>
+Hence, if we reject when <span class="math inline">\(|t|&gt;1.96\)</span>, we only reject a true null hypothesis with probability approaching 5%.</p>
+<p>If the null hypothesis is false, we can write
+<span class="math display">\[t = \frac{\sqrt{n}(\bar{X}_n - \mu_0)}{s_n} = \frac{\sqrt{n}(\bar{X}_n - \mu)}{s_n} + \frac{\sqrt{n}(\mu - \mu_0)}{s_n} \rightarrow_D N(0,1) \]</span>
+Since in this case <span class="math inline">\(\sqrt{n}|\mu - \mu_0| \rightarrow \infty\)</span>, it follows that
+<span class="math display">\[P\left(|t| &gt; 1.96  \mid \mu \neq \mu_0\right) \rightarrow 1\]</span>
+That is, we reject a false null hypothesis with probability approaching <span class="math inline">\(1\)</span>. However, for a small sample size, the rejection probability is typically much smaller when <span class="math inline">\(\mu_0\)</span> is close to <span class="math inline">\(\mu\)</span>.</p>
+<p>We now want to calculate the small sample rejection probabilities using Monte Carlo simulations. We could either vary <span class="math inline">\(\mu_0\)</span> (the value we test) or <span class="math inline">\(\mu\)</span> (the true mean). We take the latter because we can then plot the power functions you have seen in the theoretical part of the class to illustrate the results.</p>
+<p>We work with the Bernoulli distribution again and define a function that calculates certain rejection probabilities.</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="monte-carlo-simulations.html#cb167-1" tabindex="-1"></a>calc_rej_probs <span class="ot">&lt;-</span> <span class="cf">function</span>(n,S,mus,mu0,alpha) {</span>
+<span id="cb167-2"><a href="monte-carlo-simulations.html#cb167-2" tabindex="-1"></a>  n_mus <span class="ot">=</span> <span class="fu">length</span>(mus)</span>
+<span id="cb167-3"><a href="monte-carlo-simulations.html#cb167-3" tabindex="-1"></a>  probs <span class="ot">=</span> <span class="fu">rep</span>(<span class="dv">0</span>, n_mus)</span>
+<span id="cb167-4"><a href="monte-carlo-simulations.html#cb167-4" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_mus) {</span>
+<span id="cb167-5"><a href="monte-carlo-simulations.html#cb167-5" tabindex="-1"></a>    X <span class="ot">&lt;-</span> <span class="fu">replicate</span>(S,<span class="fu">rbinom</span>(n,<span class="dv">1</span>,mus[i]))</span>
+<span id="cb167-6"><a href="monte-carlo-simulations.html#cb167-6" tabindex="-1"></a>    theta_hat <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(X)</span>
+<span id="cb167-7"><a href="monte-carlo-simulations.html#cb167-7" tabindex="-1"></a>    stds <span class="ot">&lt;-</span> <span class="fu">apply</span>(X, <span class="dv">2</span>, sd)</span>
+<span id="cb167-8"><a href="monte-carlo-simulations.html#cb167-8" tabindex="-1"></a>    probs[i] <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">abs</span>( <span class="fu">sqrt</span>(n)<span class="sc">*</span>(theta_hat <span class="sc">-</span> mu0)<span class="sc">/</span>stds ) <span class="sc">&gt;</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>) )</span>
+<span id="cb167-9"><a href="monte-carlo-simulations.html#cb167-9" tabindex="-1"></a>  }</span>
+<span id="cb167-10"><a href="monte-carlo-simulations.html#cb167-10" tabindex="-1"></a>  <span class="fu">return</span>(probs)</span>
+<span id="cb167-11"><a href="monte-carlo-simulations.html#cb167-11" tabindex="-1"></a>}</span></code></pre></div>
+<p>We can now call the function for different values of <span class="math inline">\(\mu\)</span> and plot the rejection probabilities</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="monte-carlo-simulations.html#cb168-1" tabindex="-1"></a>mus <span class="ot">=</span> <span class="fu">seq</span>(<span class="fl">0.5</span>,<span class="fl">0.9</span>,<span class="at">by=</span><span class="fl">0.01</span>)</span>
+<span id="cb168-2"><a href="monte-carlo-simulations.html#cb168-2" tabindex="-1"></a>probs <span class="ot">&lt;-</span> <span class="fu">calc_rej_probs</span>(<span class="at">n =</span> <span class="dv">200</span>, <span class="at">S =</span> <span class="dv">10000</span>, <span class="at">mus =</span> mus, <span class="at">mu0 =</span> <span class="fl">0.7</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>)</span>
+<span id="cb168-3"><a href="monte-carlo-simulations.html#cb168-3" tabindex="-1"></a><span class="fu">plot</span>(mus,probs,<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">xlab=</span><span class="st">&quot;True mean&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Rejection Probability&quot;</span>, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb168-4"><a href="monte-carlo-simulations.html#cb168-4" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fl">0.05</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>,<span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
+<p>Think about how the figure changes as the sample size increases.</p>
+</div>
+<div id="exercises-vi" class="section level2 hasAnchor" number="6.6">
+<h2><span class="header-section-number">6.6</span> Exercises VI<a href="monte-carlo-simulations.html#exercises-vi" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Exercise 1:</strong></p>
+<p>Suppose <span class="math inline">\(X \sim U[0,2]\)</span> where <span class="math inline">\(U[0,2]\)</span> denotes the uniform distribution on the interval <span class="math inline">\([0,2]\)</span>. It is easy to show (make sure to verify this!) that <span class="math inline">\(E(X) = 1\)</span>. Now repeat the following two steps at least <span class="math inline">\(1,000\)</span> times:</p>
+<ol style="list-style-type: decimal">
+<li>Take a random sample from the distribution of <span class="math inline">\(X\)</span> with sample size <span class="math inline">\(n = 20\)</span>.</li>
+<li>Calculate the sample average and a <span class="math inline">\(95\%\)</span> confidence interval for <span class="math inline">\(E(X)\)</span> using the sample from (1).</li>
+</ol>
+<p>You should now have <span class="math inline">\(1,000\)</span> sample averages and <span class="math inline">\(1,000\)</span> confidence intervals, which you can use to answer the following questions:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>What is average of your <span class="math inline">\(1,000\)</span> sample averages?</p></li>
+<li><p>What is the standard deviation of your <span class="math inline">\(1,000\)</span> sample averages?</p></li>
+<li><p>How many times is <span class="math inline">\(E(X)\)</span> in the <span class="math inline">\(95\%\)</span> confidence interval?</p></li>
+</ol>
+<p><strong>Exercise 2:</strong></p>
+<p>In this exercise, we use the Monte-Carlo method to approximate the number pi. To do so, randomly choose n points from a square and count how many of those draws lie inside the square’s incircle. Based on this results and the formula for the area of a circle, calculate an approximation of pi.</p>
+<!-- **Exercise 3:**
+
+Using your code from Exercise 2, write a function that receives a sample size n as its argument and returns an approximation of pi using that sample size.
+Then for each of the following sample sizes $n \in \{10, 100, 1000, 10000\}$ calculate 10000 approximations of pi and calculate the respective means and standard deviations.   -->
+<p>Create a plot that portrays your findings in an intuitive manner, such as histograms, density plots, boxplots, etc.) –&gt;</p>
+<!-- **Exercise 4**
+
+Try to explain in plain English, how the Monte-Carlo method works, what it can and cannot do. -->
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="plotting-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regression-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

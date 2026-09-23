@@ -1,0 +1,89 @@
+# Create and load data sets
+
+We will use R to analyze both simulate and real data. Simulated data will be crucial to study small sample properties of estimators. 
+
+## Simulated data 
+
+We start by considering data that is simulated by the user. We can create data sets by using functions like `rnorm()`, `rexp()` or `runif()`. After the data is created we can work with it as shown in the following example: 
+```{r, error = TRUE }
+n = 100  # number of observations
+
+Z = rnorm(n, mean = 5, sd = 3)      # draw from normal distribution 
+mean(Z)
+sd(Z)
+
+E = rexp(n, rate = 3)           # draw data from exponential distribution 
+mean(E)
+sd(E)
+
+
+U = runif(n, min = 3, max = 5)  # draw data from uniform distribution
+mean(U)
+sd(U)
+
+```
+
+Analogous functions exist for many other distributions in R, and you can find them by searching on the web. 
+
+
+
+## Load datasets
+
+It is also possible to work with observed data, which will be loaded into R. Here, we will use some real data, namely a movie database from IMDB that you can download [here](https://www.kaggle.com/tmdb/tmdb-movie-metadata#). The data set contains, among others, the budget, the revenue, and the average rating of movies.
+
+Once the data is saved in your working directory, you can load it using
+```{r}
+data_set = read.csv("tmdb_5000_movies.csv")
+```
+which stores the data in a data frame. You can use the `View()` function to look the data. 
+
+After the file is loaded, we can work with the data using `$` to access certain parts of the data set such as 
+```{r, error = TRUE }
+data_set$original_title[1:5]
+data_set$budget[1:5]
+mean(data_set$budget[1:5])
+```
+
+We will return to this data set when we talk about regression analysis later.
+
+Apart from `read.csv` there exist also `read.dta`, `read.xls` and many more to load suitable data sets.
+
+Another important function is `readRDS` that is used to read in a data set that was saved using the function `saveRDS`. These functions can be useful in case properties of your R object are not preserved when saved in other formats, such as a csv file.
+
+## Save datasets
+
+There are also  multiple ways to save your own data. 
+While `read.csv` can be used to read in data from a csv file, its counterpart `write.csv` can be used to save a suitable object as a csv file. The most important arguments for this function are `x`, the object you want to save, and `file`, which provides the path where to save the file.
+
+```
+write.csv(data_set, <my_path>)
+```
+
+Similarly the function `saveRDS` allows you to save a generic R object to storage. One advantage of this function compared to `write.csv` is that it preserves properties of your object that might be lost when saved as a csv file. For example, conversions from factors to strings might occur when saving a data.frame as a csv file.
+
+The package `readxl` and `openxlsx` from the tidyverse family can be used to read in and write to excel files, respectively. This format is usually not be the best option to store your data. 
+
+## Exercises II
+
+**Exercise 1:** 
+
+Simulate a vector containing 10000 independent normally distributed random variables with means of 1 and variances of 2. How many of them are negative? What is the expected fraction of negative values?
+ 
+
+**Exercise 2:** 
+
+Simulate `u` and `v` as independent log-normally distributed random vectors of size 200 each. Pick means and variances you like. Then let `w` be equal to `u+v`. Now calculate the following: 
+
+* the sample means of `u`, `v`, and `w`
+* the sample variances of `u`, `v`, and `w`
+* all pairwise covariances 
+
+**Exercise 3:**
+
+Take the objects you created in the previous exercises from this chapter and save them to storage in your preferred format.
+Then close your session, clean your workspace and read them in again. This might be tedious at first, but integrating the export of data into your workflow might save you from time costly mistakes in the future.
+
+
+ 
+
+
